@@ -22,13 +22,7 @@ export const Layout = Shade({
         }}
         className="eee"
       >
-        <Header
-          title="🦇 Shades Demo"
-          links={[
-            { name: "👀 FPV", url: "/fpv" },
-            { name: "😷 Stats", url: "/stats" }
-          ]}
-        />
+        <Header title="🧩 FuryStack Boilerplate" links={[]} />
         <Body />
       </div>
     );
