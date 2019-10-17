@@ -33,7 +33,7 @@ export class SessionService {
   }
 
   public async logout() {
-    await this.users.logout();
+    this.users.logout();
     this.currentUser.setValue(null);
     this.state.setValue("unauthenticated");
   }
