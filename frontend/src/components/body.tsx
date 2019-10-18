@@ -31,7 +31,7 @@ export const Body = Shade({
           position: "fixed",
           top: "40px",
           width: "calc(100% - 40px)",
-          height: "100%",
+          height: "calc(100% - 80px)",
           overflow: "hidden"
         }}
       >
