@@ -1,5 +1,5 @@
 import { Injectable } from "@furystack/inject";
-import { ObservableValue } from "@sensenet/client-utils";
+import { ObservableValue, usingAsync } from "@sensenet/client-utils";
 import { Users } from "../odata/entity-collections";
 import { User } from "../odata/entity-types";
 
@@ -12,36 +12,48 @@ export type sessionState =
 
 @Injectable({ lifetime: "singleton" })
 export class SessionService {
+  private readonly operation = () => {
+    this.isOperationInProgress.setValue(true);
+    return { dispose: () => this.isOperationInProgress.setValue(false) };
+  };
+
   public state = new ObservableValue<sessionState>("initializing");
   public currentUser = new ObservableValue<User | null>(null);
 
+  public isOperationInProgress = new ObservableValue(true);
+
   public loginError = new ObservableValue("");
   private async init() {
-    try {
-      const { isAuthenticated } = await this.users.isAuthenticated();
-      this.state.setValue(
-        isAuthenticated ? "authenticated" : "unauthenticated"
-      );
-    } catch (error) {
-      this.state.setValue("offline");
-      return;
-    }
+    await usingAsync(this.operation(), async () => {
+      try {
+        const { isAuthenticated } = await this.users.isAuthenticated();
+        this.state.setValue(
+          isAuthenticated ? "authenticated" : "unauthenticated"
+        );
+      } catch (error) {
+        this.state.setValue("offline");
+      }
+    });
   }
 
   public async login(username: string, password: string) {
-    try {
-      const usr = await this.users.login({ username, password });
-      this.currentUser.setValue(usr);
-      this.state.setValue("authenticated");
-    } catch (error) {
-      this.loginError.setValue(error.body.message);
-    }
+    await usingAsync(this.operation(), async () => {
+      try {
+        const usr = await this.users.login({ username, password });
+        this.currentUser.setValue(usr);
+        this.state.setValue("authenticated");
+      } catch (error) {
+        this.loginError.setValue(error.body.message);
+      }
+    });
   }
 
   public async logout() {
-    this.users.logout();
-    this.currentUser.setValue(null);
-    this.state.setValue("unauthenticated");
+    await usingAsync(this.operation(), async () => {
+      this.users.logout();
+      this.currentUser.setValue(null);
+      this.state.setValue("unauthenticated");
+    });
   }
 
   constructor(private users: Users) {
