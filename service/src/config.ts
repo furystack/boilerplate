@@ -58,7 +58,9 @@ export const injector = new Injector()
         entities.addEntityType({
           model: User,
           primaryKey: "username",
-          properties: [{ property: "username", type: EdmType.String }],
+          properties: [
+            { property: "username", type: EdmType.String, nullable: false }
+          ],
           name: "User"
         })
       ).setupCollections(collections =>
@@ -68,9 +70,14 @@ export const injector = new Injector()
           functions: [
             {
               action: GetCurrentUser,
-              name: "current"
+              name: "current",
+              returnType: User
             },
-            { action: IsAuthenticated, name: "isAuthenticated" }
+            {
+              action: IsAuthenticated,
+              name: "isAuthenticated",
+              returnType: Object
+            }
           ],
           actions: [
             {
@@ -79,7 +86,8 @@ export const injector = new Injector()
               parameters: [
                 { name: "username", type: EdmType.String, nullable: false },
                 { name: "password", type: EdmType.String, nullable: false }
-              ]
+              ],
+              returnType: User
             },
             { action: LogoutAction, name: "logout" }
           ]

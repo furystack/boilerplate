@@ -55,10 +55,10 @@
   dependencies:
     "@furystack/inject" "^4.0.2"
 
-"@furystack/odata-fetchr@^0.2.0":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@furystack/odata-fetchr/-/odata-fetchr-0.2.2.tgz#52a49e38bdebc4b152d854415381508fb897bc81"
-  integrity sha512-fysLDP1PbBWR4SM0CdZmWU0aLNYl1Ypzm0Ea8bBYao0LTLHFMt7cCcKNk4WVilGieGbJcxGFKQQnBY8AgwUzew==
+"@furystack/odata-fetchr@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@furystack/odata-fetchr/-/odata-fetchr-0.3.0.tgz#bb9d954d1f6847eedb36dff36bbe750498760c43"
+  integrity sha512-eR8twEh59zLNlljFo4+AvMEUT3NIeTfMMi2BfFHAIHOnmdcihwOaP5BcxNN6KDvd+PRirnFGXldupt8dsMNmyA==
   dependencies:
     "@furystack/inject" "^4.0.2"
     "@furystack/logging" "^2.0.6"
