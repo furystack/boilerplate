@@ -52,18 +52,6 @@ export const injector = new Injector()
       name: "users"
     })
   )
-  .useHttpApi({
-    corsOptions: {
-      credentials: true,
-      origins: ["http://localhost:8080"],
-      headers: ["cache", "content-type"]
-    }
-  })
-  .useHttpAuthentication({
-    getUserStore: sm => sm.getStoreFor(User),
-    getSessionStore: sm => sm.getStoreFor(Session)
-  })
-  .useDefaultLoginRoutes()
   .useOdata("odata", odata =>
     odata.addNameSpace("default", ns => {
       ns.setupEntities(entities =>

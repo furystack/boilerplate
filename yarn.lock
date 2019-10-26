@@ -28,10 +28,10 @@
     "@sensenet/client-utils" "^1.5.1"
     semaphore-async-await "^1.5.1"
 
-"@furystack/http-api@^5.2.3", "@furystack/http-api@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@furystack/http-api/-/http-api-5.3.1.tgz#3910bf1eef0cc72ef5d479f8c821775c01f73b90"
-  integrity sha512-wosm8RY51OiWvX/qEW/J9T27MEkUuUKaflbS9FeL+uW242dPXYeHw+NgcSznf4c91l5MJ1gzhXTieyXRjU5Thw==
+"@furystack/http-api@^5.2.3", "@furystack/http-api@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@furystack/http-api/-/http-api-5.3.2.tgz#4d76290b1bf81053673a84910b5bb096684dfed6"
+  integrity sha512-h3D8l4RWZjCIzrqz9WDQz4J+hvb8rv9z7GnyN6Gj0E8BUgPg9JfAmF8Pu4FuBtPne/ziyp2vy7u18BpjJd9lIg==
   dependencies:
     "@furystack/core" "^6.0.4"
     "@furystack/inject" "^4.0.2"
@@ -66,12 +66,12 @@
     jsdom "^15.1.1"
 
 "@furystack/odata@^2.1.0":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@furystack/odata/-/odata-2.1.2.tgz#05a071c267d21ed58de3361ca7a5181695968637"
-  integrity sha512-e7N4qJSewRlIEiShzCWFeE6Cz65t7NC8FM5+7iIOpDqOyU2lSD+eBKJCTCwKH/N1aO7JQLaQY5qvI3MXgqdKKg==
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@furystack/odata/-/odata-2.1.3.tgz#8d85ced2217e01254c836b0b25d7932da0ceef02"
+  integrity sha512-CgOjvRBzW1Q+5KR8lqqE7VdXw4MAQg1aBfXUzU+IMoqaYJb7KpIzxevjaur/N+Do4X+CESysYT1/gmk13wHkKw==
   dependencies:
     "@furystack/core" "^6.0.4"
-    "@furystack/http-api" "^5.3.1"
+    "@furystack/http-api" "^5.3.2"
     "@furystack/inject" "^4.0.2"
     "@furystack/repository" "^2.0.7"
     "@sensenet/client-utils" "^1.5.1"
@@ -86,12 +86,12 @@
     "@sensenet/client-utils" "^1.5.1"
 
 "@furystack/shades@^1.2.0":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-1.3.1.tgz#9c067ae82da75ed979d610bf6a70cb6bc2375593"
-  integrity sha512-c2IPEYAZ2M3U4gBUpjku+QsjZ4e8WbaqTPll3zd2MFuntBqiJ1FR8WNQ4QMXAewCcB/JZifjG4FxBshzueltWQ==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-1.3.2.tgz#c72c30677f765dbdf66509941d8b497eca0aafd6"
+  integrity sha512-mEq++wUkSEWCHmHNkGD3m3TenTmnReYQ7nJGpeQrhDAYO6aj8RH7OCNxgNBuTGL981PxAIwrU/iPOKiD+wG9Cw==
   dependencies:
     "@furystack/core" "^6.0.4"
-    "@furystack/http-api" "^5.3.1"
+    "@furystack/http-api" "^5.3.2"
     "@furystack/inject" "^4.0.2"
     "@furystack/logging" "^2.0.6"
     "@sensenet/client-utils" "^1.5.1"
@@ -2014,9 +2014,9 @@ escodegen@^1.11.1:
     source-map "~0.6.1"
 
 eslint-config-prettier@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.4.0.tgz#0a04f147e31d33c6c161b2dd0971418ac52d0477"
-  integrity sha512-YrKucoFdc7SEko5Sxe4r6ixqXPDP1tunGw91POeZTTRKItf/AMFYt/YLEQtZMkR2LVpAVhcAcZgcWpm1oGPW7w==
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.5.0.tgz#aaf9a495e2a816865e541bfdbb73a65cc162b3eb"
+  integrity sha512-cjXp8SbO9VFGW/Z7mbTydqS9to8Z58E5aYhj3e1+Hx7lS9s6gL5ILKNpCqZAFOVYRcSkWPFYljHrEh8QFEK5EQ==
   dependencies:
     get-stdin "^6.0.0"
 

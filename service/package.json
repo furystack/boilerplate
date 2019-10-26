@@ -7,6 +7,7 @@
   "scripts": {
     "start": "yarn build && node ./dist/service.js",
     "seed": "yarn build && node ./dist/seed.js",
+    "write-metadata": "yarn build && node ./dist/write-metadata.js",
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b"
   },

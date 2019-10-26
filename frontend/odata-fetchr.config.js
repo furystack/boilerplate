@@ -1,5 +1,5 @@
-const http = require("http");
-
+const fs = require("fs");
+const path = require("path");
 /**
  * @type import("@furystack/odata-fetchr/dist/models/configuration").Configuration
  */
@@ -13,15 +13,19 @@ module.exports = {
    */
   getMetadataXml: async () => {
     return new Promise((resolve, reject) =>
-      http.get("http://localhost:9090/odata/$metadata", res => {
-        var data = "";
-        res.on("data", function(chunk) {
-          data += chunk;
-        });
-        res.on("end", function() {
-          resolve(data);
-        });
-      })
+      // old - get from HTTP
+      // http.get("http://localhost:9090/odata/$metadata", res => {
+      //   var data = "";
+      //   res.on("data", function(chunk) {
+      //     data += chunk;
+      //   });
+      //   res.on("end", function() {
+      //     resolve(data);
+      //   });
+      // })
+      fs.readFile(path.join(__dirname, "..", "metadata.xml"), (err, data) =>
+        err ? reject(err) : resolve(data.toString())
+      )
     );
   },
   writeDump: true
