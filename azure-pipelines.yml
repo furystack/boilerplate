@@ -16,16 +16,16 @@ pool:
 jobs:
   - job: Install
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: "12.x"
-      displayName: "Install Node.js"
-    - script: yarn install
-      displayName: "Yarn install"
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "12.x"
+        displayName: "Install Node.js"
+      - script: yarn install
+        displayName: "Yarn install"
 
-  - job: Lint 
+  - job: Lint
     steps:
-        - script: yarn lint
+      - script: yarn lint
         displayName: "Yarn Lint"
 
   - job: Service
@@ -66,18 +66,17 @@ jobs:
     #       testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
   - job: Frontend
     steps:
-    - script: yarn workspace frontend build
-      displayName: "Build Frontend"
-    - task: ArchiveFiles@1
-      displayName: Compress frontend artifacts
-      inputs:
-        archiveFile: $(System.DefaultWorkingDirectory)/frontend.zip
-        rootFolder: "$(System.DefaultWorkingDirectory)/frontend/bundle"
-        includeRootFolder: false
+      - script: yarn workspace frontend build
+        displayName: "Build Frontend"
+      - task: ArchiveFiles@1
+        displayName: Compress frontend artifacts
+        inputs:
+          archiveFile: $(System.DefaultWorkingDirectory)/frontend.zip
+          rootFolder: "$(System.DefaultWorkingDirectory)/frontend/bundle"
+          includeRootFolder: false
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish frontend bundle artifacts
-      inputs:
-        pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend.zip"
-        artifactName: frontend
-
+      - task: PublishBuildArtifacts@1
+        displayName: Publish frontend bundle artifacts
+        inputs:
+          pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend.zip"
+          artifactName: frontend
