@@ -63,6 +63,7 @@ export const Offline = Shade({
             <li>You have started the service :)</li>
           </ul>
         </div>
+        <a href="/">Reload page</a>
       </div>
     );
   }

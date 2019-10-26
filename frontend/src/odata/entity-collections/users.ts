@@ -21,7 +21,7 @@ export class Users {
    * Custom collection action 'current'
    */
   public current = () =>
-    this.getService().execCustomCollectionFunction("current");
+    this.getService().execCustomCollectionFunction<User>("current");
   /**
    * Custom collection action 'isAuthenticated'
    */

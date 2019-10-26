@@ -1,5 +1,9 @@
 import { Injectable } from "@furystack/inject";
-import { ObservableValue, usingAsync } from "@sensenet/client-utils";
+import {
+  ObservableValue,
+  usingAsync,
+  sleepAsync
+} from "@sensenet/client-utils";
 import { Users } from "../odata/entity-collections";
 import { User } from "../odata/entity-types";
 
@@ -7,8 +11,7 @@ export type sessionState =
   | "initializing"
   | "offline"
   | "unauthenticated"
-  | "authenticated"
-  | "loginFailed";
+  | "authenticated";
 
 @Injectable({ lifetime: "singleton" })
 export class SessionService {
@@ -30,6 +33,10 @@ export class SessionService {
         this.state.setValue(
           isAuthenticated ? "authenticated" : "unauthenticated"
         );
+        if (isAuthenticated) {
+          const usr = await this.users.current();
+          this.currentUser.setValue(usr);
+        }
       } catch (error) {
         this.state.setValue("offline");
       }
@@ -39,6 +46,7 @@ export class SessionService {
   public async login(username: string, password: string) {
     await usingAsync(this.operation(), async () => {
       try {
+        await sleepAsync(2000);
         const usr = await this.users.login({ username, password });
         this.currentUser.setValue(usr);
         this.state.setValue("authenticated");
