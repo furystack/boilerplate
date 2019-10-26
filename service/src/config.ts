@@ -12,9 +12,7 @@ import {
 import "@furystack/typeorm-store";
 import { EdmType } from "@furystack/odata";
 import { DataSetSettings } from "@furystack/repository";
-import { seed } from "./seed";
 import { User, Session } from "./models";
-import { registerExitHandler } from "./exitHandler";
 
 export const authorizedOnly = async (options: { injector: Injector }) => {
   const authorized = await options.injector
@@ -34,7 +32,7 @@ export const authorizedDataSet: Partial<DataSetSettings<any>> = {
   authroizeRemoveEntity: authorizedOnly
 };
 
-export const i = new Injector()
+export const injector = new Injector()
   .useLogging(VerboseConsoleLogger)
   .useTypeOrm({
     type: "sqlite",
@@ -48,6 +46,12 @@ export const i = new Injector()
       .useTypeOrmStore(User)
       .addStore(new InMemoryStore({ model: Session, primaryKey: "sessionId" }))
   )
+  .setupRepository(repo =>
+    repo.createDataSet(User, {
+      ...authorizedDataSet,
+      name: "users"
+    })
+  )
   .useHttpApi({
     corsOptions: {
       credentials: true,
@@ -60,15 +64,6 @@ export const i = new Injector()
     getSessionStore: sm => sm.getStoreFor(Session)
   })
   .useDefaultLoginRoutes()
-  .listenHttp({
-    port: parseInt(process.env.APP_SERVICE_PORT as string, 10) || 9090
-  })
-  .setupRepository(repo =>
-    repo.createDataSet(User, {
-      ...authorizedDataSet,
-      name: "users"
-    })
-  )
   .useOdata("odata", odata =>
     odata.addNameSpace("default", ns => {
       ns.setupEntities(entities =>
@@ -102,10 +97,6 @@ export const i = new Injector()
           ]
         })
       );
-
       return ns;
     })
   );
-
-registerExitHandler(i);
-seed(i);
