@@ -24,11 +24,13 @@ jobs:
         displayName: "Yarn install"
 
   - job: Lint
+    dependsOn: Install
     steps:
       - script: yarn lint
         displayName: "Yarn Lint"
 
   - job: Service
+    dependsOn: Install
     steps:
       - script: yarn workspace service build
         displayName: "Build service"
@@ -65,6 +67,7 @@ jobs:
     #       testRunner: JUnit
     #       testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
   - job: Frontend
+    dependsOn: Install
     steps:
       - script: yarn workspace frontend build
         displayName: "Build Frontend"
