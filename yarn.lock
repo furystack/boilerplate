@@ -185,6 +185,11 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
+"@types/nextgen-events@*":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/nextgen-events/-/nextgen-events-1.1.0.tgz#134730c1997af5fb9d4469a05e4b6a89df74e9b0"
+  integrity sha512-vRh1NWJKNuhdeo0x85veoA7gZTC9IIC9LSmFUHT5Vk50rH/SDvXy4gKarcT4rLfBWxOIfyozpX/IHAAnz4oWTg==
+
 "@types/node@*":
   version "12.12.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.5.tgz#66103d2eddc543d44a04394abb7be52506d7f290"
@@ -199,6 +204,13 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
+
+"@types/terminal-kit@^1.28.0":
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/@types/terminal-kit/-/terminal-kit-1.28.0.tgz#696d94ffec4c92da9518bd0df7ab161768151463"
+  integrity sha512-xByt2gVf6BvmCU8QOg3zc+cywAefyXNIZSr1qnaz/U2jedfIAkvCq4hfTao0iAU7w6o7QcxVEJAc/BIbQ9SU7A==
+  dependencies:
+    "@types/nextgen-events" "*"
 
 "@typescript-eslint/eslint-plugin@^2.4.0":
   version "2.6.1"
