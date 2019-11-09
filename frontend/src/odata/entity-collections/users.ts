@@ -26,9 +26,9 @@ export class Users {
    * Custom collection action 'isAuthenticated'
    */
   public isAuthenticated = () =>
-    this.getService().execCustomCollectionFunction<{
-      isAuthenticated: boolean;
-    }>("isAuthenticated");
+    this.getService().execCustomCollectionFunction<Record<string, any>>(
+      "isAuthenticated"
+    );
   public readonly entitySetUrl = "users";
   public getService = () => this.injector.getOdataServiceFor(User, "users");
   constructor(private injector: Injector) {}

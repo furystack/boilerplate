@@ -1,8 +1,8 @@
 import { PhysicalStore, StoreManager, SearchOptions } from "@furystack/core";
 import { HttpAuthenticationSettings } from "@furystack/http-api";
 import { Injector } from "@furystack/inject";
-import { TypeOrmStore } from "@furystack/typeorm-store";
 import { User } from "./models";
+import { injector } from "./config";
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result
@@ -14,10 +14,10 @@ export const getOrCreate = async <T>(
   filter: SearchOptions<T, Array<keyof T>>,
   instance: T,
   store: PhysicalStore<T>,
-  injector: Injector
+  i: Injector
 ) => {
   const result = await store.search(filter);
-  const logger = injector.logger.withScope("Seeder");
+  const logger = i.logger.withScope("Seeder");
   if (result.length === 1) {
     return result[0];
   } else if (result.length === 0) {
@@ -38,25 +38,27 @@ export const getOrCreate = async <T>(
 
 /**
  * Seeds the databases with predefined values
- * @param injector The injector instance
+ * @param i The injector instance
  */
-export const seed = async (injector: Injector) => {
-  const logger = injector.logger.withScope("seeder");
+export const seed = async (i: Injector) => {
+  const logger = i.logger.withScope("seeder");
   logger.verbose({ message: "Seeding data..." });
-  const sm = injector.getInstance(StoreManager);
-  const userStore = sm.getStoreFor<User, TypeOrmStore<User>>(User);
+  const sm = i.getInstance(StoreManager);
+  const userStore = sm.getStoreFor<User, PhysicalStore<User>>(User);
   await getOrCreate(
     { filter: { username: "testuser" } },
     {
       username: "testuser",
-      password: injector
+      password: i
         .getInstance(HttpAuthenticationSettings)
         .hashMethod("password"),
       roles: []
     } as User,
     userStore as PhysicalStore<User>,
-    injector
+    i
   );
 
   logger.verbose({ message: "Seeding data completed." });
 };
+
+seed(injector);
