@@ -6,7 +6,7 @@ export const HelloWorld = Shade({
   initialState: {
     userName: ""
   },
-  construct: async ({ injector, updateState }) => {
+  constructed: async ({ injector, updateState }) => {
     const observable = injector
       .getInstance(SessionService)
       .currentUser.subscribe(usr => {

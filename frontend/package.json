@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "@furystack/odata-fetchr": "^0.3.0",
-    "@furystack/shades": "^1.2.0"
+    "@furystack/shades": "^2.0.1"
   }
 }

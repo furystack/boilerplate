@@ -10,7 +10,7 @@ export const Login = Shade({
     error: "",
     isOperationInProgress: true
   },
-  construct: ({ injector, updateState }) => {
+  constructed: ({ injector, updateState }) => {
     const sessionService = injector.getInstance(SessionService);
     const subscriptions = [
       sessionService.loginError.subscribe(

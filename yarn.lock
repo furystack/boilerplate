@@ -30,7 +30,7 @@
     omggif "^1.0.5"
     pngjs "^2.0.0"
 
-"@furystack/core@^6.0.3", "@furystack/core@^6.0.4", "@furystack/core@^6.0.5":
+"@furystack/core@^6.0.3", "@furystack/core@^6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@furystack/core/-/core-6.0.5.tgz#988f31e1d185ecec53b07ea68c6f60eac1e1dac8"
   integrity sha512-/Z8XfI67r3wQj2FrM1c2EpMkElc9idXEugT37z+NOiNXvPAUn04bNf1fJqr/4WjjWWqYvIdX/hsGU518nLlQVQ==
@@ -40,7 +40,7 @@
     "@sensenet/client-utils" "^1.5.1"
     semaphore-async-await "^1.5.1"
 
-"@furystack/http-api@^5.2.3", "@furystack/http-api@^5.3.2", "@furystack/http-api@^5.3.3":
+"@furystack/http-api@^5.2.3", "@furystack/http-api@^5.3.3":
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/@furystack/http-api/-/http-api-5.3.3.tgz#da95a5f6b80a3d2b447df6cde9fac58b5e3bf644"
   integrity sha512-05lXDqTXi8ts6uwd+nb6/wRR3QOYNXaZsn+k3FXrqrMMh+JsiJ4Oqi1VFYA9dClNQu5nPvGvEescFbgf/8jxug==
@@ -60,7 +60,7 @@
     "@sensenet/client-utils" "^1.5.1"
     reflect-metadata "^0.1.13"
 
-"@furystack/logging@^2.0.5", "@furystack/logging@^2.0.6", "@furystack/logging@^2.0.7":
+"@furystack/logging@^2.0.5", "@furystack/logging@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@furystack/logging/-/logging-2.0.7.tgz#c36cb56901efbb3a8d4990d2b8542d14a355d89c"
   integrity sha512-gyt68/yTZL7ecVO2ChyjKNXmcQWOZZPxFyuFop/cvuEA6hbVPWPbjUqZ08zh3mWvbncvx/R6dE8ZQJ1Olz/3nA==
@@ -98,15 +98,15 @@
     "@furystack/inject" "^4.0.2"
     "@sensenet/client-utils" "^1.5.1"
 
-"@furystack/shades@^1.2.0":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-1.4.4.tgz#821b46794e9ca2073d84f9b358f4776932f9bfbc"
-  integrity sha512-i6oPFHxJbExmvNS7q/VmHT/ui4SRYj9SqjbMHCFXyG1cPFmByqQ3q4lIUWKhBLUax9TbnYPCeAGBEM0GOftcAg==
+"@furystack/shades@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-2.0.1.tgz#2039fda87d76dacf159c961e9e5b84ead87756c4"
+  integrity sha512-Pjinp4w9F6tChjm59vE5xpZuLWmaoldUsN/uzE1r75K1ZZXL/1LZtpmzh4Id2Rs1mvtmjS5rjhJw1vSPc5kSCw==
   dependencies:
-    "@furystack/core" "^6.0.4"
-    "@furystack/http-api" "^5.3.2"
+    "@furystack/core" "^6.0.5"
+    "@furystack/http-api" "^5.3.3"
     "@furystack/inject" "^4.0.2"
-    "@furystack/logging" "^2.0.6"
+    "@furystack/logging" "^2.0.7"
     "@sensenet/client-utils" "^1.5.1"
 
 "@furystack/typeorm-store@^3.0.5":

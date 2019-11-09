@@ -7,9 +7,9 @@ export const Body = Shade({
   shadowDomName: "shade-app-body",
   initialState: {
     sessionState: "initial" as sessionState,
-    currentUser: null as (User | null)
+    currentUser: null as User | null
   },
-  construct: async ({ injector, updateState }) => {
+  constructed: async ({ injector, updateState }) => {
     const session = injector.getInstance(SessionService);
     const observables = [
       session.state.subscribe(newState =>
