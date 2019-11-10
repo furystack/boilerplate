@@ -761,9 +761,9 @@
     "@sensenet/client-utils" "^1.5.1"
 
 "@furystack/shades@^2.0.1":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-2.1.2.tgz#85628b58dbf106a289734c5def11f2c6ef12c084"
-  integrity sha512-d9l6odbHLPAMQEDEIPmamgs6C+rvFbEzUu3vmv+hcWIKHQeP1UMfOtRT2LTBi8A5Lb8OOFIuhgdgPMsYgPz3oQ==
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-2.1.3.tgz#477324a6bc0cb8e523b9bb1672b249c33634e411"
+  integrity sha512-l6iNIYScLp7UGSleIHUr+eBJAZ5O8yWrEnRHP2sZjA5bMbOx9txKuyd7VO1/8t3DXM49FWJUxyGzKV4TC4uMTg==
   dependencies:
     "@furystack/core" "^6.0.5"
     "@furystack/http-api" "^5.3.3"
