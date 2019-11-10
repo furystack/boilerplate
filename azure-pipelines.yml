@@ -25,51 +25,19 @@ steps:
   - script: yarn lint
     displayName: "Yarn Lint"
 
-  - script: yarn workspace service build
-    displayName: "Build service"
-  - script: rm -rf $(System.DefaultWorkingDirectory)/service/node_modules
-    displayName: "Cleanup Service package"
-  - task: ArchiveFiles@1
-    displayName: Compress Service artifacts
-    inputs:
-      archiveFile: $(System.DefaultWorkingDirectory)/service.zip
-      rootFolder: $(System.DefaultWorkingDirectory)/service
-      includeRootFolder: false
-  - task: PublishBuildArtifacts@1
-    displayName: Publish Service artifacts
-    inputs:
-      pathtoPublish: "$(System.DefaultWorkingDirectory)/service.zip"
-      artifactName: service
+  - script: yarn test:cypress
+    displayName: "Cypress tests"
 
-      #   - script: yarn test
-#     displayName: 'Yarn test'
-#   - script: bash <(curl -s https://codecov.io/bash)
-#     displayName: 'Publish test results to Codecov'
-#
-#   - task: PublishCodeCoverageResults@1
-#     displayName: 'Publish test coverage results'
-#     inputs:
-#       codeCoverageTool: Cobertura
-#       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/*coverage.xml'
-#       reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
-#
-#   - task: PublishTestResults@2
-#     displayName: Publish test results
-#     condition: succeededOrFailed()
-#     inputs:
-#       testRunner: JUnit
-#       testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
-  - script: yarn workspace frontend build
-    displayName: "Build Frontend"
-  - task: ArchiveFiles@1
-    displayName: Compress frontend artifacts
+  - task: PublishTestResults@2
+    displayName: Publish test results
+    condition: always()
     inputs:
-      archiveFile: $(System.DefaultWorkingDirectory)/frontend.zip
-      rootFolder: "$(System.DefaultWorkingDirectory)/frontend/bundle"
-      includeRootFolder: false
+      testRunner: JUnit
+      testResultsFiles: "$(System.DefaultWorkingDirectory)/frontend/testresults/output.xml"
 
   - task: PublishBuildArtifacts@1
-    displayName: Publish frontend bundle artifacts
+    displayName: Publish Cypress test artifacts
+    condition: failed()
     inputs:
-      pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend.zip"
-      artifactName: frontend
+      pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend/cypress/videos"
+      artifactName: cypress_videos
