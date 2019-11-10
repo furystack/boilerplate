@@ -64,7 +64,7 @@ steps:
       testRunner: JUnit
       testResultsFiles: "$(System.DefaultWorkingDirectory)/frontend/testresults/output.xml"
 
-  - task: PublishCypressVideos@1
+  - task: PublishBuildArtifacts@1
     displayName: Publish Cypress test artifacts
     inputs:
       pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend/cypress/videos"
