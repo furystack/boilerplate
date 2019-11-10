@@ -65,3 +65,5 @@ dist
 frontend/bundle
 
 service/data.sqlite
+frontend/cypress/videos
+frontend/cypress/screenshots

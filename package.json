@@ -50,6 +50,7 @@
   },
   "scripts": {
     "build": "tsc -b && yarn workspace frontend build",
+    "test:cypress": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
     "start": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\"  ",
     "startService": "yarn workspace service start",
     "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",

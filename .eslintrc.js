@@ -8,12 +8,13 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "prettier", "jsdoc", "import"],
+  plugins: ["@typescript-eslint", "prettier", "jsdoc", "import", "cypress"],
   env: {
     browser: true,
     node: true,
     es6: true,
-    jest: true
+    jest: true,
+    "cypress/globals": true
   },
   parserOptions: {
     ecmaVersion: 6,
@@ -74,6 +75,9 @@ module.exports = {
     "@typescript-eslint/no-useless-constructor": "error",
     "prefer-template": "error",
     "prefer-destructuring": ["error", { array: false, object: true }],
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
     "default-case": "error"
   },
   overrides: [
