@@ -67,8 +67,8 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: Publish Cypress test artifacts
     inputs:
-      pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend/cypress/videos"
-      artifactName: frontend
+      pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend/cypress/videos/*"
+      artifactName: cypress_videos
 
   - script: yarn workspace frontend build
     displayName: "Build Frontend"
