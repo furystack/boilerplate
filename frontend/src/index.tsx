@@ -1,5 +1,5 @@
 /** ToDo: Main entry point */
-import { PathHelper } from "@sensenet/client-utils";
+import { PathHelper } from "@furystack/utils";
 import { createComponent, shadeInjector } from "@furystack/shades";
 import { VerboseConsoleLogger } from "@furystack/logging";
 import { Layout } from "./components/layout";
