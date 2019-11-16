@@ -760,7 +760,7 @@
     "@furystack/inject" "^4.0.3"
     "@furystack/utils" "^1.0.1"
 
-"@furystack/shades@^2.0.1":
+"@furystack/shades@^2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@furystack/shades/-/shades-2.1.5.tgz#994ac2a3a8048a4627e54c2d0ca796bb66ef9db9"
   integrity sha512-rt7Lz9F3iUIPb2mB+OnwIu7Ym63OtzQKjCVTsjsQVNV254zljZNznOsUrrUVclcS/ymdbBJZ4UAf975bt2EwEw==
