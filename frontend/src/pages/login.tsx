@@ -106,9 +106,12 @@ export const Login = Shade({
               placeholder="The user's login name"
               value={username}
               onchange={ev => {
-                updateState({
-                  username: (ev.target as HTMLInputElement).value
-                });
+                updateState(
+                  {
+                    username: (ev.target as HTMLInputElement).value
+                  },
+                  true
+                );
               }}
               type="text"
             />
@@ -122,9 +125,12 @@ export const Login = Shade({
               value={password}
               type="password"
               onchange={ev => {
-                updateState({
-                  password: (ev.target as HTMLInputElement).value
-                });
+                updateState(
+                  {
+                    password: (ev.target as HTMLInputElement).value
+                  },
+                  true
+                );
               }}
             />
           </label>
