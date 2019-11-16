@@ -2935,10 +2935,10 @@ eslint-plugin-import@^2.18.2:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jsdoc@^17.0.1:
-  version "17.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-17.1.2.tgz#1d2bcdd918c2665dfabe1d60714663f4afe4ae88"
-  integrity sha512-x3XbsYUF8VFTMi+Ssdezh4g77PodQyFcZ0DPQOeSkvI5EyHGV31yH3ekcD69JChEb5BkmcUu07FtLFuaxE97PQ==
+eslint-plugin-jsdoc@^18.0.0:
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-18.0.0.tgz#3bfffc819795f019e819627cc21c440f531ecd63"
+  integrity sha512-uRGHKFYWjyvpHz7AiYJwmzi0lrIAKGyO7qZfIyYNI5XYBTwEoxQKdR/upf4Pd3hXWumBGvp2dn7OuuxCB2dBtw==
   dependencies:
     comment-parser "^0.7.0"
     debug "^4.1.1"
@@ -2946,6 +2946,8 @@ eslint-plugin-jsdoc@^17.0.1:
     lodash "^4.17.15"
     object.entries-ponyfill "^1.0.1"
     regextras "^0.6.1"
+    semver "^6.3.0"
+    spdx-license-list "^6.1.0"
 
 eslint-plugin-prettier@^3.1.1:
   version "3.1.1"
@@ -7104,6 +7106,11 @@ spdx-license-ids@^3.0.0:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.5.tgz#3694b5804567a458d3c8045842a6358632f62654"
   integrity sha512-J+FWzZoynJEXGphVIS+XEh3kFSjZX/1i9gFBaWQcB+/tmpe2qUsSBABpcxqxnAxFdiUFEgAX1bjYGQvIZmoz9Q==
+
+spdx-license-list@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/spdx-license-list/-/spdx-license-list-6.1.0.tgz#a79cf9fb0222db69dfef067f61c52f0eb3ad36bb"
+  integrity sha512-xiaE3KtBiylVmZrlux8tHR28HZgZ921HTXbx2fEZaDloRjbBOro79LeKttcQJ5MSDYFKG7in9v2GTAEhcR9/Qg==
 
 spdy-transport@^3.0.0:
   version "3.0.0"
