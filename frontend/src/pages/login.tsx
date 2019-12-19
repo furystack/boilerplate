@@ -1,44 +1,40 @@
-import { Shade, createComponent } from "@furystack/shades";
-import { SessionService } from "../services/session";
-import { Loader } from "../components/loader";
+import { Shade, createComponent } from '@furystack/shades'
+import { SessionService } from '../services/session'
+import { Loader } from '../components/loader'
 
 export const Login = Shade({
-  shadowDomName: "shade-login",
+  shadowDomName: 'shade-login',
   initialState: {
-    username: "",
-    password: "",
-    error: "",
-    isOperationInProgress: true
+    username: '',
+    password: '',
+    error: '',
+    isOperationInProgress: true,
   },
   constructed: ({ injector, updateState }) => {
-    const sessionService = injector.getInstance(SessionService);
+    const sessionService = injector.getInstance(SessionService)
     const subscriptions = [
-      sessionService.loginError.subscribe(
-        error => updateState({ error }),
-        true
-      ),
+      sessionService.loginError.subscribe(error => updateState({ error }), true),
       sessionService.isOperationInProgress.subscribe(
         isOperationInProgress => updateState({ isOperationInProgress }),
-        true
-      )
-    ];
-    return () => subscriptions.map(s => s.dispose());
+        true,
+      ),
+    ]
+    return () => subscriptions.map(s => s.dispose())
   },
   render: ({ injector, getState, updateState }) => {
-    const { error, username, password } = getState();
-    const sessinService = injector.getInstance(SessionService);
+    const { error, username, password } = getState()
+    const sessinService = injector.getInstance(SessionService)
 
     return (
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "0 100px"
-        }}
-      >
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0 100px',
+        }}>
         <style>{`
           label {
             display: flex;
@@ -92,11 +88,10 @@ export const Login = Shade({
         <form
           className="login-form"
           onsubmit={ev => {
-            ev.preventDefault();
-            const state = getState();
-            sessinService.login(state.username, state.password);
-          }}
-        >
+            ev.preventDefault()
+            const state = getState()
+            sessinService.login(state.username, state.password)
+          }}>
           <h2>Login</h2>
           <label>
             Username
@@ -108,10 +103,10 @@ export const Login = Shade({
               onchange={ev => {
                 updateState(
                   {
-                    username: (ev.target as HTMLInputElement).value
+                    username: (ev.target as HTMLInputElement).value,
                   },
-                  true
-                );
+                  true,
+                )
               }}
               type="text"
             />
@@ -127,56 +122,44 @@ export const Login = Shade({
               onchange={ev => {
                 updateState(
                   {
-                    password: (ev.target as HTMLInputElement).value
+                    password: (ev.target as HTMLInputElement).value,
                   },
-                  true
-                );
+                  true,
+                )
               }}
             />
           </label>
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexDirection: "row",
-              padding: "1em 0"
-            }}
-          >
-            {error ? (
-              <div style={{ color: "red", fontSize: "12px" }}>{error}</div>
-            ) : (
-              <div />
-            )}
-            <button
-              className="login-button"
-              disabled={getState().isOperationInProgress}
-              type="submit"
-            >
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexDirection: 'row',
+              padding: '1em 0',
+            }}>
+            {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
+            <button className="login-button" disabled={getState().isOperationInProgress} type="submit">
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyItems: "center"
-                }}
-              >
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyItems: 'center',
+                }}>
                 Login
                 {getState().isOperationInProgress ? (
                   <Loader
                     style={{
-                      width: "20px",
-                      height: "20px"
+                      width: '20px',
+                      height: '20px',
                     }}
                   />
                 ) : null}
               </div>
             </button>
           </div>
-          <p style={{ fontSize: "10px" }}>
-            You can login with the default 'testuser' / 'password' credentials
-          </p>
+          <p style={{ fontSize: '10px' }}>You can login with the default 'testuser' / 'password' credentials</p>
         </form>
       </div>
-    );
-  }
-});
+    )
+  },
+})
