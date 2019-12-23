@@ -12,7 +12,7 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^12.11.1"
+    "@types/node": "^13.1.0"
   },
   "dependencies": {
     "@furystack/core": "^6.0.3",
