@@ -717,6 +717,16 @@
     "@furystack/utils" "^1.1.0"
     semaphore-async-await "^1.5.1"
 
+"@furystack/core@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@furystack/core/-/core-7.0.0.tgz#ce9355b21572630a05fb2ecbafd6c5866e0654b5"
+  integrity sha512-d7TtiLNTKCU3ydiLxNLW0jpUYhXYcihgH4tl9iT5t816YpgIm1ae1jTDqyg5dkukQ0QckavzaNGZ61tTq+mS5g==
+  dependencies:
+    "@furystack/inject" "^4.0.5"
+    "@furystack/logging" "^2.0.11"
+    "@furystack/utils" "^1.1.0"
+    semaphore-async-await "^1.5.1"
+
 "@furystack/http-api@^5.3.9":
   version "5.3.9"
   resolved "https://registry.yarnpkg.com/@furystack/http-api/-/http-api-5.3.9.tgz#fdfdcf1dd6bd876e0966da4f04dac4489333c073"
@@ -737,12 +747,27 @@
     "@furystack/utils" "^1.1.0"
     reflect-metadata "^0.1.13"
 
+"@furystack/inject@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@furystack/inject/-/inject-4.0.5.tgz#f0e715d0a65f4ea9b42b4a720aeaff46888941fc"
+  integrity sha512-INFilTtnPHsiubBtjm7LyXmsosDV6o2ak6pTjkO+x6ADpgMnvBplVO8rtyX+gFpNL4IVyBA1FSdBRiH8hf8mng==
+  dependencies:
+    "@furystack/utils" "^1.1.0"
+    reflect-metadata "^0.1.13"
+
 "@furystack/logging@^2.0.10":
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/@furystack/logging/-/logging-2.0.10.tgz#e04c6dbfce5f9696fc04905aff9c3fcb311d658d"
   integrity sha512-yJ7sch4htEo0nX0yjijTXiAJYwJDlgpROucZg3+tsMTgTGExRmzrWHwl62t12FmBA4kKYR2W5Ms+uTHc6cijXg==
   dependencies:
     "@furystack/inject" "^4.0.4"
+
+"@furystack/logging@^2.0.11":
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/@furystack/logging/-/logging-2.0.11.tgz#9ca2e5d7ff9d8880eda150e8b1859a7f7372cd78"
+  integrity sha512-CTmlF7pTlrR7a8rb69EzC4zLDV82Ix8wQcSeY+jMoB3219QfvIU3otvctfMBi8T7mZ8FX5S0GiWTwsLb1cbQeg==
+  dependencies:
+    "@furystack/inject" "^4.0.5"
 
 "@furystack/odata-fetchr@^0.3.5":
   version "0.3.5"
