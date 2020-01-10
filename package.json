@@ -15,6 +15,10 @@
     "nohoist": []
   },
   "dependencies": {
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
+    "ts-jest": "^24.3.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
@@ -50,12 +54,17 @@
   },
   "scripts": {
     "build": "tsc -b && yarn workspace frontend build",
-    "test:cypress": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
+    "test:e2e": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
+    "test:unit": "jest --verbose",
     "open:cypress": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress open\" --success first ",
     "start": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\"  ",
     "startService": "yarn workspace service start",
     "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo",
     "lint": "eslint . --ext .tsx,.ts --cache"
+  },
+  "jest-junit": {
+    "suiteName": "FuryStack Jest tests",
+    "outputDirectory": "./coverage"
   }
 }
