@@ -1,6 +1,6 @@
-import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 import { Loader } from '../components/loader'
+import { Shade, createComponent } from '@furystack/shades'
 
 export const Login = Shade({
   shadowDomName: 'shade-login',
