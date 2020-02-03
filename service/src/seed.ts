@@ -1,8 +1,8 @@
-import { User } from './models'
-import { injector } from './config'
 import { PhysicalStore, StoreManager, SearchOptions } from '@furystack/core'
 import { HttpAuthenticationSettings } from '@furystack/http-api'
 import { Injector } from '@furystack/inject'
+import { injector } from './config'
+import { User } from './models'
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result

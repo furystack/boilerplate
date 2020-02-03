@@ -1,9 +1,9 @@
 /** ToDo: Main entry point */
-import { Layout } from './components/layout'
 import { PathHelper } from '@furystack/utils'
 import { createComponent, initializeShadeRoot } from '@furystack/shades'
 import { VerboseConsoleLogger } from '@furystack/logging'
 import { Injector } from '@furystack/inject'
+import { Layout } from './components/layout'
 import '@furystack/odata-fetchr'
 
 const shadeInjector = new Injector()

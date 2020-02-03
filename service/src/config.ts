@@ -1,5 +1,4 @@
 import { join } from 'path'
-import { User, Session } from './models'
 import { InMemoryStore } from '@furystack/core'
 import { Injector } from '@furystack/inject'
 import { VerboseConsoleLogger } from '@furystack/logging'
@@ -7,6 +6,7 @@ import { LoginAction, LogoutAction, GetCurrentUser, HttpUserContext, IsAuthentic
 import '@furystack/typeorm-store'
 import { EdmType } from '@furystack/odata'
 import { DataSetSettings } from '@furystack/repository'
+import { User, Session } from './models'
 
 export const authorizedOnly = async (options: { injector: Injector }) => {
   const authorized = await options.injector.getInstance(HttpUserContext).isAuthenticated()

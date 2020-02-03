@@ -1,5 +1,5 @@
-import { SessionService } from '../services/session'
 import { Shade, createComponent } from '@furystack/shades'
+import { SessionService } from '../services/session'
 
 export const HelloWorld = Shade({
   shadowDomName: 'hello-world',
