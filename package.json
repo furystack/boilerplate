@@ -1,5 +1,5 @@
 {
-  "name": "fury",
+  "name": "furystack-boilerplate-app",
   "version": "1.0.1",
   "description": "example web app based on furystack",
   "main": "service/src/index.ts",
@@ -15,22 +15,26 @@
     "nohoist": []
   },
   "dependencies": {
+    "@types/jest": "^25.1.1",
+    "jest": "^25.1.0",
+    "jest-junit": "^10.0.0",
+    "ts-jest": "^25.2.0",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.4.0",
-    "@typescript-eslint/parser": "^2.4.0",
-    "concurrently": "^5.0.0",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsdoc": "^18.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "concurrently": "^5.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-jsdoc": "^21.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.4"
   },
   "husky": {
     "hooks": {
@@ -50,11 +54,17 @@
   },
   "scripts": {
     "build": "tsc -b && yarn workspace frontend build",
-    "test:cypress": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
+    "test:e2e": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
+    "test:unit": "jest --verbose",
+    "open:cypress": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress open\" --success first ",
     "start": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\"  ",
     "startService": "yarn workspace service start",
     "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo",
     "lint": "eslint . --ext .tsx,.ts --cache"
+  },
+  "jest-junit": {
+    "suiteName": "FuryStack Jest tests",
+    "outputDirectory": "./coverage"
   }
 }
