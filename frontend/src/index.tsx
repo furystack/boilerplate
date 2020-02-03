@@ -16,7 +16,7 @@ export const environmentOptions = {
   serviceUrl: process.env.SERVICE_URL as string,
 }
 
-shadeInjector.useOdata({
+shadeInjector.useOdataClient({
   serviceEndpoint: PathHelper.joinPaths(environmentOptions.serviceUrl, 'odata'),
   defaultInit: {},
 })
