@@ -1,6 +1,5 @@
 import '@furystack/http-api'
 import { injector } from './config'
-import { registerExitHandler } from './exitHandler'
 import { User, Session } from './models'
 
 injector
@@ -19,5 +18,4 @@ injector
   .listenHttp({
     port: parseInt(process.env.APP_SERVICE_PORT as string, 10) || 9090,
   })
-
-registerExitHandler(injector)
+injector.disposeOnProcessExit()
