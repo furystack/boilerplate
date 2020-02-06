@@ -17,7 +17,7 @@
     "@cypress/webpack-preprocessor": "^4.1.1",
     "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^3.4.1",
-    "cypress": "^3.8.1",
+    "cypress": "^4.0.0",
     "eslint-plugin-cypress": "^2.8.1",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
