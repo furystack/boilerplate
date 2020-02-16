@@ -1,58 +1,63 @@
-var path = require("path");
-const webpack = require("webpack");
+var path = require('path')
+const webpack = require('webpack')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TsConfigWebpackPlugin = require("ts-config-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`)
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.tsx",
+  mode: 'development',
+  entry: './src/index.tsx',
   output: {
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
-    publicPath: "/",
-    path: path.resolve(__dirname + "/bundle")
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/',
+    path: path.resolve(__dirname + '/bundle'),
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       cacheGroups: {
         commons: {
           minChunks: 2,
-          name: "vendors",
-          chunks: "all"
+          name: 'vendors',
+          chunks: 'all',
         },
         furystack: {
           test: /([\\/]node_modules[\\/]@furystack[\\/]|[\\/]furystack[\\/]packages[\\/])/gm,
-          name: "furystack",
-          chunks: "all"
-        }
-      }
+          name: 'furystack',
+          chunks: 'all',
+        },
+      },
     },
-    runtimeChunk: false
+    runtimeChunk: false,
   },
   // Enable sourcemaps for debugging webpack's output.
-  devtool: "eval-source-map", // 'source-map',
+  devtool: 'eval-source-map', // 'source-map',
   resolve: {
+    plugins: [PnpWebpackPlugin],
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+  },
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
   plugins: [
     //new BundleAnalyzerPlugin({ analyzerPort: 8745 }),
     new TsConfigWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: './index.html',
     }),
     new webpack.EnvironmentPlugin({
-      NODE_ENV: "development",
+      NODE_ENV: 'development',
       DEBUG: true,
-      APP_VERSION: require("./package.json").version,
+      APP_VERSION: require('./package.json').version,
       BUILD_DATE: new Date().toISOString(),
-      SERVICE_URL: "http://localhost:9090"
-    })
+      SERVICE_URL: 'http://localhost:9090',
+    }),
   ],
   module: {
     rules: [
@@ -61,42 +66,31 @@ module.exports = {
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader",
-        exclude: /monaco-editor/
+        loader: 'source-map-loader',
+        exclude: /monaco-editor/,
       },
       {
         test: /\.css$/,
         use: [
-          require.resolve("style-loader"),
+          require.resolve('style-loader'),
           {
-            loader: require.resolve("css-loader"),
+            loader: require.resolve('css-loader'),
             options: {
-              importLoaders: 1
-            }
-          }
-        ]
+              importLoaders: 1,
+            },
+          },
+        ],
       },
       {
-        test: [
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-          /\.PNG$/,
-          /\.svg$/,
-          /\.eot$/,
-          /\.woff$/,
-          /\.woff2$/,
-          /\.ttf$/
-        ],
-        loader: require.resolve("url-loader"),
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.PNG$/, /\.svg$/, /\.eot$/, /\.woff$/, /\.woff2$/, /\.ttf$/],
+        loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
-          name: "static/media/[name].[hash:8].[ext]"
-        }
-      }
-    ]
-  }
-};
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
+      },
+    ],
+  },
+}

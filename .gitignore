@@ -65,6 +65,10 @@ dist
 frontend/bundle
 
 service/data.sqlite
-frontend/cypress/videos
-frontend/cypress/screenshots
-frontend/testresults
+cypress/videos
+cypress/screenshots
+testresults
+
+
+.yarn/unplugged
+.yarn/build-state.yml
