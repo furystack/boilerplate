@@ -12,19 +12,19 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^13.7.1",
-    "typescript": "^3.7.5"
+    "@types/node": "^13.7.7",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@furystack/core": "^7.0.5",
-    "@furystack/http-api": "^5.3.15",
-    "@furystack/inject": "^4.0.10",
-    "@furystack/logging": "^2.0.16",
-    "@furystack/odata": "^2.1.17",
-    "@furystack/repository": "^2.0.19",
-    "@furystack/typeorm-store": "^3.0.18",
+    "@furystack/core": "^7.0.10",
+    "@furystack/http-api": "^5.3.20",
+    "@furystack/inject": "^4.0.14",
+    "@furystack/logging": "^2.0.21",
+    "@furystack/odata": "^2.1.22",
+    "@furystack/repository": "^2.0.24",
+    "@furystack/typeorm-store": "^3.0.23",
     "sqlite3": "^4.1.1",
-    "tslib": "^1.10.0",
-    "typeorm": "^0.2.22"
+    "tslib": "^1.11.1",
+    "typeorm": "^0.2.24"
   }
 }

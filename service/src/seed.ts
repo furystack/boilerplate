@@ -42,7 +42,7 @@ export const seed = async (i: Injector) => {
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor<User, PhysicalStore<User>>(User)
   await getOrCreate(
-    { filter: { username: 'testuser' } },
+    { filter: { username: { $eq: 'testuser' } } },
     {
       username: 'testuser',
       password: i.getInstance(HttpAuthenticationSettings).hashMethod('password'),
