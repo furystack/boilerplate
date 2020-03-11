@@ -41,7 +41,8 @@ export class SessionService {
         this.currentUser.setValue(usr)
         this.state.setValue('authenticated')
       } catch (error) {
-        this.loginError.setValue(error.body.message)
+        const errorResponse = await error.response.json()
+        this.loginError.setValue(errorResponse.message)
       }
     })
   }
