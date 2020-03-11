@@ -16,13 +16,11 @@
   },
   "dependencies": {
     "@furystack/core": "^7.0.1",
-    "@furystack/http-api": "^5.3.11",
     "@furystack/inject": "^4.0.4",
     "@furystack/logging": "^2.0.10",
     "@furystack/odata": "^2.1.11",
     "@furystack/repository": "^2.0.13",
-    "@furystack/typeorm-store": "^3.0.11",
-    "sqlite3": "^4.1.1",
+    "@furystack/rest-service": "^1.0.1",
     "tslib": "^1.10.0"
   }
 }

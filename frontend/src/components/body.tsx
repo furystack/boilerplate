@@ -1,6 +1,6 @@
 import { createComponent, Shade } from '@furystack/shades'
+import { User } from 'common'
 import { SessionService, sessionState } from '../services/session'
-import { User } from '../odata/entity-types'
 import { Init, HelloWorld, Offline, Login } from '../pages'
 
 export const Body = Shade({

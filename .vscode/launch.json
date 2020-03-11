@@ -8,8 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Service",
-      "program": "${workspaceFolder}/service/src/index.ts",
-      "outFiles": ["${workspaceFolder}/service/dist/index.js"]
+      "program": "${workspaceFolder}/service/src/service.ts",
+      "outFiles": ["${workspaceFolder}/service/dist/service.js"]
     }
   ]
 }
