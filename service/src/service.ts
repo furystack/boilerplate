@@ -5,6 +5,10 @@ import { injector } from './config'
 
 injector
   .disposeOnProcessExit()
+  .useHttpAuthentication({
+    getUserStore: sm => sm.getStoreFor<User & { password: string }>(User as any),
+    getSessionStore: sm => sm.getStoreFor(Session),
+  })
   .useRestService<BoilerplateApi>({
     root: 'api',
     port: parseInt(process.env.APP_SERVICE_PORT as string, 10) || 9090,
@@ -29,8 +33,4 @@ injector
         },
       },
     },
-  })
-  .useHttpAuthentication({
-    getUserStore: sm => sm.getStoreFor<User & { password: string }>(User as any),
-    getSessionStore: sm => sm.getStoreFor(Session),
   })

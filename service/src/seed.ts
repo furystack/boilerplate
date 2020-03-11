@@ -1,5 +1,5 @@
 import { PhysicalStore, StoreManager, SearchOptions } from '@furystack/core'
-import { HttpAuthenticationSettings } from '@furystack/http-api'
+import { HttpAuthenticationSettings } from '@furystack/rest-service'
 import { Injector } from '@furystack/inject'
 import { User } from 'common'
 import { injector } from './config'
