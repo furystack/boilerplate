@@ -8,11 +8,8 @@
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b"
   },
-  "devDependencies": {
-    "@types/node": "^13.1.6"
-  },
   "dependencies": {
-    "@furystack/rest": "^1.0.1",
-    "tslib": "^1.10.0"
+    "@furystack/rest": "^1.1.1",
+    "tslib": "^1.11.1"
   }
 }

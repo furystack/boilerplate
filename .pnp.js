@@ -1323,53 +1323,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@furystack/core", [
-        ["npm:7.0.12", {
-          "packageLocation": "./.yarn/cache/@furystack-core-npm-7.0.12-8fd014395f-2.zip/node_modules/@furystack/core/",
+        ["npm:8.0.2", {
+          "packageLocation": "./.yarn/cache/@furystack-core-npm-8.0.2-47a5390656-2.zip/node_modules/@furystack/core/",
           "packageDependencies": [
-            ["@furystack/core", "npm:7.0.12"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/core", "npm:8.0.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["semaphore-async-await", "npm:1.5.1"],
             ["tslib", "npm:1.11.1"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:8.0.1", {
-          "packageLocation": "./.yarn/cache/@furystack-core-npm-8.0.1-c08be7e52c-2.zip/node_modules/@furystack/core/",
-          "packageDependencies": [
-            ["@furystack/core", "npm:8.0.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/utils", "npm:1.1.9"],
-            ["semaphore-async-await", "npm:1.5.1"],
-            ["tslib", "npm:1.11.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@furystack/http-api", [
-        ["npm:5.3.21", {
-          "packageLocation": "./.yarn/cache/@furystack-http-api-npm-5.3.21-1272c21c02-2.zip/node_modules/@furystack/http-api/",
-          "packageDependencies": [
-            ["@furystack/http-api", "npm:5.3.21"],
-            ["@furystack/core", "npm:7.0.12"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/utils", "npm:1.1.9"],
-            ["hash.js", "npm:1.1.7"],
-            ["tslib", "npm:1.11.1"],
-            ["uuid", "npm:7.0.2"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@furystack/inject", [
-        ["npm:4.0.16", {
-          "packageLocation": "./.yarn/cache/@furystack-inject-npm-4.0.16-80419ec762-2.zip/node_modules/@furystack/inject/",
+        ["npm:4.0.17", {
+          "packageLocation": "./.yarn/cache/@furystack-inject-npm-4.0.17-fb8e162ba3-2.zip/node_modules/@furystack/inject/",
           "packageDependencies": [
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["reflect-metadata", "npm:0.1.13"],
             ["tslib", "npm:1.11.1"]
           ],
@@ -1377,67 +1349,51 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@furystack/logging", [
-        ["npm:2.0.23", {
-          "packageLocation": "./.yarn/cache/@furystack-logging-npm-2.0.23-f1b20d8029-2.zip/node_modules/@furystack/logging/",
+        ["npm:2.0.24", {
+          "packageLocation": "./.yarn/cache/@furystack-logging-npm-2.0.24-72d73cced1-2.zip/node_modules/@furystack/logging/",
           "packageDependencies": [
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/utils", "npm:1.1.9"],
-            ["tslib", "npm:1.11.1"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["@furystack/odata", [
-        ["npm:2.1.23", {
-          "packageLocation": "./.yarn/cache/@furystack-odata-npm-2.1.23-81cab72cdd-2.zip/node_modules/@furystack/odata/",
-          "packageDependencies": [
-            ["@furystack/odata", "npm:2.1.23"],
-            ["@furystack/core", "npm:7.0.12"],
-            ["@furystack/http-api", "npm:5.3.21"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/repository", "npm:2.0.28"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["tslib", "npm:1.11.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@furystack/repository", [
-        ["npm:2.0.28", {
-          "packageLocation": "./.yarn/cache/@furystack-repository-npm-2.0.28-20fc64829e-2.zip/node_modules/@furystack/repository/",
+        ["npm:2.0.29", {
+          "packageLocation": "./.yarn/cache/@furystack-repository-npm-2.0.29-77dc202bb8-2.zip/node_modules/@furystack/repository/",
           "packageDependencies": [
-            ["@furystack/repository", "npm:2.0.28"],
-            ["@furystack/core", "npm:8.0.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/repository", "npm:2.0.29"],
+            ["@furystack/core", "npm:8.0.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["tslib", "npm:1.11.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@furystack/rest", [
-        ["npm:1.1.0", {
-          "packageLocation": "./.yarn/cache/@furystack-rest-npm-1.1.0-bbeb19e73c-2.zip/node_modules/@furystack/rest/",
+        ["npm:1.1.1", {
+          "packageLocation": "./.yarn/cache/@furystack-rest-npm-1.1.1-09fc20fc60-2.zip/node_modules/@furystack/rest/",
           "packageDependencies": [
-            ["@furystack/rest", "npm:1.1.0"],
-            ["@furystack/inject", "npm:4.0.16"],
+            ["@furystack/rest", "npm:1.1.1"],
+            ["@furystack/inject", "npm:4.0.17"],
             ["tslib", "npm:1.11.1"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["@furystack/rest-client-fetch", [
-        ["npm:1.1.1", {
-          "packageLocation": "./.yarn/cache/@furystack-rest-client-fetch-npm-1.1.1-384ac5c8f6-2.zip/node_modules/@furystack/rest-client-fetch/",
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@furystack-rest-client-fetch-npm-1.1.2-294744af1d-2.zip/node_modules/@furystack/rest-client-fetch/",
           "packageDependencies": [
-            ["@furystack/rest-client-fetch", "npm:1.1.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/rest", "npm:1.1.0"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/rest-client-fetch", "npm:1.1.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/rest", "npm:1.1.1"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["path-to-regexp", "npm:6.1.0"],
             ["tslib", "npm:1.11.1"]
           ],
@@ -1445,15 +1401,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@furystack/rest-service", [
-        ["npm:1.1.1", {
-          "packageLocation": "./.yarn/cache/@furystack-rest-service-npm-1.1.1-3bd28af71f-2.zip/node_modules/@furystack/rest-service/",
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/@furystack-rest-service-npm-1.1.2-5c4ae1ccc8-2.zip/node_modules/@furystack/rest-service/",
           "packageDependencies": [
-            ["@furystack/rest-service", "npm:1.1.1"],
-            ["@furystack/core", "npm:8.0.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/rest", "npm:1.1.0"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/rest-service", "npm:1.1.2"],
+            ["@furystack/core", "npm:8.0.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/rest", "npm:1.1.1"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["hash.js", "npm:1.1.7"],
             ["path-to-regexp", "npm:6.1.0"],
             ["semaphore-async-await", "npm:1.5.1"],
@@ -1464,14 +1420,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@furystack/shades", [
-        ["npm:2.3.16", {
-          "packageLocation": "./.yarn/cache/@furystack-shades-npm-2.3.16-02379da406-2.zip/node_modules/@furystack/shades/",
+        ["npm:2.3.17", {
+          "packageLocation": "./.yarn/cache/@furystack-shades-npm-2.3.17-9a11586b67-2.zip/node_modules/@furystack/shades/",
           "packageDependencies": [
-            ["@furystack/shades", "npm:2.3.16"],
-            ["@furystack/core", "npm:8.0.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/shades", "npm:2.3.17"],
+            ["@furystack/core", "npm:8.0.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["tslib", "npm:1.11.1"],
             ["uuid", "npm:7.0.2"]
           ],
@@ -1479,10 +1435,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@furystack/utils", [
-        ["npm:1.1.9", {
-          "packageLocation": "./.yarn/cache/@furystack-utils-npm-1.1.9-5e79c2928b-2.zip/node_modules/@furystack/utils/",
+        ["npm:1.1.10", {
+          "packageLocation": "./.yarn/cache/@furystack-utils-npm-1.1.10-fd3656b8cb-2.zip/node_modules/@furystack/utils/",
           "packageDependencies": [
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["tslib", "npm:1.11.1"]
           ],
           "linkType": "HARD",
@@ -3772,8 +3728,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./common/",
           "packageDependencies": [
             ["common", "workspace:common"],
-            ["@furystack/rest", "npm:1.1.0"],
-            ["@types/node", "npm:13.9.0"],
+            ["@furystack/rest", "npm:1.1.1"],
             ["tslib", "npm:1.11.1"]
           ],
           "linkType": "SOFT",
@@ -5799,16 +5754,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["frontend", "workspace:frontend"],
             ["@cypress/webpack-preprocessor", "virtual:fdda48fab862ecf96a3d5577279bbeef4735565e649b6b6579e51bf402f169774a4db546f0a296bdc4700cbf882988f92ca35fe3888ae11c796344cf35f4e2be#npm:4.1.3"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/rest-client-fetch", "npm:1.1.1"],
-            ["@furystack/shades", "npm:2.3.16"],
-            ["@furystack/utils", "npm:1.1.9"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/rest-client-fetch", "npm:1.1.2"],
+            ["@furystack/shades", "npm:2.3.17"],
+            ["@furystack/utils", "npm:1.1.10"],
             ["@types/node", "npm:13.9.0"],
             ["common", "workspace:common"],
             ["css-loader", "virtual:129c180801e06ed395e4da371c76ab19371e66a3c2230c25e2f8aa53715d8f66998096a34403ac325c10f7034d54eaa1a82bf612b0d4bf56a1d1943388d98f11#npm:3.4.2"],
             ["file-loader", "virtual:129c180801e06ed395e4da371c76ab19371e66a3c2230c25e2f8aa53715d8f66998096a34403ac325c10f7034d54eaa1a82bf612b0d4bf56a1d1943388d98f11#npm:5.1.0"],
             ["html-webpack-plugin", "virtual:129c180801e06ed395e4da371c76ab19371e66a3c2230c25e2f8aa53715d8f66998096a34403ac325c10f7034d54eaa1a82bf612b0d4bf56a1d1943388d98f11#npm:3.2.0"],
+            ["pnp-webpack-plugin", "npm:1.6.4"],
+            ["rimraf", "npm:3.0.2"],
             ["style-loader", "virtual:129c180801e06ed395e4da371c76ab19371e66a3c2230c25e2f8aa53715d8f66998096a34403ac325c10f7034d54eaa1a82bf612b0d4bf56a1d1943388d98f11#npm:1.1.3"],
             ["ts-loader", "virtual:129c180801e06ed395e4da371c76ab19371e66a3c2230c25e2f8aa53715d8f66998096a34403ac325c10f7034d54eaa1a82bf612b0d4bf56a1d1943388d98f11#npm:6.2.1"],
             ["tslib", "npm:1.11.1"],
@@ -11101,13 +11058,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./service/",
           "packageDependencies": [
             ["service", "workspace:service"],
-            ["@furystack/core", "npm:8.0.1"],
-            ["@furystack/inject", "npm:4.0.16"],
-            ["@furystack/logging", "npm:2.0.23"],
-            ["@furystack/odata", "npm:2.1.23"],
-            ["@furystack/repository", "npm:2.0.28"],
-            ["@furystack/rest-service", "npm:1.1.1"],
+            ["@furystack/core", "npm:8.0.2"],
+            ["@furystack/inject", "npm:4.0.17"],
+            ["@furystack/logging", "npm:2.0.24"],
+            ["@furystack/repository", "npm:2.0.29"],
+            ["@furystack/rest", "npm:1.1.1"],
+            ["@furystack/rest-service", "npm:1.1.2"],
+            ["@types/jest", "npm:25.1.4"],
             ["@types/node", "npm:13.9.0"],
+            ["common", "workspace:common"],
             ["tslib", "npm:1.11.1"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=273569"]
           ],
