@@ -1,8 +1,8 @@
 import { PhysicalStore, StoreManager, SearchOptions } from '@furystack/core'
-import { HttpAuthenticationSettings } from '@furystack/http-api'
+import { HttpAuthenticationSettings } from '@furystack/rest-service'
 import { Injector } from '@furystack/inject'
+import { User } from 'common'
 import { injector } from './config'
-import { User } from './models'
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result
@@ -17,7 +17,7 @@ export const getOrCreate = async <T>(
   i: Injector,
 ) => {
   const result = await store.search(filter)
-  const logger = i.logger.withScope('Seeder')
+  const logger = i.logger.withScope('seeder')
   if (result.length === 1) {
     return result[0]
   } else if (result.length === 0) {
@@ -55,4 +55,4 @@ export const seed = async (i: Injector) => {
   logger.verbose({ message: 'Seeding data completed.' })
 }
 
-seed(injector)
+seed(injector).then(() => injector.dispose())

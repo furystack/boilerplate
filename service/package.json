@@ -16,15 +16,12 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@furystack/core": "^7.0.10",
-    "@furystack/http-api": "^5.3.20",
-    "@furystack/inject": "^4.0.14",
-    "@furystack/logging": "^2.0.21",
-    "@furystack/odata": "^2.1.22",
-    "@furystack/repository": "^2.0.24",
-    "@furystack/typeorm-store": "^3.0.23",
-    "sqlite3": "^4.1.1",
-    "tslib": "^1.11.1",
-    "typeorm": "^0.2.24"
+    "@furystack/core": "^8.0.0",
+    "@furystack/inject": "^4.0.4",
+    "@furystack/logging": "^2.0.10",
+    "@furystack/odata": "^2.1.11",
+    "@furystack/repository": "^2.0.13",
+    "@furystack/rest-service": "^1.0.1",
+    "tslib": "^1.10.0"
   }
 }

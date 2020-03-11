@@ -1,12 +1,11 @@
-/** ToDo: Main entry point */
-import { PathHelper } from '@furystack/utils'
 import { createComponent, initializeShadeRoot } from '@furystack/shades'
 import { VerboseConsoleLogger } from '@furystack/logging'
 import { Injector } from '@furystack/inject'
 import { Layout } from './components/layout'
-import '@furystack/odata-fetchr'
 
 const shadeInjector = new Injector()
+
+declare const process: any
 
 export const environmentOptions = {
   nodeEnv: process.env.NODE_ENV as 'development' | 'production',
@@ -15,11 +14,6 @@ export const environmentOptions = {
   buildDate: new Date(process.env.BUILD_DATE as string),
   serviceUrl: process.env.SERVICE_URL as string,
 }
-
-shadeInjector.useOdataClient({
-  serviceEndpoint: PathHelper.joinPaths(environmentOptions.serviceUrl, 'odata'),
-  defaultInit: {},
-})
 
 shadeInjector.useLogging(VerboseConsoleLogger)
 

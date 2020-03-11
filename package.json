@@ -9,6 +9,7 @@
   "private": true,
   "workspaces": {
     "packages": [
+      "common",
       "frontend",
       "service"
     ],
@@ -19,8 +20,7 @@
     "@yarnpkg/pnpify": "^2.0.0-rc.18",
     "jest": "^25.1.0",
     "jest-junit": "^10.0.0",
-    "ts-jest": "^25.2.1",
-    "tslib": "^1.11.1"
+    "tslib": "^1.10.0"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^4.1.3",
@@ -59,14 +59,15 @@
     ]
   },
   "scripts": {
-    "build": "yarn workspace service build && yarn workspace frontend build",
-    "test:e2e": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn cypress run\" --success first ",
+    "build": "tsc -b && yarn workspace frontend build",
+    "seed": "yarn workspace service seed",
+    "test:e2e": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress run\" --success first ",
     "test:unit": "jest --verbose",
-    "open:cypress": "yarn workspace service seed && concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn cypress open\" --success first ",
+    "open:cypress": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress open\" --success first ",
     "start": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\"  ",
     "startService": "yarn workspace service start",
     "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",
-    "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo",
+    "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
     "lint": "eslint . --ext .tsx,.ts --cache"
   },
   "jest-junit": {

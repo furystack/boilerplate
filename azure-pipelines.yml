@@ -25,6 +25,9 @@ steps:
   - script: yarn lint
     displayName: "Yarn Lint"
 
+  - script: yarn workspace service build
+    displayName: "Build Service"
+
   - script: yarn test:unit
     displayName: "Unit tests"
 
@@ -33,7 +36,7 @@ steps:
     condition: always()
     inputs:
       testRunner: JUnit
-      testResultsFiles: "$(System.DefaultWorkingDirectory)/coverage/junit.xml"    
+      testResultsFiles: "$(System.DefaultWorkingDirectory)/coverage/junit.xml"
 
   - script: yarn test:e2e
     displayName: "E2E tests"
