@@ -33,7 +33,7 @@ injector
           model: User,
           primaryKey: 'username',
           tickMs: 30 * 1000,
-          fileName: join(process.cwd(), 'users.json'),
+          fileName: join(__filename, '..', '..', 'users.json'),
           logger: injector.logger,
         }),
       )

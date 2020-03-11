@@ -17,7 +17,7 @@ export const getOrCreate = async <T>(
   i: Injector,
 ) => {
   const result = await store.search(filter)
-  const logger = i.logger.withScope('Seeder')
+  const logger = i.logger.withScope('seeder')
   if (result.length === 1) {
     return result[0]
   } else if (result.length === 0) {
@@ -42,7 +42,7 @@ export const seed = async (i: Injector) => {
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor<User, PhysicalStore<User>>(User)
   await getOrCreate(
-    { filter: { username: 'testuser' } },
+    { filter: { username: { $eq: 'testuser' } } },
     {
       username: 'testuser',
       password: i.getInstance(HttpAuthenticationSettings).hashMethod('password'),
@@ -55,4 +55,4 @@ export const seed = async (i: Injector) => {
   logger.verbose({ message: 'Seeding data completed.' })
 }
 
-seed(injector)
+seed(injector).then(() => injector.dispose())

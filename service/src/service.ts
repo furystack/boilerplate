@@ -2,6 +2,7 @@ import { BoilerplateApi, User, Session } from 'common'
 import { JsonResult } from '@furystack/rest'
 import { GetCurrentUser, IsAuthenticated, LoginAction, LogoutAction } from '@furystack/rest-service'
 import { injector } from './config'
+import { seed } from './seed'
 
 injector
   .disposeOnProcessExit()
@@ -34,3 +35,5 @@ injector
       },
     },
   })
+
+seed(injector)
