@@ -6,8 +6,8 @@ import { injector } from './config'
 injector
   .disposeOnProcessExit()
   .useHttpAuthentication({
-    getUserStore: sm => sm.getStoreFor<User & { password: string }>(User as any),
-    getSessionStore: sm => sm.getStoreFor(Session),
+    getUserStore: (sm) => sm.getStoreFor<User & { password: string }>(User as any),
+    getSessionStore: (sm) => sm.getStoreFor(Session),
   })
   .useRestService<BoilerplateApi>({
     root: 'api',
@@ -21,13 +21,13 @@ injector
       GET: {
         '/currentUser': GetCurrentUser,
         '/isAuthenticated': IsAuthenticated,
-        '/testQuery': async options => JsonResult({ param1Value: options.getQuery().param1 }),
-        '/testUrlParams/:urlParam': async options => JsonResult({ urlParamValue: options.getUrlParams().urlParam }),
+        '/testQuery': async (options) => JsonResult({ param1Value: options.getQuery().param1 }),
+        '/testUrlParams/:urlParam': async (options) => JsonResult({ urlParamValue: options.getUrlParams().urlParam }),
       },
       POST: {
         '/login': LoginAction,
         '/logout': LogoutAction,
-        '/testPostBody': async options => {
+        '/testPostBody': async (options) => {
           const body = await options.getBody()
           return JsonResult({ bodyValue: body.value })
         },

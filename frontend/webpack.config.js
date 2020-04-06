@@ -25,11 +25,6 @@ module.exports = {
           name: 'vendors',
           chunks: 'all',
         },
-        furystack: {
-          test: /([\\/]node_modules[\\/]@furystack[\\/]|[\\/]furystack[\\/]packages[\\/])/gm,
-          name: 'furystack',
-          chunks: 'all',
-        },
       },
     },
     runtimeChunk: false,
@@ -61,7 +56,18 @@ module.exports = {
   module: {
     rules: [
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      {
+        test: /.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/,
         use: [

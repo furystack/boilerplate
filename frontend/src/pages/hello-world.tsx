@@ -1,13 +1,13 @@
 import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 
-export const HelloWorld = Shade({
+export const HelloWorld = Shade<{}, { userName: string }>({
   shadowDomName: 'hello-world',
-  initialState: {
+  getInitialState: () => ({
     userName: '',
-  },
+  }),
   constructed: async ({ injector, updateState }) => {
-    const observable = injector.getInstance(SessionService).currentUser.subscribe(usr => {
+    const observable = injector.getInstance(SessionService).currentUser.subscribe((usr) => {
       updateState({ userName: usr ? usr.username : '' })
     }, true)
     return () => observable.dispose()
