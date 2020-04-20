@@ -17,7 +17,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@furystack/core": "^8.0.13",
+    "@furystack/core": "^8.0.14",
     "@furystack/inject": "^4.0.26",
     "@furystack/logging": "^2.0.33",
     "@furystack/repository": "^2.0.41",
