@@ -19,7 +19,8 @@
     "@types/jest": "^26.0.3",
     "jest": "^26.1.0",
     "jest-junit": "^11.0.1",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "snyk": "^1.360.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.5.0",
@@ -62,10 +63,13 @@
     "startService": "yarn workspace service start",
     "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
-    "lint": "eslint . --ext .tsx,.ts --cache"
+    "lint": "eslint . --ext .tsx,.ts --cache",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "jest-junit": {
     "suiteName": "FuryStack Jest tests",
     "outputDirectory": "./coverage"
-  }
+  },
+  "snyk": true
 }
