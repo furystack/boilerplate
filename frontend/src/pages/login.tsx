@@ -2,24 +2,24 @@ import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 import { Loader } from '../components/loader'
 
-export const Login = Shade({
+export const Login = Shade<{}, { username: string; password: string; error: string; isOperationInProgress: boolean }>({
   shadowDomName: 'shade-login',
-  initialState: {
+  getInitialState: () => ({
     username: '',
     password: '',
     error: '',
     isOperationInProgress: true,
-  },
+  }),
   constructed: ({ injector, updateState }) => {
     const sessionService = injector.getInstance(SessionService)
     const subscriptions = [
-      sessionService.loginError.subscribe(error => updateState({ error }), true),
+      sessionService.loginError.subscribe((error) => updateState({ error }), true),
       sessionService.isOperationInProgress.subscribe(
-        isOperationInProgress => updateState({ isOperationInProgress }),
+        (isOperationInProgress) => updateState({ isOperationInProgress }),
         true,
       ),
     ]
-    return () => subscriptions.map(s => s.dispose())
+    return () => subscriptions.map((s) => s.dispose())
   },
   render: ({ injector, getState, updateState }) => {
     const { error, username, password } = getState()
@@ -87,7 +87,7 @@ export const Login = Shade({
         `}</style>
         <form
           className="login-form"
-          onsubmit={ev => {
+          onsubmit={(ev) => {
             ev.preventDefault()
             const state = getState()
             sessinService.login(state.username, state.password)
@@ -100,7 +100,7 @@ export const Login = Shade({
               disabled={getState().isOperationInProgress}
               placeholder="The user's login name"
               value={username}
-              onchange={ev => {
+              onchange={(ev) => {
                 updateState(
                   {
                     username: (ev.target as HTMLInputElement).value,
@@ -119,7 +119,7 @@ export const Login = Shade({
               placeholder="The password for the user"
               value={password}
               type="password"
-              onchange={ev => {
+              onchange={(ev) => {
                 updateState(
                   {
                     password: (ev.target as HTMLInputElement).value,

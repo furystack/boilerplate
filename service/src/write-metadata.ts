@@ -14,7 +14,7 @@ import { injector } from './config'
 
   const file = join(__dirname, '..', '..', 'metadata.xml')
 
-  await new Promise((resolve, reject) => writeFile(file, xml, err => (err ? reject(err) : resolve())))
+  await new Promise((resolve, reject) => writeFile(file, xml, (err) => (err ? reject(err) : resolve())))
   logger.information({
     message: `File '${file}' has been written.`,
   })

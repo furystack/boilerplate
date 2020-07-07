@@ -33,7 +33,7 @@ export class SessionService {
     })
   }
 
-  public async login(username: string, password: string) {
+  public async login(username: string, password: string): Promise<void> {
     await usingAsync(this.operation(), async () => {
       try {
         await sleepAsync(2000)
@@ -47,7 +47,7 @@ export class SessionService {
     })
   }
 
-  public async logout() {
+  public async logout(): Promise<void> {
     await usingAsync(this.operation(), async () => {
       this.api.call({ method: 'POST', action: '/logout', body: undefined })
       this.currentUser.setValue(null)
