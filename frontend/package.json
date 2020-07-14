@@ -16,12 +16,12 @@
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.4.1",
     "css-loader": "^3.6.0",
-    "cypress": "^4.9.0",
+    "cypress": "^4.10.0",
     "eslint-plugin-cypress": "^2.11.1",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "style-loader": "^1.2.1",
-    "ts-loader": "^7.0.5",
+    "ts-loader": "^8.0.0",
     "typescript": "^3.9.6",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
@@ -29,8 +29,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@furystack/rest-client-fetch": "^1.2.8",
-    "@furystack/shades": "^3.2.18",
+    "@furystack/rest-client-fetch": "^1.2.9",
+    "@furystack/shades": "^3.2.19",
     "common": "1.0.0"
   }
 }

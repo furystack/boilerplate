@@ -7,21 +7,20 @@
   "scripts": {
     "start": "yarn build && node ./dist/service.js",
     "seed": "yarn build && node ./dist/seed.js",
-    "write-metadata": "yarn build && node ./dist/write-metadata.js",
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^14.0.18"
+    "@types/node": "^14.0.23"
   },
   "dependencies": {
-    "@furystack/core": "^9.1.4",
-    "@furystack/inject": "^4.0.33",
-    "@furystack/logging": "^2.0.40",
+    "@furystack/core": "^9.1.5",
+    "@furystack/filesystem-store": "^1.1.5",
+    "@furystack/inject": "^4.0.34",
+    "@furystack/logging": "^2.0.41",
     "@furystack/odata": "^2.1.11",
-    "@furystack/repository": "^3.0.7",
-    "@furystack/rest-service": "^2.1.11",
-    "@furystack/filesystem-store": "^1.1.4",
+    "@furystack/repository": "^3.0.8",
+    "@furystack/rest-service": "^2.1.12",
     "tslib": "^2.0.0"
   }
 }
