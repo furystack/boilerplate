@@ -14,23 +14,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cypress/webpack-preprocessor": "^5.4.5",
+    "@cypress/webpack-preprocessor": "^5.4.6",
     "css-loader": "^4.3.0",
-    "cypress": "^5.1.0",
-    "eslint-plugin-cypress": "^2.11.1",
+    "cypress": "^5.3.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "file-loader": "^6.1.0",
-    "html-webpack-plugin": "^4.4.1",
+    "html-webpack-plugin": "^4.5.0",
     "style-loader": "^1.2.1",
-    "ts-loader": "^8.0.3",
-    "typescript": "^4.0.2",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
     "url-loader": "^4.1.0",
-    "webpack": "^4.44.1",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@furystack/rest-client-fetch": "^1.2.14",
-    "@furystack/shades": "^3.2.24",
+    "@furystack/rest-client-fetch": "^1.2.16",
+    "@furystack/shades": "^3.2.26",
     "common": "1.0.0"
   }
 }
