@@ -1,5 +1,5 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { Loader } from '../components/loader'
+import { Loader } from '@furystack/shades-common-components'
 
 export const Init = Shade({
   shadowDomName: 'shade-init',
@@ -11,22 +11,6 @@ export const Init = Shade({
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <style>{`
-      @keyframes show{
-        0%{
-          opacity: 0;
-        }
-      
-        100%{
-          opacity: 1
-        }
-      }
-
-      .initLoader {
-        opacity: 0;
-        animation: show .6s cubic-bezier(0.550, 0.085, 0.680, 0.530) 1s normal  forwards ;
-      }
-      `}</style>
       <div
         className="initLoader"
         style={{

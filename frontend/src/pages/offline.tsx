@@ -14,24 +14,6 @@ export const Offline = Shade({
           justifyContent: 'center',
           padding: '0 100px',
         }}>
-        <style>{`
-        @keyframes shake{
-          0% {
-            transform: translate(6px, 3px);
-          }
-          50% {
-            transform: translate(-6px, -4px);
-          }
-          100% {
-            transform: translate(0, 0);
-          }
-        }
-
-        #offline {
-          animation: shake 150ms 2 linear;
-        }
-
-        `}</style>
         <div
           id="offline"
           style={{

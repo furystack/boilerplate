@@ -16,25 +16,25 @@
     "nohoist": []
   },
   "dependencies": {
-    "@types/jest": "^26.0.14",
-    "jest": "^26.4.2",
-    "jest-junit": "^11.1.0",
-    "tslib": "^2.0.1"
+    "@types/jest": "^26.0.15",
+    "jest": "^26.6.3",
+    "jest-junit": "^12.0.0",
+    "tslib": "^2.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
-    "@typescript-eslint/parser": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
     "concurrently": "^5.3.0",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsdoc": "^30.6.2",
+    "eslint-plugin-jsdoc": "^30.7.8",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2",
+    "lint-staged": "^10.5.2",
+    "prettier": "^2.2.1",
     "rimraf": "^3.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.2"
   },
   "husky": {
     "hooks": {
@@ -60,7 +60,7 @@
     "open:cypress": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\" \"yarn workspace frontend run cypress open\" --success first ",
     "start": "concurrently --kill-others \"yarn startService\" \"yarn startFrontend\"  ",
     "startService": "yarn workspace service start",
-    "startFrontend": "yarn workspace frontend start --env.APP_SERVICE_URL=http://localhost:9090",
+    "startFrontend": "yarn workspace frontend start",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
     "lint": "eslint . --ext .tsx,.ts --cache"
   },

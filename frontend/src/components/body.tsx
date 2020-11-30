@@ -1,9 +1,12 @@
-import { createComponent, Shade } from '@furystack/shades'
+import { createComponent, PartialElement, Shade, Router } from '@furystack/shades'
 import { User } from 'common'
 import { SessionService, sessionState } from '../services/session'
-import { Init, HelloWorld, Offline, Login } from '../pages'
+import { ButtonsDemo, Init, HelloWorld, Offline, Login } from '../pages'
 
-export const Body = Shade<{}, { sessionState: sessionState; currentUser: User | null }>({
+export const Body = Shade<
+  { style?: PartialElement<CSSStyleDeclaration> },
+  { sessionState: sessionState; currentUser: User | null }
+>({
   shadowDomName: 'shade-app-body',
   getInitialState: () => ({
     sessionState: 'initial' as sessionState,
@@ -23,21 +26,17 @@ export const Body = Shade<{}, { sessionState: sessionState; currentUser: User | 
   },
   render: ({ getState }) => {
     return (
-      <div
-        id="Body"
-        style={{
-          margin: '10px',
-          padding: '10px',
-          position: 'fixed',
-          top: '40px',
-          width: 'calc(100% - 40px)',
-          height: 'calc(100% - 80px)',
-          overflow: 'hidden',
-        }}>
+      <div id="Body">
         {(() => {
           switch (getState().sessionState) {
             case 'authenticated':
-              return <HelloWorld />
+              return (
+                <Router
+                  routes={[
+                    { url: '/buttons', routingOptions: { end: false }, component: () => <ButtonsDemo /> },
+                    { url: '/', routingOptions: { end: false }, component: () => <HelloWorld /> },
+                  ]}></Router>
+              )
             case 'offline':
               return <Offline />
             case 'unauthenticated':
