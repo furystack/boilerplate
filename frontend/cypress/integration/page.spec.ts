@@ -18,10 +18,8 @@ describe('Example Application', () => {
     cy.get('hello-world div h2').contains('Hello, testuser !')
 
     cy.log('Logging out...')
-    cy.get('hello-world button').should('be.visible')
-    cy.get('hello-world button').click()
+    cy.get('shade-app-bar shade-button button').contains('log out', { matchCase: false }).should('be.visible').click()
 
-    cy.log('Checking Login form...')
     cy.log('Checking Login form...')
     cy.get('shade-login>div>form').should('be.visible')
     cy.get('shade-login input[type=text]').should('be.visible')
