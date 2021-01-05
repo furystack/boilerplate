@@ -36,7 +36,6 @@ injector
           primaryKey: 'username',
           tickMs: 30 * 1000,
           fileName: join(__filename, '..', '..', 'users.json'),
-          logger: injector.logger,
         }),
       )
       .addStore(
