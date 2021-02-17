@@ -34,6 +34,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
           alignItems: 'center',
           justifyContent: 'center',
           padding: '0 100px',
+          paddingTop: '100px',
         }}>
         <form
           className="login-form"

@@ -21,10 +21,10 @@ export class SessionService {
   private async init() {
     await usingAsync(this.operation(), async () => {
       try {
-        const { isAuthenticated } = await this.api.call({ method: 'GET', action: '/isAuthenticated', body: undefined })
+        const { isAuthenticated } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
         this.state.setValue(isAuthenticated ? 'authenticated' : 'unauthenticated')
         if (isAuthenticated) {
-          const usr = await this.api.call({ method: 'GET', action: '/currentUser', body: undefined })
+          const usr = await this.api.call({ method: 'GET', action: '/currentUser' })
           this.currentUser.setValue(usr)
         }
       } catch (error) {
@@ -49,7 +49,7 @@ export class SessionService {
 
   public async logout(): Promise<void> {
     await usingAsync(this.operation(), async () => {
-      this.api.call({ method: 'POST', action: '/logout', body: undefined })
+      this.api.call({ method: 'POST', action: '/logout' })
       this.currentUser.setValue(null)
       this.state.setValue('unauthenticated')
     })

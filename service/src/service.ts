@@ -1,6 +1,5 @@
 import { BoilerplateApi, User, Session } from 'common'
-import { JsonResult } from '@furystack/rest'
-import { GetCurrentUser, IsAuthenticated, LoginAction, LogoutAction } from '@furystack/rest-service'
+import { GetCurrentUser, IsAuthenticated, JsonResult, LoginAction, LogoutAction } from '@furystack/rest-service'
 import { injector } from './config'
 
 injector
