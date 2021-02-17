@@ -11,15 +11,15 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^14.14.22"
+    "@types/node": "^14.14.28"
   },
   "dependencies": {
-    "@furystack/core": "^9.1.20",
-    "@furystack/filesystem-store": "^1.1.20",
-    "@furystack/inject": "^4.0.48",
-    "@furystack/logging": "^2.0.55",
-    "@furystack/repository": "^4.0.10",
-    "@furystack/rest-service": "^2.3.6",
+    "@furystack/core": "^9.1.21",
+    "@furystack/filesystem-store": "^1.1.21",
+    "@furystack/inject": "^4.0.49",
+    "@furystack/logging": "^2.0.56",
+    "@furystack/repository": "^4.0.11",
+    "@furystack/rest-service": "^2.3.7",
     "tslib": "^2.1.0"
   }
 }
