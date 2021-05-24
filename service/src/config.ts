@@ -38,9 +38,7 @@ injector
           fileName: join(__filename, '..', '..', 'users.json'),
         }),
       )
-      .addStore(
-        new InMemoryStore<Session>({ model: Session, primaryKey: 'sessionId' }),
-      ),
+      .addStore(new InMemoryStore<Session>({ model: Session, primaryKey: 'sessionId' })),
   )
   .setupRepository((repo) =>
     repo.createDataSet(User, {
