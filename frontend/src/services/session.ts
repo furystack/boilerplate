@@ -21,10 +21,10 @@ export class SessionService {
   private async init() {
     await usingAsync(this.operation(), async () => {
       try {
-        const { isAuthenticated } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
-        this.state.setValue(isAuthenticated ? 'authenticated' : 'unauthenticated')
-        if (isAuthenticated) {
-          const usr = await this.api.call({ method: 'GET', action: '/currentUser' })
+        const { result } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
+        this.state.setValue(result.isAuthenticated ? 'authenticated' : 'unauthenticated')
+        if (result.isAuthenticated) {
+          const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
           this.currentUser.setValue(usr)
         }
       } catch (error) {
@@ -37,7 +37,7 @@ export class SessionService {
     await usingAsync(this.operation(), async () => {
       try {
         await sleepAsync(2000)
-        const usr = await this.api.call({ method: 'POST', action: '/login', body: { username, password } })
+        const { result: usr } = await this.api.call({ method: 'POST', action: '/login', body: { username, password } })
         this.currentUser.setValue(usr)
         this.state.setValue('authenticated')
       } catch (error) {

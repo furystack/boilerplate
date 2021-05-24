@@ -1,4 +1,4 @@
-import { PhysicalStore, StoreManager, FindOptions } from '@furystack/core'
+import { PhysicalStore, StoreManager, FindOptions, WithOptionalId } from '@furystack/core'
 import { HttpAuthenticationSettings } from '@furystack/rest-service'
 import { Injector } from '@furystack/inject'
 import { User } from 'common'
@@ -13,10 +13,10 @@ import { injector } from './config'
  * @param i The Injector instance
  * @returns The retrieved or created object
  */
-export const getOrCreate = async <T>(
+export const getOrCreate = async <T, TKey extends keyof T>(
   filter: FindOptions<T, Array<keyof T>>,
-  instance: T,
-  store: PhysicalStore<T>,
+  instance: WithOptionalId<T, TKey>,
+  store: PhysicalStore<T, TKey>,
   i: Injector,
 ): Promise<T> => {
   const result = await store.find(filter)
@@ -45,7 +45,7 @@ export const seed = async (i: Injector): Promise<void> => {
   const logger = i.logger.withScope('seeder')
   logger.verbose({ message: 'Seeding data...' })
   const sm = i.getInstance(StoreManager)
-  const userStore = sm.getStoreFor<User, PhysicalStore<User>>(User)
+  const userStore = sm.getStoreFor(User, 'username')
   await getOrCreate(
     { filter: { username: { $eq: 'testuser' } } },
     {
@@ -53,7 +53,7 @@ export const seed = async (i: Injector): Promise<void> => {
       password: i.getInstance(HttpAuthenticationSettings).hashMethod('password'),
       roles: [],
     } as User,
-    userStore as PhysicalStore<User>,
+    userStore,
     i,
   )
 

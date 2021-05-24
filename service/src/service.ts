@@ -1,12 +1,13 @@
 import { BoilerplateApi, User, Session } from 'common'
 import { GetCurrentUser, IsAuthenticated, JsonResult, LoginAction, LogoutAction } from '@furystack/rest-service'
+import '@furystack/repository'
 import { injector } from './config'
 
 injector
   .disposeOnProcessExit()
   .useHttpAuthentication({
-    getUserStore: (sm) => sm.getStoreFor<User & { password: string }>(User as any),
-    getSessionStore: (sm) => sm.getStoreFor(Session),
+    getUserStore: (sm) => sm.getStoreFor<User & { password: string }, 'username'>(User as any, 'username'),
+    getSessionStore: (sm) => sm.getStoreFor(Session, 'sessionId'),
   })
   .useRestService<BoilerplateApi>({
     root: 'api',

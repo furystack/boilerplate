@@ -31,19 +31,17 @@ injector
   .setupStores((stores) =>
     stores
       .addStore(
-        new FileSystemStore<User>({
+        new FileSystemStore({
           model: User,
           primaryKey: 'username',
           tickMs: 30 * 1000,
           fileName: join(__filename, '..', '..', 'users.json'),
         }),
       )
-      .addStore(
-        new InMemoryStore<Session>({ model: Session, primaryKey: 'sessionId' }),
-      ),
+      .addStore(new InMemoryStore({ model: Session, primaryKey: 'sessionId' })),
   )
   .setupRepository((repo) =>
-    repo.createDataSet(User, {
+    repo.createDataSet(User, 'username', {
       ...authorizedDataSet,
     }),
   )
