@@ -11,7 +11,7 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^15.6.0"
+    "@types/node": "^15.6.1"
   },
   "dependencies": {
     "@furystack/core": "^10.0.6",
