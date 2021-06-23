@@ -6,7 +6,14 @@ export const ButtonsDemo = Shade<unknown, { disabled: boolean }>({
   render: ({ getState, updateState }) => {
     const { disabled } = getState()
     return (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '5em',
+          flexDirection: 'column',
+        }}>
         <div>
           <div>
             <Button disabled={disabled}>Log out</Button>
