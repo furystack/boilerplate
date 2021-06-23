@@ -14,7 +14,7 @@ export const HelloWorld = Shade<{}, { userName: string }>({
   },
   render: ({ getState }) => {
     return (
-      <div style={{ color: '#CCC', overflow: 'auto', paddingTop: '64px' }}>
+      <div style={{ overflow: 'auto', paddingTop: '64px' }}>
         <div
           className="initLoader"
           style={{
