@@ -12,7 +12,6 @@ describe('Example Application', () => {
     cy.log('Logging in...')
     cy.get('shade-login button').click()
 
-    cy.get('shade-login shade-loader').should('be.visible')
     cy.log('Checking Welcome screen...')
     cy.get('hello-world div h2').should('be.visible')
     cy.get('hello-world div h2').contains('Hello, testuser !')
