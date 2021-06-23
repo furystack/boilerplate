@@ -9,10 +9,10 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^15.6.1"
+    "@types/node": "^15.12.4"
   },
   "dependencies": {
-    "@furystack/rest": "^3.0.6",
-    "tslib": "^2.2.0"
+    "@furystack/rest": "^3.0.10",
+    "tslib": "^2.3.0"
   }
 }
