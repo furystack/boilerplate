@@ -1,15 +1,15 @@
 import { createComponent, Shade, Router } from '@furystack/shades'
 import { User } from 'common'
-import { SessionService, sessionState } from '../services/session'
+import { SessionService, SessionState } from '../services/session'
 import { ButtonsDemo, Init, HelloWorld, Offline, Login } from '../pages'
 
 export const Body = Shade<
   { style?: Partial<CSSStyleDeclaration> },
-  { sessionState: sessionState; currentUser: User | null }
+  { sessionState: SessionState; currentUser: User | null }
 >({
   shadowDomName: 'shade-app-body',
   getInitialState: () => ({
-    sessionState: 'initial' as sessionState,
+    sessionState: 'initializing',
     currentUser: null as User | null,
   }),
   constructed: async ({ injector, updateState }) => {

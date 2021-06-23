@@ -1,6 +1,12 @@
 import { createComponent, RouteLink, Shade } from '@furystack/shades'
-import { AppBar, Button } from '@furystack/shades-common-components'
-import { SessionService, sessionState } from '../services/session'
+import {
+  AppBar,
+  Button,
+  defaultDarkTheme,
+  defaultLightTheme,
+  ThemeProviderService,
+} from '@furystack/shades-common-components'
+import { SessionService, SessionState } from '../services/session'
 
 export interface HeaderProps {
   title: string
@@ -12,10 +18,11 @@ const urlStyle: Partial<CSSStyleDeclaration> = {
   textDecoration: 'none',
 }
 
-export const Header = Shade<HeaderProps, { sessionState: sessionState }>({
+export const Header = Shade<HeaderProps, { sessionState: SessionState; themeProvider: ThemeProviderService }>({
   shadowDomName: 'shade-app-header',
   getInitialState: ({ injector }) => ({
     sessionState: injector.getInstance(SessionService).state.getValue(),
+    themeProvider: injector.getInstance(ThemeProviderService),
   }),
   constructed: ({ injector, updateState }) => {
     const observable = injector.getInstance(SessionService).state.subscribe((newState) => {
@@ -37,6 +44,14 @@ export const Header = Shade<HeaderProps, { sessionState: sessionState }>({
           </RouteLink>
         ))}
         <div style={{ flex: '1' }} />
+        <Button
+          onclick={() => {
+            const newTheme =
+              getState().themeProvider.theme.getValue() === defaultDarkTheme ? defaultLightTheme : defaultDarkTheme
+            getState().themeProvider.theme.setValue(newTheme)
+          }}>
+          Switch Theme
+        </Button>
         {getState().sessionState === 'authenticated' ? (
           <Button
             variant="outlined"

@@ -1,19 +1,21 @@
+import { IdentityContext } from '@furystack/core'
+import { ObservableValue, usingAsync } from '@furystack/utils'
 import { Injectable } from '@furystack/inject'
-import { ObservableValue, usingAsync, sleepAsync } from '@furystack/utils'
+import { NotyService } from '@furystack/shades-common-components'
 import { User } from 'common'
 import { BoilerplateApiClient } from './boilerplate-api-client'
 
-export type sessionState = 'initializing' | 'offline' | 'unauthenticated' | 'authenticated'
+export type SessionState = 'initializing' | 'offline' | 'unauthenticated' | 'authenticated'
 
 @Injectable({ lifetime: 'singleton' })
-export class SessionService {
+export class SessionService implements IdentityContext {
   private readonly operation = () => {
     this.isOperationInProgress.setValue(true)
     return { dispose: () => this.isOperationInProgress.setValue(false) }
   }
 
-  public state = new ObservableValue<sessionState>('initializing')
-  public currentUser = new ObservableValue<User | null>(null)
+  public state = new ObservableValue<SessionState>('initializing')
+  public currentUser = new ObservableValue<Omit<User, 'password'> | null>(null)
 
   public isOperationInProgress = new ObservableValue(true)
 
@@ -36,26 +38,64 @@ export class SessionService {
   public async login(username: string, password: string): Promise<void> {
     await usingAsync(this.operation(), async () => {
       try {
-        await sleepAsync(2000)
         const { result: usr } = await this.api.call({ method: 'POST', action: '/login', body: { username, password } })
         this.currentUser.setValue(usr)
         this.state.setValue('authenticated')
+        this.notys.addNoty({
+          body: 'Welcome back ;)',
+          title: 'You have been logged in',
+          type: 'success',
+        })
       } catch (error) {
-        const errorResponse = await error.response.json()
-        this.loginError.setValue(errorResponse.message)
+        this.loginError.setValue(error.message)
+        this.notys.addNoty({
+          body: 'Please check your credentials',
+          title: 'Login failed',
+          type: 'warning',
+        })
       }
     })
   }
 
   public async logout(): Promise<void> {
-    await usingAsync(this.operation(), async () => {
+    return await usingAsync(this.operation(), async () => {
       this.api.call({ method: 'POST', action: '/logout' })
       this.currentUser.setValue(null)
       this.state.setValue('unauthenticated')
+      this.notys.addNoty({
+        body: 'Come back soon...',
+        title: 'You have been logged out',
+        type: 'info',
+      })
     })
   }
 
-  constructor(private api: BoilerplateApiClient) {
+  public async isAuthenticated(): Promise<boolean> {
+    return this.state.getValue() === 'authenticated'
+  }
+  public async isAuthorized(...roles: string[]): Promise<boolean> {
+    const currentUser = await this.getCurrentUser()
+    for (const role of roles) {
+      if (!currentUser || !currentUser.roles.some((c) => c === role)) {
+        return false
+      }
+    }
+    return true
+  }
+  public async getCurrentUser<TUser extends User>(): Promise<TUser> {
+    const currentUser = this.currentUser.getValue()
+    if (!currentUser) {
+      this.notys.addNoty({
+        body: ':(((',
+        title: 'No User available',
+        type: 'warning',
+      })
+      throw Error('No user available')
+    }
+    return currentUser as unknown as TUser
+  }
+
+  constructor(private api: BoilerplateApiClient, private readonly notys: NotyService) {
     this.init()
   }
 }
