@@ -25,13 +25,13 @@
     "webpack": "^5.50.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^4.0.0",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@furystack/rest-client-fetch": "^3.0.13",
-    "@furystack/shades": "^3.5.0",
-    "@furystack/shades-common-components": "^1.6.0",
+    "@furystack/rest-client-fetch": "^3.0.14",
+    "@furystack/shades": "^3.6.0",
+    "@furystack/shades-common-components": "^1.7.0",
     "common": "1.0.0"
   }
 }

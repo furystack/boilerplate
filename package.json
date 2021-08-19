@@ -22,7 +22,7 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@types/node": "^16.6.1",
+    "@types/node": "^16.6.2",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "concurrently": "^6.2.1",
