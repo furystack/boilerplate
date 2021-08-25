@@ -425,10 +425,10 @@
     path-to-regexp "^6.2.0"
     tslib "^2.3.1"
 
-"@furystack/rest-service@^4.0.16":
-  version "4.0.16"
-  resolved "https://registry.yarnpkg.com/@furystack/rest-service/-/rest-service-4.0.16.tgz#0b1807dd87311379125f9d992e8c69da6c77f2a8"
-  integrity sha512-d3r01MaH8nZk4rPQOHBfM887gt4QfcQiPAB3Zx+4Hk8pBBx/H8jNLzS68WfisJsB1owI5/FwO5D2p69/NpWYaw==
+"@furystack/rest-service@^4.0.17":
+  version "4.0.17"
+  resolved "https://registry.yarnpkg.com/@furystack/rest-service/-/rest-service-4.0.17.tgz#05b4e8364ba59fdfbce8b1167fb23440c387a491"
+  integrity sha512-QVzWcKw1Bm4TbQC99GxhezEWTvr9pEMoJJbXW6RcpMwI6EehEJl+R7gTnEiKAf/Y2n24z2afXAdD+FlRS0tXBw==
   dependencies:
     "@furystack/core" "^10.3.1"
     "@furystack/inject" "^4.0.74"
