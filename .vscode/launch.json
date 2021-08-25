@@ -7,14 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Service",
+      "name": "Debug Service",
       "program": "${workspaceFolder}/service/src/service.ts",
       "outFiles": ["${workspaceFolder}/service/dist/service.js"]
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Seed",
+      "name": "Debug Seed",
       "program": "${workspaceFolder}/service/src/seed.ts",
       "outFiles": ["${workspaceFolder}/service/dist/seed.js"]
     }

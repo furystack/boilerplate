@@ -5,7 +5,8 @@ import { Injector } from '@furystack/inject'
 import { VerboseConsoleLogger } from '@furystack/logging'
 import { DataSetSettings, AuthorizationResult } from '@furystack/repository'
 import '@furystack/repository/dist/injector-extension'
-import { User, Session } from 'common'
+import { User } from 'common'
+import { DefaultSession } from '@furystack/rest-service'
 
 export const authorizedOnly = async (options: { injector: Injector }): Promise<AuthorizationResult> => {
   const isAllowed = await options.injector.isAuthenticated()
@@ -38,7 +39,7 @@ injector
           fileName: join(__filename, '..', '..', 'users.json'),
         }),
       )
-      .addStore(new InMemoryStore({ model: Session, primaryKey: 'sessionId' })),
+      .addStore(new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' })),
   )
   .setupRepository((repo) =>
     repo.createDataSet(User, 'username', {
