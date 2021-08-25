@@ -9,9 +9,9 @@ import {
 } from '@furystack/rest-service'
 import '@furystack/repository'
 import { injector } from './config'
+import { attachShutdownHandler } from './shutdown-handler'
 
 injector
-  .disposeOnProcessExit()
   .useHttpAuthentication({
     getUserStore: (sm) => sm.getStoreFor<User & { password: string }, 'username'>(User as any, 'username'),
     getSessionStore: (sm) => sm.getStoreFor(DefaultSession, 'sessionId'),
@@ -41,3 +41,5 @@ injector
       },
     },
   })
+
+attachShutdownHandler(injector)
