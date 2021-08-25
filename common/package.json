@@ -5,11 +5,11 @@
   "license": "GPL-2.0-only",
   "private": true,
   "scripts": {
-    "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
-    "build": "tsc -b"
+    "create-schemas": "node ./dist/bin/create-schemas.js"
   },
   "devDependencies": {
-    "@types/node": "^16.7.1"
+    "@types/node": "^16.7.1",
+    "ts-json-schema-generator": "^0.95.0"
   },
   "dependencies": {
     "@furystack/rest": "^3.0.16",

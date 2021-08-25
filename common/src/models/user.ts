@@ -1,6 +1,4 @@
-import { User as FUser } from '@furystack/core'
-
-export class User implements FUser {
+export class User {
   public username!: string
   roles: string[] = []
 }
