@@ -47,7 +47,7 @@ export class SessionService implements IdentityContext {
           type: 'success',
         })
       } catch (error) {
-        this.loginError.setValue(error.message)
+        this.loginError.setValue(error instanceof Error ? error.message : '')
         this.notys.addNoty({
           body: 'Please check your credentials',
           title: 'Login failed',
