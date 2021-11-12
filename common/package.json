@@ -8,11 +8,11 @@
     "create-schemas": "node ./dist/bin/create-schemas.js"
   },
   "devDependencies": {
-    "@types/node": "^16.11.0",
-    "ts-json-schema-generator": "^0.96.0"
+    "@types/node": "^16.11.7",
+    "ts-json-schema-generator": "^0.97.0"
   },
   "dependencies": {
-    "@furystack/rest": "^3.0.20",
+    "@furystack/rest": "^3.0.21",
     "tslib": "^2.3.1"
   }
 }
