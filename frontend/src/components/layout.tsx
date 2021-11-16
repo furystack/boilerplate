@@ -1,13 +1,19 @@
 import { createComponent, Shade } from '@furystack/shades'
-import { Paper } from '@furystack/shades-common-components'
+import { ThemeProviderService } from '@furystack/shades-common-components'
 import { Body } from './body'
 import { Header } from './header'
 
 export const Layout = Shade({
   shadowDomName: 'shade-app-layout',
-  render: () => {
+  constructed: ({ injector, element }) => {
+    const t = injector.getInstance(ThemeProviderService).theme.subscribe((newTheme) => {
+      ;(element.firstChild as any).style.background = newTheme.background.default
+    })
+    return () => t.dispose()
+  },
+  render: ({ injector }) => {
     return (
-      <Paper
+      <div
         id="Layout"
         style={{
           position: 'fixed',
@@ -21,11 +27,11 @@ export const Layout = Shade({
           overflow: 'hidden',
           padding: '0',
           margin: '0',
-        }}
-        className="eee">
+          backgroundColor: injector.getInstance(ThemeProviderService).theme.getValue().background.default,
+        }}>
         <Header title="🧩 FuryStack Boilerplate" links={[]} />
         <Body style={{ width: '100%', height: '100%', overflow: 'auto' }} />
-      </Paper>
+      </div>
     )
   },
 })
