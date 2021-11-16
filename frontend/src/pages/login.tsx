@@ -43,7 +43,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
             const state = getState()
             sessinService.login(state.username, state.password)
           }}>
-          <Paper>
+          <Paper elevation={3}>
             <h2>Login</h2>
             <Input
               labelTitle="User name"

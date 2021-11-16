@@ -5,6 +5,10 @@ export const ButtonsDemo = Shade<unknown, { disabled: boolean }>({
   getInitialState: () => ({ disabled: false }),
   render: ({ getState, updateState }) => {
     const { disabled } = getState()
+    const txt = 'Button Text'
+    const onclick = () => {
+      /** */
+    }
     return (
       <div
         style={{
@@ -13,49 +17,52 @@ export const ButtonsDemo = Shade<unknown, { disabled: boolean }>({
           justifyContent: 'center',
           marginTop: '5em',
           flexDirection: 'column',
+          background: 'url(https://talkillustration.com/wp-content/uploads/2015/04/ghtyj.jpg)',
         }}>
         <div>
           <div>
-            <Button disabled={disabled}>Log out</Button>
+            <Button onclick={onclick} disabled={disabled}>
+              {txt}
+            </Button>
 
-            <Button disabled={disabled} color="primary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} color="primary">
+              {txt}
             </Button>
-            <Button disabled={disabled} color="secondary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} color="secondary">
+              {txt}
             </Button>
-            <Button disabled={disabled} color="error">
-              Log out
+            <Button onclick={onclick} disabled={disabled} color="error">
+              {txt}
             </Button>
           </div>
           <div>
-            <Button disabled={disabled} variant="outlined">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="outlined">
+              {txt}
             </Button>
 
-            <Button disabled={disabled} variant="outlined" color="primary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="outlined" color="primary">
+              {txt}
             </Button>
-            <Button disabled={disabled} variant="outlined" color="secondary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="outlined" color="secondary">
+              {txt}
             </Button>
-            <Button disabled={disabled} variant="outlined" color="error">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="outlined" color="error">
+              {txt}
             </Button>
           </div>
           <div>
-            <Button disabled={disabled} variant="contained">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="contained">
+              {txt}
             </Button>
 
-            <Button disabled={disabled} variant="contained" color="primary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="contained" color="primary">
+              {txt}
             </Button>
-            <Button disabled={disabled} variant="contained" color="secondary">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="contained" color="secondary">
+              {txt}
             </Button>
-            <Button disabled={disabled} variant="contained" color="error">
-              Log out
+            <Button onclick={onclick} disabled={disabled} variant="contained" color="error">
+              {txt}
             </Button>
           </div>
         </div>
