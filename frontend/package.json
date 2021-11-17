@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "@furystack/rest-client-fetch": "^3.0.20",
-    "@furystack/shades": "^3.6.6",
-    "@furystack/shades-common-components": "^1.7.6",
+    "@furystack/shades": "^3.7.0",
+    "@furystack/shades-common-components": "^1.8.0",
     "common": "1.0.0"
   }
 }
