@@ -14,12 +14,12 @@
     "@types/node": "^16.11.12"
   },
   "dependencies": {
-    "@furystack/core": "^10.4.0",
-    "@furystack/filesystem-store": "^2.0.24",
-    "@furystack/inject": "^4.0.76",
-    "@furystack/logging": "^2.0.83",
-    "@furystack/repository": "^5.0.24",
-    "@furystack/rest-service": "^4.1.4",
+    "@furystack/core": "^10.4.1",
+    "@furystack/filesystem-store": "^2.0.25",
+    "@furystack/inject": "^5.0.0",
+    "@furystack/logging": "^2.0.84",
+    "@furystack/repository": "^5.0.25",
+    "@furystack/rest-service": "^4.1.5",
     "tslib": "^2.3.1"
   }
 }
