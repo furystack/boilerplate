@@ -12,45 +12,45 @@ trigger:
   - greenkeeper/*
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: "14.x"
-    displayName: "Install Node.js"
+      versionSpec: '16.x'
+    displayName: 'Install Node.js'
   - script: yarn install
-    displayName: "Yarn install"
+    displayName: 'Yarn install'
 
   - script: yarn lint
-    displayName: "Yarn Lint"
+    displayName: 'Yarn Lint'
 
   - script: yarn workspace service build
-    displayName: "Build Service"
+    displayName: 'Build Service'
 
   - script: yarn test:unit
-    displayName: "Unit tests"
+    displayName: 'Unit tests'
 
   - task: PublishTestResults@2
     displayName: Publish test results
     condition: always()
     inputs:
       testRunner: JUnit
-      testResultsFiles: "$(System.DefaultWorkingDirectory)/coverage/junit.xml"
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
 
   - script: yarn test:e2e
-    displayName: "E2E tests"
+    displayName: 'E2E tests'
 
   - task: PublishTestResults@2
     displayName: Publish test results
     condition: always()
     inputs:
       testRunner: JUnit
-      testResultsFiles: "$(System.DefaultWorkingDirectory)/frontend/testresults/output.xml"
+      testResultsFiles: '$(System.DefaultWorkingDirectory)/frontend/testresults/output.xml'
 
   - task: PublishBuildArtifacts@1
     displayName: Publish Cypress test artifacts
     condition: failed()
     inputs:
-      pathtoPublish: "$(System.DefaultWorkingDirectory)/frontend/cypress/videos"
+      pathtoPublish: '$(System.DefaultWorkingDirectory)/frontend/cypress/videos'
       artifactName: cypress_videos
