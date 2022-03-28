@@ -32,7 +32,8 @@ export const getOrCreate = async <T, TKey extends keyof T>(
   } else {
     const message = `Seed filter contains '${result.length}' results for ${JSON.stringify(filter)}`
     logger.warning({ message })
-    throw Error(message)
+    // throw Error(message)
+    return result[0]
   }
 }
 
@@ -43,11 +44,21 @@ export const getOrCreate = async <T, TKey extends keyof T>(
  */
 export const seed = async (i: Injector): Promise<void> => {
   const logger = i.getLogger().withScope('seeder')
-  logger.verbose({ message: 'Seeding data...' })
+  await logger.verbose({ message: 'Seeding data...' })
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor(User, 'username')
+  const pwcStore = sm.getStoreFor(PasswordCredential, 'userName')
   const cred = await i.getInstance(PasswordAuthenticator).getHasher().createCredential('testuser', 'password')
-  await sm.getStoreFor(PasswordCredential, 'userName').add(cred)
+  await logger.verbose({ message: 'Saving credential...' })
+  await getOrCreate(
+    {
+      filter: { userName: { $eq: 'testuser' } },
+    },
+    cred,
+    pwcStore,
+    i,
+  )
+  await logger.verbose({ message: 'Saving User...' })
   await getOrCreate(
     { filter: { username: { $eq: 'testuser' } } },
     {

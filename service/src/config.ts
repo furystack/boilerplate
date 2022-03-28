@@ -6,6 +6,7 @@ import { PasswordCredential } from '@furystack/security'
 import { VerboseConsoleLogger } from '@furystack/logging'
 import { DataSetSettings, AuthorizationResult } from '@furystack/repository'
 import '@furystack/repository/dist/injector-extension'
+import '@furystack/security'
 import { User } from 'common'
 import { DefaultSession } from '@furystack/rest-service'
 
@@ -54,3 +55,4 @@ injector
       ...authorizedDataSet,
     }),
   )
+  .usePasswordPolicy()
