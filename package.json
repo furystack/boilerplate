@@ -70,5 +70,6 @@
   "jest-junit": {
     "suiteName": "FuryStack Jest tests",
     "outputDirectory": "./coverage"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
