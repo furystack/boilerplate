@@ -38,6 +38,9 @@ steps:
       testRunner: JUnit
       testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
 
+  - script: yarn seed
+    displayName: 'Seed test data'
+
   - script: yarn test:e2e
     displayName: 'E2E tests'
 

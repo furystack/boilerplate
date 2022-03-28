@@ -2,9 +2,11 @@ import { join } from 'path'
 import { InMemoryStore } from '@furystack/core'
 import { FileSystemStore } from '@furystack/filesystem-store'
 import { Injector } from '@furystack/inject'
+import { PasswordCredential } from '@furystack/security'
 import { VerboseConsoleLogger } from '@furystack/logging'
 import { DataSetSettings, AuthorizationResult } from '@furystack/repository'
 import '@furystack/repository/dist/injector-extension'
+import '@furystack/security'
 import { User } from 'common'
 import { DefaultSession } from '@furystack/rest-service'
 
@@ -39,10 +41,18 @@ injector
           fileName: join(__filename, '..', '..', 'users.json'),
         }),
       )
-      .addStore(new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' })),
+      .addStore(new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' }))
+      .addStore(
+        new FileSystemStore({
+          model: PasswordCredential,
+          primaryKey: 'userName',
+          fileName: join(__filename, '..', '..', 'pwc.json'),
+        }),
+      ),
   )
   .setupRepository((repo) =>
     repo.createDataSet(User, 'username', {
       ...authorizedDataSet,
     }),
   )
+  .usePasswordPolicy()

@@ -1,5 +1,5 @@
 import { PhysicalStore, StoreManager, FindOptions, WithOptionalId } from '@furystack/core'
-import { HttpAuthenticationSettings } from '@furystack/rest-service'
+import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import { Injector } from '@furystack/inject'
 import { User } from 'common'
 import { injector } from './config'
@@ -32,7 +32,8 @@ export const getOrCreate = async <T, TKey extends keyof T>(
   } else {
     const message = `Seed filter contains '${result.length}' results for ${JSON.stringify(filter)}`
     logger.warning({ message })
-    throw Error(message)
+    // throw Error(message)
+    return result[0]
   }
 }
 
@@ -42,17 +43,28 @@ export const getOrCreate = async <T, TKey extends keyof T>(
  * @param i The injector instance
  */
 export const seed = async (i: Injector): Promise<void> => {
-  const logger = i.logger.withScope('seeder')
-  logger.verbose({ message: 'Seeding data...' })
+  const logger = i.getLogger().withScope('seeder')
+  await logger.verbose({ message: 'Seeding data...' })
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor(User, 'username')
+  const pwcStore = sm.getStoreFor(PasswordCredential, 'userName')
+  const cred = await i.getInstance(PasswordAuthenticator).getHasher().createCredential('testuser', 'password')
+  await logger.verbose({ message: 'Saving credential...' })
+  await getOrCreate(
+    {
+      filter: { userName: { $eq: 'testuser' } },
+    },
+    cred,
+    pwcStore,
+    i,
+  )
+  await logger.verbose({ message: 'Saving User...' })
   await getOrCreate(
     { filter: { username: { $eq: 'testuser' } } },
     {
       username: 'testuser',
-      password: i.getInstance(HttpAuthenticationSettings).hashMethod('password'),
       roles: [],
-    } as User,
+    },
     userStore,
     i,
   )
