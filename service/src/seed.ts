@@ -1,5 +1,5 @@
 import { PhysicalStore, StoreManager, FindOptions, WithOptionalId } from '@furystack/core'
-import { HttpAuthenticationSettings } from '@furystack/rest-service'
+import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import { Injector } from '@furystack/inject'
 import { User } from 'common'
 import { injector } from './config'
@@ -42,17 +42,18 @@ export const getOrCreate = async <T, TKey extends keyof T>(
  * @param i The injector instance
  */
 export const seed = async (i: Injector): Promise<void> => {
-  const logger = i.logger.withScope('seeder')
+  const logger = i.getLogger().withScope('seeder')
   logger.verbose({ message: 'Seeding data...' })
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor(User, 'username')
+  const cred = await i.getInstance(PasswordAuthenticator).getHasher().createCredential('testuser', 'password')
+  await sm.getStoreFor(PasswordCredential, 'userName').add(cred)
   await getOrCreate(
     { filter: { username: { $eq: 'testuser' } } },
     {
       username: 'testuser',
-      password: i.getInstance(HttpAuthenticationSettings).hashMethod('password'),
       roles: [],
-    } as User,
+    },
     userStore,
     i,
   )
