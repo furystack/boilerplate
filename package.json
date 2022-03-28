@@ -65,10 +65,13 @@
     "start:service": "yarn workspace service start",
     "start:frontend": "yarn workspace frontend start",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
-    "lint": "eslint . --ext .tsx,.ts --cache"
+    "lint": "eslint . --ext .tsx,.ts --cache",
+    "bumpVersions": "yarn version check --interactive",
+    "applyVersionBumps": "yarn version apply --all && echo TODO: Upgrade changelogs"
   },
   "jest-junit": {
     "suiteName": "FuryStack Jest tests",
     "outputDirectory": "./coverage"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
