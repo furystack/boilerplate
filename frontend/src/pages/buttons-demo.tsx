@@ -3,6 +3,7 @@ import { Button } from '@furystack/shades-common-components'
 
 export const ButtonsDemo = Shade<unknown, { disabled: boolean }>({
   getInitialState: () => ({ disabled: false }),
+  shadowDomName: 'buttons-demo',
   render: ({ getState, updateState }) => {
     const { disabled } = getState()
     const txt = 'Button Text'

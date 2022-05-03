@@ -3,6 +3,7 @@ import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import { Injector } from '@furystack/inject'
 import { User } from 'common'
 import { injector } from './config'
+import { getLogger } from '@furystack/logging'
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result
@@ -20,7 +21,7 @@ export const getOrCreate = async <T, TKey extends keyof T>(
   i: Injector,
 ): Promise<T> => {
   const result = await store.find(filter)
-  const logger = i.logger.withScope('seeder')
+  const logger = getLogger(i).withScope('seeder')
   if (result.length === 1) {
     return result[0]
   } else if (result.length === 0) {
@@ -43,7 +44,7 @@ export const getOrCreate = async <T, TKey extends keyof T>(
  * @param i The injector instance
  */
 export const seed = async (i: Injector): Promise<void> => {
-  const logger = i.getLogger().withScope('seeder')
+  const logger = getLogger(i).withScope('seeder')
   await logger.verbose({ message: 'Seeding data...' })
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor(User, 'username')

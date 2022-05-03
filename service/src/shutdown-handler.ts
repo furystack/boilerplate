@@ -1,8 +1,9 @@
 import { Injector } from '@furystack/inject'
+import { getLogger } from '@furystack/logging'
 import { ServerManager } from '@furystack/rest-service'
 
 export const attachShutdownHandler = (i: Injector): void => {
-  const logger = i.logger.withScope('shutdown-handler')
+  const logger = getLogger(i).withScope('shutdown-handler')
 
   const onExit = async ({ code, reason, error }: { code: number; reason: string; error?: any }) => {
     process.removeAllListeners('exit')

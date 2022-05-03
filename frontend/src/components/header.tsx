@@ -1,12 +1,9 @@
 import { createComponent, RouteLink, Shade } from '@furystack/shades'
-import {
-  AppBar,
-  Button,
-  defaultDarkTheme,
-  defaultLightTheme,
-  ThemeProviderService,
-} from '@furystack/shades-common-components'
+import { AppBar, Button, ThemeProviderService } from '@furystack/shades-common-components'
+import { environmentOptions } from '..'
 import { SessionService, SessionState } from '../services/session'
+import { GithubLogo } from './github-logo'
+import { ThemeSwitch } from './theme-switch'
 
 export interface HeaderProps {
   title: string
@@ -44,22 +41,19 @@ export const Header = Shade<HeaderProps, { sessionState: SessionState; themeProv
           </RouteLink>
         ))}
         <div style={{ flex: '1' }} />
-        <Button
-          onclick={() => {
-            const newTheme =
-              getState().themeProvider.theme.getValue() === defaultDarkTheme ? defaultLightTheme : defaultDarkTheme
-            getState().themeProvider.theme.setValue(newTheme)
-          }}>
-          Switch Theme
-        </Button>
-        {getState().sessionState === 'authenticated' ? (
-          <Button
-            variant="outlined"
-            onclick={() => injector.getInstance(SessionService).logout()}
-            style={{ marginRight: '1em' }}>
-            Log Out
-          </Button>
-        ) : null}
+        <div style={{ display: 'flex', placeContent: 'center', marginRight: '24px' }}>
+          <ThemeSwitch variant="outlined" />
+          <a href={environmentOptions.repository} target="_blank">
+            <Button variant="outlined" style={{ verticalAlign: 'baseline' }}>
+              <GithubLogo style={{ height: '1em' }} />
+            </Button>
+          </a>
+          {getState().sessionState === 'authenticated' ? (
+            <Button variant="outlined" onclick={() => injector.getInstance(SessionService).logout()}>
+              Log Out
+            </Button>
+          ) : null}
+        </div>
       </AppBar>
     )
   },

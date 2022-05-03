@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const webpack = require('webpack')
+const frontendPackage = require('./package.json')
+const rootPackage = require('../package.json')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -15,7 +17,9 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       DEBUG: true,
-      APP_VERSION: require('./package.json').version,
+      APP_VERSION: rootPackage.version,
+      FRONTEND_APP_VERSION: frontendPackage.version,
+      REPOSITORY: rootPackage.repository,
       BUILD_DATE: new Date().toISOString(),
       SERVICE_URL: 'http://localhost:9090/api',
     }),

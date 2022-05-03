@@ -14,24 +14,25 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^7.2.1",
+    "fork-ts-checker-webpack-plugin": "^7.2.11",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
-    "ts-loader": "^9.2.8",
-    "typescript": "^4.6.3",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.6.4",
     "url-loader": "^4.1.1",
-    "webpack": "^5.70.0",
+    "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4",
+    "webpack-dev-server": "^4.8.1",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@furystack/rest-client-fetch": "^3.0.32",
-    "@furystack/shades": "^4.0.8",
-    "@furystack/shades-common-components": "^2.0.8",
+    "@furystack/logging": "^3.0.1",
+    "@furystack/rest-client-fetch": "^4.0.1",
+    "@furystack/shades": "^5.0.1",
+    "@furystack/shades-common-components": "^3.0.1",
     "common": "1.0.0"
   }
 }

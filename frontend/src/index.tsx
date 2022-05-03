@@ -1,7 +1,8 @@
 /** ToDo: Main entry point */
 import { createComponent, initializeShadeRoot } from '@furystack/shades'
-import { VerboseConsoleLogger } from '@furystack/logging'
+import { useLogging, VerboseConsoleLogger } from '@furystack/logging'
 import { Injector } from '@furystack/inject'
+import { getLogger } from '@furystack/logging'
 import { Layout } from './components/layout'
 
 const shadeInjector = new Injector()
@@ -12,11 +13,12 @@ export const environmentOptions = {
   appVersion: process.env.APP_VERSION as string,
   buildDate: new Date(process.env.BUILD_DATE as string),
   serviceUrl: process.env.SERVICE_URL as string,
+  repository: process.env.REPOSITORY as string,
 }
 
-shadeInjector.useLogging(VerboseConsoleLogger)
+useLogging(shadeInjector, VerboseConsoleLogger)
 
-shadeInjector.logger.withScope('Startup').verbose({
+getLogger(shadeInjector).withScope('Startup').verbose({
   message: 'Initializing Shade Frontend...',
   data: { environmentOptions },
 })
