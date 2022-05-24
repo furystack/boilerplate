@@ -5,10 +5,13 @@ const frontendPackage = require('./package.json')
 const rootPackage = require('../package.json')
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: { app: './src/index.tsx', 'service-worker': './src/worker/index.ts' },
   output: {
-    publicPath: '/',
-    path: path.resolve(`${__dirname}/bundle`),
+    filename: '[name].js',
+    chunkFilename: '[name].[contenthash:8].chunk.js',
+    // publicPath: '/',
+    // filename: '[name].js',
+    // path: path.resolve(`${__dirname}/bundle`),
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],

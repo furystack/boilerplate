@@ -13,10 +13,6 @@ const common = require('./webpack.common.js')
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
-  output: {
-    filename: '[name].[contenthash:8].js',
-    chunkFilename: '[name].[contenthash:8].chunk.js',
-  },
   optimization: {
     minimize: true,
     usedExports: true,

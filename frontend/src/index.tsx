@@ -30,3 +30,19 @@ initializeShadeRoot({
   rootElement,
   jsxElement: <Layout />,
 })
+
+navigator.serviceWorker.register('/service-worker.js').then(
+  () => {
+    getLogger(shadeInjector).withScope('Worker').verbose({
+      message: 'Service worker registered',
+    })
+  },
+  (err) => {
+    getLogger(shadeInjector)
+      .withScope('Worker')
+      .error({
+        message: 'Service worker registration failed',
+        data: { error: err },
+      })
+  },
+)

@@ -1,5 +1,5 @@
 import { createComponent, RouteLink, Shade } from '@furystack/shades'
-import { AppBar, Button, ThemeProviderService } from '@furystack/shades-common-components'
+import { AppBar, Button } from '@furystack/shades-common-components'
 import { environmentOptions } from '..'
 import { SessionService, SessionState } from '../services/session'
 import { GithubLogo } from './github-logo'
@@ -15,18 +15,16 @@ const urlStyle: Partial<CSSStyleDeclaration> = {
   textDecoration: 'none',
 }
 
-export const Header = Shade<HeaderProps, { sessionState: SessionState; themeProvider: ThemeProviderService }>({
+export const Header = Shade<HeaderProps, { sessionState: SessionState }>({
   shadowDomName: 'shade-app-header',
   getInitialState: ({ injector }) => ({
     sessionState: injector.getInstance(SessionService).state.getValue(),
-    themeProvider: injector.getInstance(ThemeProviderService),
   }),
-  constructed: ({ injector, updateState }) => {
-    const observable = injector.getInstance(SessionService).state.subscribe((newState) => {
+  resources: ({ injector, updateState }) => [
+    injector.getInstance(SessionService).state.subscribe((newState) => {
       updateState({ sessionState: newState })
-    })
-    return () => observable.dispose()
-  },
+    }),
+  ],
   render: ({ props, injector, getState }) => {
     return (
       <AppBar id="header">

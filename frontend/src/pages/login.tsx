@@ -51,10 +51,10 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
               disabled={getState().isOperationInProgress}
               placeholder="The user's login name"
               value={username}
-              onchange={(ev) => {
+              onTextChange={(text) => {
                 updateState(
                   {
-                    username: (ev.target as HTMLInputElement).value,
+                    username: text,
                   },
                   true,
                 )
@@ -68,10 +68,10 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
               placeholder="The password for the user"
               value={password}
               type="password"
-              onchange={(ev) => {
+              onTextChange={(text) => {
                 updateState(
                   {
-                    password: (ev.target as HTMLInputElement).value,
+                    password: text,
                   },
                   true,
                 )
