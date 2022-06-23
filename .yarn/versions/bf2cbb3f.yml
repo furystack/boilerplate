@@ -2,6 +2,4 @@ releases:
   common: patch
   frontend: patch
   furystack-boilerplate-app: patch
-
-undecided:
-  - service
+  service: patch
