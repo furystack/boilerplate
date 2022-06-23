@@ -12,9 +12,10 @@ export const Body = Shade<
     sessionState: 'initializing',
     currentUser: null as User | null,
   }),
-  constructed: async ({ injector, updateState }) => {
+  resources: ({ injector, updateState }) => {
     const session = injector.getInstance(SessionService)
-    const observables = [
+    session.init()
+    return [
       session.state.subscribe((newState) =>
         updateState({
           sessionState: newState,
@@ -22,7 +23,6 @@ export const Body = Shade<
       ),
       session.currentUser.subscribe((usr) => updateState({ currentUser: usr })),
     ]
-    return () => observables.forEach((o) => o.dispose())
   },
   render: ({ getState }) => {
     return (

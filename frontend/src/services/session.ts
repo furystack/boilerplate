@@ -1,6 +1,6 @@
 import { IdentityContext } from '@furystack/core'
 import { ObservableValue, usingAsync } from '@furystack/utils'
-import { Injectable } from '@furystack/inject'
+import { Injectable, Injected } from '@furystack/inject'
 import { NotyService } from '@furystack/shades-common-components'
 import { User } from 'common'
 import { BoilerplateApiClient } from './boilerplate-api-client'
@@ -20,17 +20,23 @@ export class SessionService implements IdentityContext {
   public isOperationInProgress = new ObservableValue(true)
 
   public loginError = new ObservableValue('')
-  private async init() {
+
+  private isInitialized = false
+
+  public async init() {
     await usingAsync(this.operation(), async () => {
-      try {
-        const { result } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
-        this.state.setValue(result.isAuthenticated ? 'authenticated' : 'unauthenticated')
-        if (result.isAuthenticated) {
-          const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
-          this.currentUser.setValue(usr)
+      if (!this.isInitialized) {
+        this.isInitialized = true
+        try {
+          const { result } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
+          this.state.setValue(result.isAuthenticated ? 'authenticated' : 'unauthenticated')
+          if (result.isAuthenticated) {
+            const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
+            this.currentUser.setValue(usr)
+          }
+        } catch (error) {
+          this.state.setValue('offline')
         }
-      } catch (error) {
-        this.state.setValue('offline')
       }
     })
   }
@@ -95,7 +101,9 @@ export class SessionService implements IdentityContext {
     return currentUser as unknown as TUser
   }
 
-  constructor(private api: BoilerplateApiClient, private readonly notys: NotyService) {
-    this.init()
-  }
+  @Injected(BoilerplateApiClient)
+  private api!: BoilerplateApiClient
+
+  @Injected(NotyService)
+  private readonly notys!: NotyService
 }

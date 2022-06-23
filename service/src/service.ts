@@ -42,6 +42,9 @@ useRestService<BoilerplateApi>({
       },
     },
   },
+}).catch((err) => {
+  console.error(err)
+  process.exit(1)
 })
 
 attachShutdownHandler(injector)
