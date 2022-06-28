@@ -2,17 +2,18 @@
   "name": "common",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "license": "GPL-2.0-only",
   "private": true,
   "scripts": {
     "create-schemas": "node ./dist/bin/create-schemas.js"
   },
   "devDependencies": {
-    "@types/node": "^17.0.35",
+    "@types/node": "^18.0.0",
     "ts-json-schema-generator": "^1.0.0"
   },
   "dependencies": {
-    "@furystack/rest": "^4.0.2",
+    "@furystack/rest": "^4.0.3",
     "tslib": "^2.4.0"
   }
 }
