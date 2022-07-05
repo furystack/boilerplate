@@ -10,10 +10,6 @@ module.exports = merge(common, {
   devServer: {
     historyApiFallback: true,
   },
-  output: {
-    filename: 'static/js/bundle.js',
-    chunkFilename: 'static/js/[name].chunk.js',
-  },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({

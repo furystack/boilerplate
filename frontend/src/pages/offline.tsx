@@ -12,7 +12,7 @@ export const Offline = Shade({
           height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '0 100px',
+          padding: '100px',
         }}>
         <div
           id="offline"
