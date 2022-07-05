@@ -5,18 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Service",
       "request": "launch",
-      "name": "Debug Service",
-      "program": "${workspaceFolder}/service/src/service.ts",
-      "outFiles": ["${workspaceFolder}/service/dist/service.js"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Seed",
-      "program": "${workspaceFolder}/service/src/seed.ts",
-      "outFiles": ["${workspaceFolder}/service/dist/seed.js"]
+      "runtimeArgs": ["workspace", "service", "start"],
+      "runtimeExecutable": "yarn",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
     }
   ]
 }

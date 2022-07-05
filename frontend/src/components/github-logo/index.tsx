@@ -6,7 +6,11 @@ import ghLight from './gh-light.png'
 // @ts-ignore
 import ghDark from './gh-dark.png'
 
-export const GithubLogo = Shade<unknown, { theme: Theme }>({
+type GithubLogoProps = Omit<Partial<HTMLImageElement>, 'style' | 'src' | 'alt'> & {
+  style?: Partial<CSSStyleDeclaration> | undefined
+}
+
+export const GithubLogo = Shade<GithubLogoProps, { theme: Theme }>({
   shadowDomName: 'github-logo',
   getInitialState: ({ injector }) => ({
     theme: injector.getInstance(ThemeProviderService).theme.getValue(),
