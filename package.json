@@ -12,8 +12,7 @@
       "common",
       "frontend",
       "service"
-    ],
-    "nohoist": []
+    ]
   },
   "dependencies": {
     "@types/jest": "^28.1.4",
