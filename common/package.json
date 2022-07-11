@@ -9,7 +9,7 @@
     "create-schemas": "node ./dist/bin/create-schemas.js"
   },
   "devDependencies": {
-    "@types/node": "^18.0.1",
+    "@types/node": "^18.0.3",
     "ts-json-schema-generator": "^1.0.0"
   },
   "dependencies": {

@@ -1285,7 +1285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.0.1":
+"@types/node@npm:*":
   version: 18.0.1
   resolution: "@types/node@npm:18.0.1"
   checksum: be14b251c54cc2b4ca78ac6eadf2fe5e831e487f2e17848f21d576295945b538271dcc674d0bba582b3f8d95b84f6826e99b6ba4710c76f165a8bdd4d4f0618e
@@ -1296,6 +1296,13 @@ __metadata:
   version: 14.18.21
   resolution: "@types/node@npm:14.18.21"
   checksum: 4ed35b76609647a4e36a194702e31cdda9ed42174ddaf7937bc5498984e98a99e8a42ea895ea17dd9c5ec18080112c29ab670c34f90eb9f7a4703b85b31e34fa
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.0.3":
+  version: 18.0.3
+  resolution: "@types/node@npm:18.0.3"
+  checksum: 5dec59fbbc1186c808b53df1ca717dad034dbd6a901c75f5b052c845618b531b05f27217122c6254db99529a68618e4cfc534ae3dbf4e88754e9e572df80defa
   languageName: node
   linkType: hard
 
@@ -2760,7 +2767,7 @@ __metadata:
   resolution: "common@workspace:common"
   dependencies:
     "@furystack/rest": ^4.0.4
-    "@types/node": ^18.0.1
+    "@types/node": ^18.0.3
     ts-json-schema-generator: ^1.0.0
     tslib: ^2.4.0
   languageName: unknown
@@ -4142,9 +4149,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fork-ts-checker-webpack-plugin@npm:^7.2.11":
-  version: 7.2.11
-  resolution: "fork-ts-checker-webpack-plugin@npm:7.2.11"
+"fork-ts-checker-webpack-plugin@npm:^7.2.12":
+  version: 7.2.12
+  resolution: "fork-ts-checker-webpack-plugin@npm:7.2.12"
   dependencies:
     "@babel/code-frame": ^7.16.7
     chalk: ^4.1.2
@@ -4164,7 +4171,7 @@ __metadata:
   peerDependenciesMeta:
     vue-template-compiler:
       optional: true
-  checksum: b02942753e1c90b62ca674bfa004bc1561049b0c8c0fdc4d62bb13c156c93a0f2f496a7d3f95f93adcbac46c830bf83ba4c9fdef64cf871cdedf2f69f403511f
+  checksum: 79ccc4e6275c3f3e04e29bfcf13fe3eec1c61e285c1df942c14c92644a5c4f49deb4044cc73bef3becf24fa567a7fb6e37987f1fe2cae69f63fb4eba93bd9caa
   languageName: node
   linkType: hard
 
@@ -4204,12 +4211,12 @@ __metadata:
     "@furystack/shades": ^6.0.1
     "@furystack/shades-common-components": ^3.1.2
     "@furystack/utils": ^3.0.5
-    "@types/node": ^18.0.1
+    "@types/node": ^18.0.3
     clean-webpack-plugin: ^4.0.0
     common: "workspace:^"
     css-loader: ^6.7.1
     file-loader: ^6.2.0
-    fork-ts-checker-webpack-plugin: ^7.2.11
+    fork-ts-checker-webpack-plugin: ^7.2.12
     html-webpack-plugin: ^5.5.0
     mini-css-extract-plugin: ^2.6.1
     style-loader: ^3.3.1
@@ -4329,7 +4336,7 @@ __metadata:
   resolution: "furystack-boilerplate-app@workspace:."
   dependencies:
     "@types/jest": ^28.1.4
-    "@types/node": ^18.0.1
+    "@types/node": ^18.0.3
     "@typescript-eslint/eslint-plugin": ^5.30.5
     "@typescript-eslint/parser": ^5.30.5
     concurrently: ^7.2.2
@@ -7718,7 +7725,7 @@ __metadata:
     "@furystack/rest-service": ^6.0.6
     "@furystack/security": ^2.0.5
     "@types/jest": ^28.1.4
-    "@types/node": ^18.0.1
+    "@types/node": ^18.0.3
     common: "workspace:^"
     tslib: ^2.4.0
     typescript: ^4.7.4

@@ -14,7 +14,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "fork-ts-checker-webpack-plugin": "^7.2.12",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "style-loader": "^3.3.1",
@@ -36,7 +36,7 @@
     "@furystack/shades": "^6.0.1",
     "@furystack/shades-common-components": "^3.1.2",
     "@furystack/utils": "^3.0.5",
-    "@types/node": "^18.0.1",
+    "@types/node": "^18.0.3",
     "common": "workspace:^",
     "tslib": "^2.4.0"
   }
