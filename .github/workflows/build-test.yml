@@ -39,6 +39,8 @@ jobs:
         env:
           CI: true
 
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
       - run: yarn seed
         name: 'Seed test data'
       - run: yarn test:e2e

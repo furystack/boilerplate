@@ -65,8 +65,6 @@ dist
 frontend/bundle
 
 service/data.sqlite
-cypress/videos
-cypress/screenshots
 testresults
 
 .pnp.*
