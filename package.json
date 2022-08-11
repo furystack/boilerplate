@@ -57,15 +57,15 @@
     "build": "tsc -b && yarn workspace frontend build",
     "create-schemas": "yarn workspace common create-schemas",
     "seed": "yarn workspace service seed",
-    "test:e2e": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\" \"yarn playwright test\" --success first ",
+    "test:e2e": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\" \"yarn assert-listening && yarn playwright test\" --success first ",
     "test:unit": "jest --verbose",
-    "start": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\"  ",
     "start:service": "yarn workspace service start",
     "start:frontend": "yarn workspace frontend start",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
     "lint": "eslint . --ext .tsx,.ts --cache",
     "bumpVersions": "yarn version check --interactive",
-    "applyVersionBumps": "yarn version apply --all && echo TODO: Upgrade changelogs"
+    "applyVersionBumps": "yarn version apply --all && echo TODO: Upgrade changelogs",
+    "assert-listening": "yarn node scripts/assert-listening.mjs"
   },
   "jest-junit": {
     "suiteName": "FuryStack Jest tests",
