@@ -44,6 +44,9 @@ steps:
   - script: yarn seed
     displayName: 'Seed test data'
 
+  - script: yarn workspace service start
+    displayName: Start Service
+
   - script: yarn test:e2e
     displayName: 'E2E tests'
 
