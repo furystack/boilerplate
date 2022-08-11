@@ -17,10 +17,9 @@ const serveBundle = serve(
   },
 )
 
-Promise.all([serveBundle]).then(([bundleResult, monacoResult]) => {
+Promise.all([serveBundle]).then(([bundleResult]) => {
   // The result tells us where esbuild's local server is
   const { host, port } = bundleResult
-  const { host: monacoHost, port: monacoPort } = monacoResult
 
   const proxy = createServer((req, res) => {
     // forwardRequest forwards an http request through to esbuid.
