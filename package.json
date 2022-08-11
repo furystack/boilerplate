@@ -57,7 +57,7 @@
     "build": "tsc -b && yarn workspace frontend build",
     "create-schemas": "yarn workspace common create-schemas",
     "seed": "yarn workspace service seed",
-    "test:e2e": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\" \"yarn playwright\" --success first ",
+    "test:e2e": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\" \"yarn playwright test\" --success first ",
     "test:unit": "jest --verbose",
     "start": "concurrently --kill-others \"yarn start:service\" \"yarn start:frontend\"  ",
     "start:service": "yarn workspace service start",
