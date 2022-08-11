@@ -50,10 +50,3 @@ steps:
     inputs:
       testRunner: JUnit
       testResultsFiles: '$(System.DefaultWorkingDirectory)/frontend/testresults/output.xml'
-
-  - task: PublishBuildArtifacts@1
-    displayName: Publish Cypress test artifacts
-    condition: failed()
-    inputs:
-      pathtoPublish: '$(System.DefaultWorkingDirectory)/frontend/cypress/videos'
-      artifactName: cypress_videos

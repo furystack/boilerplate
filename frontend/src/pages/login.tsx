@@ -47,6 +47,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
             <h2>Login</h2>
             <Input
               labelTitle="User name"
+              name="username"
               required
               disabled={getState().isOperationInProgress}
               placeholder="The user's login name"
@@ -63,6 +64,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
             />
             <Input
               labelTitle="Password"
+              name="password"
               required
               disabled={getState().isOperationInProgress}
               placeholder="The password for the user"
