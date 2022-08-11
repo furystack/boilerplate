@@ -38,6 +38,9 @@ steps:
       testRunner: JUnit
       testResultsFiles: '$(System.DefaultWorkingDirectory)/coverage/junit.xml'
 
+  - script: yarn playwright install --with-deps
+    displayName: Install Playwright browsers
+
   - script: yarn seed
     displayName: 'Seed test data'
 
