@@ -4,17 +4,9 @@ import { useLogging, VerboseConsoleLogger } from '@furystack/logging'
 import { Injector } from '@furystack/inject'
 import { getLogger } from '@furystack/logging'
 import { Layout } from './components/layout'
+import { environmentOptions } from './environment-options'
 
 const shadeInjector = new Injector()
-
-export const environmentOptions = {
-  nodeEnv: process.env.NODE_ENV as 'development' | 'production',
-  debug: Boolean(process.env.DEBUG),
-  appVersion: process.env.APP_VERSION as string,
-  buildDate: new Date(process.env.BUILD_DATE as string),
-  serviceUrl: process.env.SERVICE_URL as string,
-  repository: process.env.REPOSITORY as string,
-}
 
 useLogging(shadeInjector, VerboseConsoleLogger)
 

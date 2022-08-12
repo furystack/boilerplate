@@ -5,12 +5,11 @@ import { Header } from './header'
 
 export const Layout = Shade({
   shadowDomName: 'shade-app-layout',
-  constructed: ({ injector, element }) => {
-    const t = injector.getInstance(ThemeProviderService).theme.subscribe((newTheme) => {
+  resources: ({ injector, element }) => [
+    injector.getInstance(ThemeProviderService).theme.subscribe((newTheme) => {
       ;(element.firstChild as any).style.background = newTheme.background.default
-    })
-    return () => t.dispose()
-  },
+    }),
+  ],
   render: ({ injector }) => {
     return (
       <div

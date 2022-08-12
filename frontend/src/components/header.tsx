@@ -1,6 +1,6 @@
 import { createComponent, RouteLink, Shade } from '@furystack/shades'
 import { AppBar, Button, ThemeProviderService } from '@furystack/shades-common-components'
-import { environmentOptions } from '..'
+import { environmentOptions } from '../environment-options'
 import { SessionService, SessionState } from '../services/session'
 import { GithubLogo } from './github-logo'
 import { ThemeSwitch } from './theme-switch'
