@@ -2,27 +2,67 @@ import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 import { Button, Input, Loader, Paper } from '@furystack/shades-common-components'
 
+export const LoginButton = Shade<{}, { isOperationInProgress?: boolean }>({
+  shadowDomName: 'shade-login-button',
+  getInitialState: ({ injector }) => ({
+    isOperationInProgress: injector.getInstance(SessionService).isOperationInProgress.getValue(),
+  }),
+  resources: ({ injector, updateState, element }) => {
+    const sessionService = injector.getInstance(SessionService)
+    return [
+      sessionService.isOperationInProgress.subscribe((isOperationInProgress) => {
+        updateState({ isOperationInProgress })
+        element
+          .querySelectorAll('input')
+          .forEach((input) => input.setAttribute('disabled', isOperationInProgress.toString()))
+      }),
+    ]
+  },
+  render: ({ getState }) => {
+    const { isOperationInProgress } = getState()
+    return (
+      <Button variant="contained" className="login-button" disabled={isOperationInProgress} type="submit">
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyItems: 'center',
+          }}>
+          Login
+          {isOperationInProgress ? (
+            <Loader
+              style={{
+                width: '20px',
+                height: '20px',
+              }}
+            />
+          ) : null}
+        </div>
+      </Button>
+    )
+  },
+})
+
 export const Login = Shade<{}, { username: string; password: string; error: string; isOperationInProgress: boolean }>({
   shadowDomName: 'shade-login',
-  getInitialState: () => ({
+  getInitialState: ({ injector }) => ({
     username: '',
     password: '',
-    error: '',
-    isOperationInProgress: true,
+    error: injector.getInstance(SessionService).loginError.getValue(),
+    isOperationInProgress: injector.getInstance(SessionService).isOperationInProgress.getValue(),
   }),
-  constructed: ({ injector, updateState }) => {
+  resources: ({ injector, updateState }) => {
     const sessionService = injector.getInstance(SessionService)
-    const subscriptions = [
+    return [
       sessionService.loginError.subscribe((error) => updateState({ error }), true),
-      sessionService.isOperationInProgress.subscribe(
-        (isOperationInProgress) => updateState({ isOperationInProgress }),
-        true,
-      ),
+      sessionService.isOperationInProgress.subscribe((isOperationInProgress) => {
+        updateState({ isOperationInProgress })
+      }),
     ]
-    return () => subscriptions.map((s) => s.dispose())
   },
+
   render: ({ injector, getState, updateState }) => {
-    const { error, username, password } = getState()
+    const { error, username, password, isOperationInProgress } = getState()
     const sessinService = injector.getInstance(SessionService)
 
     return (
@@ -48,36 +88,23 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
             <Input
               labelTitle="User name"
               name="username"
+              autofocus
               required
-              disabled={getState().isOperationInProgress}
+              disabled={isOperationInProgress}
               placeholder="The user's login name"
               value={username}
-              onchange={(ev) => {
-                updateState(
-                  {
-                    username: (ev.target as HTMLInputElement).value,
-                  },
-                  true,
-                )
-              }}
+              onTextChange={(newUserName) => updateState({ username: newUserName }, true)}
               type="text"
             />
             <Input
               labelTitle="Password"
               name="password"
               required
-              disabled={getState().isOperationInProgress}
+              disabled={isOperationInProgress}
               placeholder="The password for the user"
               value={password}
               type="password"
-              onchange={(ev) => {
-                updateState(
-                  {
-                    password: (ev.target as HTMLInputElement).value,
-                  },
-                  true,
-                )
-              }}
+              onTextChange={(newPassword) => updateState({ password: newPassword }, true)}
             />
             <div
               style={{
@@ -88,28 +115,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
                 padding: '1em 0',
               }}>
               {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
-              <Button
-                variant="contained"
-                className="login-button"
-                disabled={getState().isOperationInProgress}
-                type="submit">
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyItems: 'center',
-                  }}>
-                  Login
-                  {getState().isOperationInProgress ? (
-                    <Loader
-                      style={{
-                        width: '20px',
-                        height: '20px',
-                      }}
-                    />
-                  ) : null}
-                </div>
-              </Button>
+              <LoginButton />
             </div>
             <p style={{ fontSize: '10px' }}>You can login with the default 'testuser' / 'password' credentials</p>
           </Paper>
