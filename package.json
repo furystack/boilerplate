@@ -1,6 +1,6 @@
 {
   "name": "furystack-boilerplate-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "example web app based on furystack",
   "main": "service/src/index.ts",
   "repository": "https://github.com/furystack/boilerplate.git",
