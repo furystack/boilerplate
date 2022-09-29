@@ -1,4 +1,5 @@
-import { BoilerplateApi, User } from 'common'
+import type { BoilerplateApi } from 'common'
+import { User } from 'common'
 import {
   DefaultSession,
   GetCurrentUser,
