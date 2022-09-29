@@ -13,6 +13,6 @@
     "ts-json-schema-generator": "^1.1.2"
   },
   "dependencies": {
-    "@furystack/rest": "^4.0.13"
+    "@furystack/rest": "^4.1.0"
   }
 }
