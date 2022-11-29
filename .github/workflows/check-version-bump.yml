@@ -7,7 +7,6 @@ on:
       - 'develop'
 jobs:
   build:
-    if: false
     name: Check version bumps
     timeout-minutes: 5
     runs-on: ubuntu-latest
