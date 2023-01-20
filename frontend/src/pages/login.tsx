@@ -2,24 +2,20 @@ import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 import { Button, Input, Loader, Paper } from '@furystack/shades-common-components'
 
-export const LoginButton = Shade<{}, { isOperationInProgress?: boolean }>({
+export const LoginButton = Shade({
   shadowDomName: 'shade-login-button',
-  getInitialState: ({ injector }) => ({
-    isOperationInProgress: injector.getInstance(SessionService).isOperationInProgress.getValue(),
-  }),
-  resources: ({ injector, updateState, element }) => {
+  render: ({ useObservable, injector, element }) => {
     const sessionService = injector.getInstance(SessionService)
-    return [
-      sessionService.isOperationInProgress.subscribe((isOperationInProgress) => {
-        updateState({ isOperationInProgress })
+    const [isOperationInProgress] = useObservable(
+      'isOperationInProgress',
+      sessionService.isOperationInProgress,
+      () => {
         element
           .querySelectorAll('input')
           .forEach((input) => input.setAttribute('disabled', isOperationInProgress.toString()))
-      }),
-    ]
-  },
-  render: ({ getState }) => {
-    const { isOperationInProgress } = getState()
+      },
+      true,
+    )
     return (
       <Button variant="contained" className="login-button" disabled={isOperationInProgress} type="submit">
         <div
@@ -43,27 +39,16 @@ export const LoginButton = Shade<{}, { isOperationInProgress?: boolean }>({
   },
 })
 
-export const Login = Shade<{}, { username: string; password: string; error: string; isOperationInProgress: boolean }>({
+export const Login = Shade({
   shadowDomName: 'shade-login',
-  getInitialState: ({ injector }) => ({
-    username: '',
-    password: '',
-    error: injector.getInstance(SessionService).loginError.getValue(),
-    isOperationInProgress: injector.getInstance(SessionService).isOperationInProgress.getValue(),
-  }),
-  resources: ({ injector, updateState }) => {
+  render: ({ injector, useState, useObservable }) => {
     const sessionService = injector.getInstance(SessionService)
-    return [
-      sessionService.loginError.subscribe((error) => updateState({ error }), true),
-      sessionService.isOperationInProgress.subscribe((isOperationInProgress) => {
-        updateState({ isOperationInProgress })
-      }),
-    ]
-  },
 
-  render: ({ injector, getState, updateState }) => {
-    const { error, username, password, isOperationInProgress } = getState()
-    const sessinService = injector.getInstance(SessionService)
+    const [userName, setUserName] = useState('userName', '')
+    const [password, setPassword] = useState('password', '')
+
+    const [isOperationInProgress] = useObservable('isOperationInProgress', sessionService.isOperationInProgress)
+    const [error] = useObservable('loginError', sessionService.loginError)
 
     return (
       <div
@@ -80,8 +65,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
           className="login-form"
           onsubmit={(ev) => {
             ev.preventDefault()
-            const state = getState()
-            sessinService.login(state.username, state.password)
+            sessionService.login(userName, password)
           }}>
           <Paper elevation={3}>
             <h2>Login</h2>
@@ -92,8 +76,8 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
               required
               disabled={isOperationInProgress}
               placeholder="The user's login name"
-              value={username}
-              onTextChange={(newUserName) => updateState({ username: newUserName }, true)}
+              value={userName}
+              onTextChange={setUserName}
               type="text"
             />
             <Input
@@ -104,7 +88,7 @@ export const Login = Shade<{}, { username: string; password: string; error: stri
               placeholder="The password for the user"
               value={password}
               type="password"
-              onTextChange={(newPassword) => updateState({ password: newPassword }, true)}
+              onTextChange={setPassword}
             />
             <div
               style={{
