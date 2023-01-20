@@ -22,7 +22,7 @@
     "@furystack/repository": "^6.1.4",
     "@furystack/rest-service": "^6.2.7",
     "@furystack/security": "^2.1.4",
-    "@types/jest": "^29.2.5",
+    "@types/jest": "^29.2.6",
     "common": "workspace:^"
   }
 }
