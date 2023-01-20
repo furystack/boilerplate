@@ -37,7 +37,7 @@ export const Header = Shade<HeaderProps>({
           <ThemeSwitch variant="outlined" />
           <a href={environmentOptions.repository} target="_blank">
             <Button variant="outlined" style={{ verticalAlign: 'baseline' }}>
-              <GithubLogo style={{ height: '1em' }} />
+              <GithubLogo style={{ height: '25px' }} />
             </Button>
           </a>
           {sessionState === 'authenticated' ? (

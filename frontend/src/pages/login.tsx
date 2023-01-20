@@ -1,6 +1,7 @@
 import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
 import { Button, Input, Loader, Paper } from '@furystack/shades-common-components'
+import { ObservableValue } from '@furystack/utils'
 
 export const LoginButton = Shade({
   shadowDomName: 'shade-login-button',
@@ -17,7 +18,12 @@ export const LoginButton = Shade({
       true,
     )
     return (
-      <Button variant="contained" className="login-button" disabled={isOperationInProgress} type="submit">
+      <Button
+        variant="contained"
+        className="login-button"
+        disabled={isOperationInProgress}
+        type="submit"
+        onclick={(ev) => (ev.target as HTMLElement)?.closest('form')?.requestSubmit()}>
         <div
           style={{
             display: 'flex',
@@ -41,11 +47,10 @@ export const LoginButton = Shade({
 
 export const Login = Shade({
   shadowDomName: 'shade-login',
-  render: ({ injector, useState, useObservable }) => {
+  render: ({ injector, useDisposable, useObservable }) => {
     const sessionService = injector.getInstance(SessionService)
 
-    const [userName, setUserName] = useState('userName', '')
-    const [password, setPassword] = useState('password', '')
+    const postData = useDisposable('postData', () => new ObservableValue({ userName: '', password: '' }))
 
     const [isOperationInProgress] = useObservable('isOperationInProgress', sessionService.isOperationInProgress)
     const [error] = useObservable('loginError', sessionService.loginError)
@@ -61,13 +66,14 @@ export const Login = Shade({
           padding: '0 100px',
           paddingTop: '100px',
         }}>
-        <form
-          className="login-form"
-          onsubmit={(ev) => {
-            ev.preventDefault()
-            sessionService.login(userName, password)
-          }}>
-          <Paper elevation={3}>
+        <Paper elevation={3}>
+          <form
+            className="login-form"
+            onsubmit={(ev) => {
+              ev.preventDefault()
+              const { userName, password } = postData.getValue()
+              sessionService.login(userName, password)
+            }}>
             <h2>Login</h2>
             <Input
               labelTitle="User name"
@@ -76,8 +82,8 @@ export const Login = Shade({
               required
               disabled={isOperationInProgress}
               placeholder="The user's login name"
-              value={userName}
-              onTextChange={setUserName}
+              value={postData.getValue().userName}
+              onTextChange={(value) => postData.setValue({ ...postData.getValue(), userName: value })}
               type="text"
             />
             <Input
@@ -86,9 +92,9 @@ export const Login = Shade({
               required
               disabled={isOperationInProgress}
               placeholder="The password for the user"
-              value={password}
+              value={postData.getValue().password}
               type="password"
-              onTextChange={setPassword}
+              onTextChange={(value) => postData.setValue({ ...postData.getValue(), password: value })}
             />
             <div
               style={{
@@ -100,10 +106,11 @@ export const Login = Shade({
               }}>
               {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
               <LoginButton />
+              <button type="submit" style={{ display: 'none' }} />
             </div>
             <p style={{ fontSize: '10px' }}>You can login with the default 'testuser' / 'password' credentials</p>
-          </Paper>
-        </form>
+          </form>
+        </Paper>
       </div>
     )
   },
