@@ -1,57 +1,13 @@
 import { Shade, createComponent } from '@furystack/shades'
 import { SessionService } from '../services/session'
-import { Button, Input, Loader, Paper } from '@furystack/shades-common-components'
-import { ObservableValue } from '@furystack/utils'
+import { Button, Form, Input, Paper } from '@furystack/shades-common-components'
 
-export const LoginButton = Shade({
-  shadowDomName: 'shade-login-button',
-  render: ({ useObservable, injector, element }) => {
-    const sessionService = injector.getInstance(SessionService)
-    const [isOperationInProgress] = useObservable(
-      'isOperationInProgress',
-      sessionService.isOperationInProgress,
-      () => {
-        element
-          .querySelectorAll('input')
-          .forEach((input) => input.setAttribute('disabled', isOperationInProgress.toString()))
-      },
-      true,
-    )
-    return (
-      <Button
-        variant="contained"
-        className="login-button"
-        disabled={isOperationInProgress}
-        type="submit"
-        onclick={(ev) => (ev.target as HTMLElement)?.closest('form')?.requestSubmit()}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyItems: 'center',
-          }}>
-          Login
-          {isOperationInProgress ? (
-            <Loader
-              style={{
-                width: '20px',
-                height: '20px',
-              }}
-            />
-          ) : null}
-        </div>
-      </Button>
-    )
-  },
-})
+type LoginPayload = { userName: string; password: string }
 
 export const Login = Shade({
   shadowDomName: 'shade-login',
-  render: ({ injector, useDisposable, useObservable }) => {
+  render: ({ injector, useObservable }) => {
     const sessionService = injector.getInstance(SessionService)
-
-    const postData = useDisposable('postData', () => new ObservableValue({ userName: '', password: '' }))
-
     const [isOperationInProgress] = useObservable('isOperationInProgress', sessionService.isOperationInProgress)
     const [error] = useObservable('loginError', sessionService.loginError)
 
@@ -67,23 +23,22 @@ export const Login = Shade({
           paddingTop: '100px',
         }}>
         <Paper elevation={3}>
-          <form
+          <Form<LoginPayload>
             className="login-form"
-            onsubmit={(ev) => {
-              ev.preventDefault()
-              const { userName, password } = postData.getValue()
+            validate={(data): data is LoginPayload => {
+              return data.userName?.length > 0 && data.password?.length > 0
+            }}
+            onSubmit={({ userName, password }) => {
               sessionService.login(userName, password)
             }}>
             <h2>Login</h2>
             <Input
               labelTitle="User name"
-              name="username"
+              name="userName"
               autofocus
               required
               disabled={isOperationInProgress}
-              placeholder="The user's login name"
-              value={postData.getValue().userName}
-              onTextChange={(value) => postData.setValue({ ...postData.getValue(), userName: value })}
+              getHelperText={() => "The user's login name"}
               type="text"
             />
             <Input
@@ -91,10 +46,8 @@ export const Login = Shade({
               name="password"
               required
               disabled={isOperationInProgress}
-              placeholder="The password for the user"
-              value={postData.getValue().password}
+              getHelperText={() => 'The password for the user'}
               type="password"
-              onTextChange={(value) => postData.setValue({ ...postData.getValue(), password: value })}
             />
             <div
               style={{
@@ -105,11 +58,10 @@ export const Login = Shade({
                 padding: '1em 0',
               }}>
               {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
-              <LoginButton />
-              <button type="submit" style={{ display: 'none' }} />
+              <Button type="submit">Login</Button>
             </div>
             <p style={{ fontSize: '10px' }}>You can login with the default 'testuser' / 'password' credentials</p>
-          </form>
+          </Form>
         </Paper>
       </div>
     )

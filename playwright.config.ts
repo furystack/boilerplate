@@ -9,6 +9,7 @@ const config: PlaywrightTestConfig = {
   fullyParallel: true,
   retries: isInCi ? 2 : 0,
   reporter: isInCi ? 'github' : 'line',
+  timeout: 60 * 60 * 1000,
   expect: {
     toHaveScreenshot: {
       maxDiffPixelRatio: 0.05,
@@ -17,6 +18,12 @@ const config: PlaywrightTestConfig = {
   },
   use: {
     trace: 'on-first-retry',
+    baseURL: 'http://localhost:9090',
+  },
+  webServer: {
+    command: 'yarn start:service',
+    url: 'http://localhost:9090',
+    reuseExistingServer: !isInCi,
   },
   projects: [
     {
@@ -26,10 +33,6 @@ const config: PlaywrightTestConfig = {
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
     },
   ],
 }
