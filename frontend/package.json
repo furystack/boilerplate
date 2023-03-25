@@ -15,12 +15,12 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "@furystack/core": "^11.2.9",
+    "@furystack/core": "^11.2.10",
     "@furystack/inject": "^7.1.7",
     "@furystack/logging": "^3.1.7",
-    "@furystack/rest-client-fetch": "^4.1.14",
-    "@furystack/shades": "^7.2.0",
-    "@furystack/shades-common-components": "^4.0.9",
+    "@furystack/rest-client-fetch": "^4.1.15",
+    "@furystack/shades": "^7.2.1",
+    "@furystack/shades-common-components": "^4.0.10",
     "@furystack/utils": "^3.1.7",
     "@types/node": "^18.15.9",
     "common": "workspace:^"
