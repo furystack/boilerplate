@@ -25,8 +25,8 @@ steps:
   - script: yarn lint
     displayName: 'Yarn Lint'
 
-  - script: yarn workspace service build
-    displayName: 'Build Service'
+  - script: yarn build
+    displayName: 'Build'
 
   - script: yarn test:unit
     displayName: 'Unit tests'
