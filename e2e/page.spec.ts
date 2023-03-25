@@ -7,19 +7,18 @@ test.describe('Example Application', () => {
     const loginForm = await page.locator('shade-login>div>shade-paper>form')
     await expect(loginForm).toBeVisible()
 
-    const usernameInput = await loginForm.locator('input[name="username"]')
+    const usernameInput = await loginForm.locator('input[name="userName"]')
     await expect(usernameInput).toBeVisible()
 
     const passwordInput = await loginForm.locator('input[name="password"]')
     await expect(passwordInput).toBeVisible()
 
-    const submitButton = await page.locator('shade-login-button')
-    await expect(submitButton).toBeVisible()
-    await expect(submitButton).toBeEnabled()
-    await expect(submitButton).toHaveText('Login')
-
     await usernameInput.type('testuser')
     await passwordInput.type('password')
+
+    const submitButton = await page.locator('button', { hasText: 'Login' })
+    await expect(submitButton).toBeVisible()
+    await expect(submitButton).toBeEnabled()
 
     await submitButton.click()
 
@@ -27,7 +26,7 @@ test.describe('Example Application', () => {
     await expect(welcomeTitle).toBeVisible()
     await expect(welcomeTitle).toHaveText('Hello, testuser !')
 
-    const logoutButton = await page.locator('shade-app-bar shade-button >> text="Log Out"')
+    const logoutButton = await page.locator('shade-app-bar button >> text="Log Out"')
     await expect(logoutButton).toBeVisible()
     await expect(logoutButton).toBeEnabled()
     await expect(logoutButton).toHaveText('Log Out')
