@@ -229,7 +229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/core@npm:^12.0.4, @furystack/core@npm:^12.0.5":
+"@furystack/core@npm:^12.0.5":
   version: 12.0.5
   resolution: "@furystack/core@npm:12.0.5"
   dependencies:
@@ -239,7 +239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/filesystem-store@npm:^4.0.4":
+"@furystack/filesystem-store@npm:^4.0.5":
   version: 4.0.5
   resolution: "@furystack/filesystem-store@npm:4.0.5"
   dependencies:
@@ -251,7 +251,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/inject@npm:^8.0.4, @furystack/inject@npm:^8.0.5":
+"@furystack/inject@npm:^8.0.5":
   version: 8.0.5
   resolution: "@furystack/inject@npm:8.0.5"
   dependencies:
@@ -260,7 +260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/logging@npm:^4.0.4":
+"@furystack/logging@npm:^4.0.5":
   version: 4.0.5
   resolution: "@furystack/logging@npm:4.0.5"
   dependencies:
@@ -270,7 +270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/repository@npm:^7.0.4, @furystack/repository@npm:^7.0.5":
+"@furystack/repository@npm:^7.0.5":
   version: 7.0.5
   resolution: "@furystack/repository@npm:7.0.5"
   dependencies:
@@ -281,7 +281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/rest-client-fetch@npm:^5.0.4":
+"@furystack/rest-client-fetch@npm:^5.0.5":
   version: 5.0.5
   resolution: "@furystack/rest-client-fetch@npm:5.0.5"
   dependencies:
@@ -291,7 +291,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/rest-service@npm:^7.0.5":
+"@furystack/rest-service@npm:^7.0.6":
   version: 7.0.6
   resolution: "@furystack/rest-service@npm:7.0.6"
   dependencies:
@@ -309,7 +309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/rest@npm:^5.0.4, @furystack/rest@npm:^5.0.5":
+"@furystack/rest@npm:^5.0.5":
   version: 5.0.5
   resolution: "@furystack/rest@npm:5.0.5"
   dependencies:
@@ -319,7 +319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/security@npm:^3.0.4, @furystack/security@npm:^3.0.5":
+"@furystack/security@npm:^3.0.5":
   version: 3.0.5
   resolution: "@furystack/security@npm:3.0.5"
   dependencies:
@@ -330,7 +330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/shades-common-components@npm:^5.0.4":
+"@furystack/shades-common-components@npm:^5.0.5":
   version: 5.0.5
   resolution: "@furystack/shades-common-components@npm:5.0.5"
   dependencies:
@@ -344,7 +344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/shades@npm:^8.0.4, @furystack/shades@npm:^8.0.5":
+"@furystack/shades@npm:^8.0.5":
   version: 8.0.5
   resolution: "@furystack/shades@npm:8.0.5"
   dependencies:
@@ -357,7 +357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@furystack/utils@npm:^4.0.4, @furystack/utils@npm:^4.0.5":
+"@furystack/utils@npm:^4.0.5":
   version: 4.0.5
   resolution: "@furystack/utils@npm:4.0.5"
   checksum: 045c40c5bee04ee68b2db476fee2670fd23643df6750777a957e805aa9bf31b5387e6ca7a1a59651b562b794ce3b195cdc96cc18295a08025503ec9c21d00eee
@@ -1300,7 +1300,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "common@workspace:common"
   dependencies:
-    "@furystack/rest": ^5.0.4
+    "@furystack/rest": ^5.0.5
     "@types/node": ^20.2.5
     ts-json-schema-generator: ^1.2.0
     vitest: ^0.31.4
@@ -2023,13 +2023,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:frontend"
   dependencies:
-    "@furystack/core": ^12.0.4
-    "@furystack/inject": ^8.0.4
-    "@furystack/logging": ^4.0.4
-    "@furystack/rest-client-fetch": ^5.0.4
-    "@furystack/shades": ^8.0.4
-    "@furystack/shades-common-components": ^5.0.4
-    "@furystack/utils": ^4.0.4
+    "@furystack/core": ^12.0.5
+    "@furystack/inject": ^8.0.5
+    "@furystack/logging": ^4.0.5
+    "@furystack/rest-client-fetch": ^5.0.5
+    "@furystack/shades": ^8.0.5
+    "@furystack/shades-common-components": ^5.0.5
+    "@furystack/utils": ^4.0.5
     "@types/node": ^20.2.5
     common: "workspace:^"
     typescript: ^5.0.4
@@ -3824,13 +3824,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "service@workspace:service"
   dependencies:
-    "@furystack/core": ^12.0.4
-    "@furystack/filesystem-store": ^4.0.4
-    "@furystack/inject": ^8.0.4
-    "@furystack/logging": ^4.0.4
-    "@furystack/repository": ^7.0.4
-    "@furystack/rest-service": ^7.0.5
-    "@furystack/security": ^3.0.4
+    "@furystack/core": ^12.0.5
+    "@furystack/filesystem-store": ^4.0.5
+    "@furystack/inject": ^8.0.5
+    "@furystack/logging": ^4.0.5
+    "@furystack/repository": ^7.0.5
+    "@furystack/rest-service": ^7.0.6
+    "@furystack/security": ^3.0.5
     "@types/node": ^20.2.5
     common: "workspace:^"
     typescript: ^5.0.4
