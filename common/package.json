@@ -1,11 +1,26 @@
 {
   "name": "common",
   "version": "1.0.1",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
   "license": "GPL-2.0-only",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./schemas/*": {
+      "import": "./schemas/*"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ]
+    }
+  },
   "scripts": {
     "create-schemas": "node ./dist/bin/create-schemas.js"
   },

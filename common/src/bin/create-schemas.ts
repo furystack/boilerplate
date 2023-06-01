@@ -14,7 +14,7 @@ export interface SchemaGenerationSetting {
 export const entityValues: SchemaGenerationSetting[] = [
   {
     inputFile: './src/models/*.ts',
-    outputFile: './src/schemas/entities.json',
+    outputFile: './schemas/entities.json',
     type: '*',
   },
 ]
@@ -22,7 +22,7 @@ export const entityValues: SchemaGenerationSetting[] = [
 export const apiValues: SchemaGenerationSetting[] = [
   {
     inputFile: './src/boilerplate-api.ts',
-    outputFile: './src/schemas/boilerplate-api.json',
+    outputFile: './schemas/boilerplate-api.json',
     type: '*',
   },
 ]
