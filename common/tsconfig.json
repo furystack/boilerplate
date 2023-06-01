@@ -1,11 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
     "outDir": "dist",
     "rootDir": "src",
     "composite": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "src/*.json", "src/**/*.json"]
+  "include": ["src", "src/*.json", "src/**/*.json", "schemas"]
 }

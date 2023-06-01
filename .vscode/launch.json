@@ -9,7 +9,7 @@
       "request": "launch",
       "runtimeArgs": ["workspace", "service", "start"],
       "runtimeExecutable": "yarn",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/.yarn/**/*.cjs", "${workspaceFolder}/.pnp.cjs"],
       "type": "node"
     }
   ]

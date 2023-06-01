@@ -3,12 +3,11 @@ import { StoreManager } from '@furystack/core'
 import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import type { Injector } from '@furystack/inject'
 import { User } from 'common'
-import { injector } from './config'
+import { injector } from './config.js'
 import { getLogger } from '@furystack/logging'
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result
- *
  * @param filter The filter term
  * @param instance The instance to be created if there is no instance present
  * @param store The physical store to use
@@ -41,7 +40,6 @@ export const getOrCreate = async <T, TKey extends keyof T>(
 
 /**
  * Seeds the databases with predefined values
- *
  * @param i The injector instance
  */
 export const seed = async (i: Injector): Promise<void> => {

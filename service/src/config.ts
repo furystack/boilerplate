@@ -36,7 +36,7 @@ addStore(
     model: User,
     primaryKey: 'username',
     tickMs: 30 * 1000,
-    fileName: join(__filename, '..', '..', 'users.json'),
+    fileName: join(process.cwd(), 'users.json'),
   }),
 )
   .addStore(new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' }))
@@ -44,7 +44,7 @@ addStore(
     new FileSystemStore({
       model: PasswordCredential,
       primaryKey: 'userName',
-      fileName: join(__filename, '..', '..', 'pwc.json'),
+      fileName: join(process.cwd(), '..', '..', 'pwc.json'),
     }),
   )
 
