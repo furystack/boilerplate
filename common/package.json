@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
-    "ts-json-schema-generator": "^1.2.0"
+    "ts-json-schema-generator": "^1.2.0",
+    "vitest": "^0.31.4"
   },
   "dependencies": {
     "@furystack/rest": "^5.0.4"

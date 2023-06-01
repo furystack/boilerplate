@@ -10,5 +10,5 @@ Boilerplate app with common type api definitions, a furystack-based backend serv
 
 # Testing
 
-- You can execute the example Jest tests with `yarn test:unit`
+- You can execute the example Vitest tests with `yarn test:unit`
 - You can execute E2E tests with `yarn test:e2e`
