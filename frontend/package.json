@@ -5,15 +5,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "yarn node scripts/build.mjs",
-    "start": "yarn node scripts/start.mjs"
+    "build": "tsc -b && yarn vite build",
+    "start": "yarn vite --port 8080"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@yarnpkg/esbuild-plugin-pnp": "^3.0.0-rc.15",
-    "esbuild": "^0.17.19",
     "typescript": "^5.0.4",
+    "vite": "^4.3.9",
     "vitest": "^0.31.4"
   },
   "dependencies": {
