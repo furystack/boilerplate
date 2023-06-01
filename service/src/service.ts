@@ -14,7 +14,6 @@ import {
   useRestService,
   useStaticFiles,
 } from '@furystack/rest-service'
-import '@furystack/repository'
 import { injector } from './config.js'
 import { attachShutdownHandler } from './shutdown-handler.js'
 
@@ -60,6 +59,9 @@ useStaticFiles({
   path: '../frontend/bundle',
   port,
   fallback: 'index.html',
+}).catch((err) => {
+  console.error(err)
+  process.exit(1)
 })
 
 attachShutdownHandler(injector)

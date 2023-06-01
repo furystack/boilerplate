@@ -6,8 +6,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "yarn build && node ./dist/service.js",
-    "seed": "yarn build && node ./dist/seed.js",
+    "start": "yarn node ./dist/service.js",
+    "seed": "yarn node ./dist/seed.js",
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b"
   },
