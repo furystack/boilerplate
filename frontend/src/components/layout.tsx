@@ -1,7 +1,7 @@
 import { createComponent, Shade } from '@furystack/shades'
 import { ThemeProviderService } from '@furystack/shades-common-components'
-import { Body } from './body'
-import { Header } from './header'
+import { Body } from './body.js'
+import { Header } from './header.js'
 
 export const Layout = Shade({
   shadowDomName: 'shade-app-layout',

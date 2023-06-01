@@ -3,7 +3,7 @@ import { ObservableValue, usingAsync } from '@furystack/utils'
 import { Injectable, Injected } from '@furystack/inject'
 import { NotyService } from '@furystack/shades-common-components'
 import type { User } from 'common'
-import { BoilerplateApiClient } from './boilerplate-api-client'
+import { BoilerplateApiClient } from './boilerplate-api-client.js'
 
 export type SessionState = 'initializing' | 'offline' | 'unauthenticated' | 'authenticated'
 

@@ -1,5 +1,5 @@
 import type { RestApi } from '@furystack/rest'
-import type { User } from './models'
+import type { User } from './models/index.js'
 export interface BoilerplateApi extends RestApi {
   GET: {
     '/isAuthenticated': { result: { isAuthenticated: boolean } }

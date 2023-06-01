@@ -3,7 +3,7 @@ import { StoreManager } from '@furystack/core'
 import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import type { Injector } from '@furystack/inject'
 import { User } from 'common'
-import { injector } from './config'
+import { injector } from './config.js'
 import { getLogger } from '@furystack/logging'
 
 /**

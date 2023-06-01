@@ -12,8 +12,8 @@ import {
   useStaticFiles,
 } from '@furystack/rest-service'
 import '@furystack/repository'
-import { injector } from './config'
-import { attachShutdownHandler } from './shutdown-handler'
+import { injector } from './config.js'
+import { attachShutdownHandler } from './shutdown-handler.js'
 
 const port = parseInt(process.env.APP_SERVICE_PORT as string, 10) || 9090
 
