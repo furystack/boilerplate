@@ -62,7 +62,7 @@ useRestService<BoilerplateApi>({
 useStaticFiles({
   injector,
   baseUrl: '/',
-  path: '../frontend/bundle',
+  path: '../frontend/dist',
   port,
   fallback: 'index.html',
 }).catch((err) => {
