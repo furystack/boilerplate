@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Check version bumps
+        continue-on-error: true ## Set this to false once versioning has been set up
         run: yarn version check
         env:
           CI: true
