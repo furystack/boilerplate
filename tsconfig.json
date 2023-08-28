@@ -2,8 +2,8 @@
   "compilerOptions": {
     /* Basic Options */
     "incremental": true /* Enable incremental compilation */,
-    "target": "ES2021",
-    "module": "ESNext",
+    "target": "ES2022",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     // "lib": [],                             /* Specify library files to be included in the compilation. */
     // "allowJs": true,                       /* Allow javascript files to be compiled. */

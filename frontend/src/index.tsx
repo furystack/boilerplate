@@ -17,7 +17,7 @@ getLogger(shadeInjector).withScope('Startup').verbose({
   data: { environmentOptions },
 })
 
-shadeInjector.getInstance(SessionService).init()
+shadeInjector.getInstance(SessionService)
 
 shadeInjector.getInstance(ThemeProviderService).set(defaultDarkTheme)
 
