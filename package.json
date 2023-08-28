@@ -15,23 +15,23 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.36.2",
-    "@types/node": "^20.4.5",
-    "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0",
-    "@vitest/coverage-v8": "^0.33.0",
-    "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jsdoc": "^46.4.4",
+    "@playwright/test": "^1.37.1",
+    "@types/node": "^20.5.7",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@vitest/coverage-v8": "^0.34.3",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-jsdoc": "^46.5.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "prettier": "^3.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.2",
     "rimraf": "^5.0.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.7",
-    "vitest": "^0.33.0"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.3"
   },
   "husky": {
     "hooks": {
@@ -65,5 +65,10 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.3",
+  "dependenciesMeta": {
+    "prettier@3.0.2": {
+      "unplugged": true
+    }
+  }
 }

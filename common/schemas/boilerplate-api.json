@@ -38,7 +38,7 @@
     "TestUrlParamsEndpoint": {
       "type": "object",
       "properties": {
-        "urlParams": {
+        "url": {
           "type": "object",
           "properties": {
             "urlParam": {
@@ -64,7 +64,7 @@
         }
       },
       "required": [
-        "urlParams",
+        "url",
         "result"
       ],
       "additionalProperties": false
