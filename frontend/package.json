@@ -11,19 +11,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.3"
   },
   "dependencies": {
-    "@furystack/core": "^12.0.8",
-    "@furystack/inject": "^8.0.7",
-    "@furystack/logging": "^4.0.7",
-    "@furystack/rest-client-fetch": "^5.0.8",
-    "@furystack/shades": "^8.0.8",
-    "@furystack/shades-common-components": "^5.0.8",
-    "@furystack/utils": "^4.0.7",
-    "@types/node": "^20.5.0",
+    "@furystack/core": "^12.0.10",
+    "@furystack/inject": "^8.1.0",
+    "@furystack/logging": "^4.0.9",
+    "@furystack/rest-client-fetch": "^5.0.11",
+    "@furystack/shades": "^8.0.11",
+    "@furystack/shades-common-components": "^5.0.11",
+    "@furystack/utils": "^4.0.9",
+    "@types/node": "^20.5.7",
     "common": "workspace:^"
   }
 }
