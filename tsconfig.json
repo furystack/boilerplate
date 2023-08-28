@@ -4,7 +4,7 @@
     "incremental": true /* Enable incremental compilation */,
     "target": "ES2021",
     "module": "ESNext",
-    "moduleResolution": "node16",
+    "moduleResolution": "NodeNext",
     // "lib": [],                             /* Specify library files to be included in the compilation. */
     // "allowJs": true,                       /* Allow javascript files to be compiled. */
     // "checkJs": true,                       /* Report errors in .js files. */
