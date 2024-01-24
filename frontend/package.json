@@ -16,13 +16,13 @@
     "vitest": "^1.2.1"
   },
   "dependencies": {
-    "@furystack/core": "^12.0.14",
-    "@furystack/inject": "^8.1.4",
-    "@furystack/logging": "^4.0.13",
-    "@furystack/rest-client-fetch": "^5.0.15",
-    "@furystack/shades": "^8.0.15",
-    "@furystack/shades-common-components": "^5.0.15",
-    "@furystack/utils": "^4.0.13",
+    "@furystack/core": "^12.0.15",
+    "@furystack/inject": "^8.1.5",
+    "@furystack/logging": "^4.0.14",
+    "@furystack/rest-client-fetch": "^5.0.16",
+    "@furystack/shades": "^8.0.16",
+    "@furystack/shades-common-components": "^5.0.16",
+    "@furystack/utils": "^4.0.14",
     "@types/node": "^20.11.6",
     "common": "workspace:^"
   }
