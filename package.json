@@ -65,7 +65,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.1.0",
   "dependenciesMeta": {
     "prettier@3.0.2": {
       "unplugged": true
