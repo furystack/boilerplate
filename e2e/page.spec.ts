@@ -4,7 +4,7 @@ test.describe('Example Application', () => {
   test('Login and logout roundtrip', async ({ page }) => {
     await page.goto('/')
 
-    const loginForm = await page.locator('shade-login>div>shade-paper>form')
+    const loginForm = await page.locator('shade-login form')
     await expect(loginForm).toBeVisible()
 
     const usernameInput = await loginForm.locator('input[name="userName"]')
@@ -32,7 +32,7 @@ test.describe('Example Application', () => {
     await expect(logoutButton).toHaveText('Log Out')
     await logoutButton.click()
 
-    const loggedOutLoginForm = await page.locator('shade-login>div>shade-paper>form')
+    const loggedOutLoginForm = await page.locator('shade-login form')
     await expect(loggedOutLoginForm).toBeVisible()
   })
 })
