@@ -48,7 +48,7 @@ export const seed = async (i: Injector): Promise<void> => {
   const sm = i.getInstance(StoreManager)
   const userStore = sm.getStoreFor(User, 'username')
   const pwcStore = sm.getStoreFor(PasswordCredential, 'userName')
-  const cred = await i.getInstance(PasswordAuthenticator).getHasher().createCredential('testuser', 'password')
+  const cred = await i.getInstance(PasswordAuthenticator).hasher.createCredential('testuser', 'password')
   await logger.verbose({ message: 'Saving credential...' })
   await getOrCreate(
     {

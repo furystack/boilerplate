@@ -30,6 +30,6 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
-    "@furystack/rest": "^7.0.0"
+    "@furystack/rest": "^7.0.1"
   }
 }
