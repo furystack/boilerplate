@@ -12,18 +12,18 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "typescript": "^5.4.3",
-    "vitest": "^1.4.0"
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.0"
   },
   "dependencies": {
-    "@furystack/core": "^14.0.1",
-    "@furystack/filesystem-store": "^6.0.1",
-    "@furystack/inject": "^11.0.0",
-    "@furystack/logging": "^6.0.1",
-    "@furystack/repository": "^9.0.1",
-    "@furystack/rest-service": "^9.0.1",
-    "@furystack/security": "^5.0.1",
+    "@furystack/core": "^14.0.2",
+    "@furystack/filesystem-store": "^6.0.2",
+    "@furystack/inject": "^11.0.1",
+    "@furystack/logging": "^7.0.0",
+    "@furystack/repository": "^9.0.2",
+    "@furystack/rest-service": "^9.0.2",
+    "@furystack/security": "^5.0.2",
     "common": "workspace:^"
   }
 }
