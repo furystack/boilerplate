@@ -20,7 +20,7 @@ import { attachShutdownHandler } from './shutdown-handler.js'
 const port = parseInt(process.env.APP_SERVICE_PORT as string, 10) || 9090
 
 useHttpAuthentication(injector, {
-  getUserStore: (sm) => sm.getStoreFor<User & { password: string }, 'username'>(User as any, 'username'),
+  getUserStore: (sm) => sm.getStoreFor(User, 'username'),
   getSessionStore: (sm) => sm.getStoreFor(DefaultSession, 'sessionId'),
 })
 useRestService<BoilerplateApi>({
