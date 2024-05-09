@@ -12,18 +12,18 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.4.5",
-    "vite": "^5.2.8",
-    "vitest": "^1.5.0"
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@furystack/core": "^14.0.2",
-    "@furystack/inject": "^11.0.1",
-    "@furystack/logging": "^7.0.0",
-    "@furystack/rest-client-fetch": "^7.0.2",
-    "@furystack/shades": "^10.0.2",
-    "@furystack/shades-common-components": "^8.1.0",
-    "@furystack/utils": "^7.0.0",
-    "@types/node": "^20.12.7",
+    "@furystack/core": "^14.0.3",
+    "@furystack/inject": "^11.0.2",
+    "@furystack/logging": "^7.0.1",
+    "@furystack/rest-client-fetch": "^7.0.3",
+    "@furystack/shades": "^10.0.3",
+    "@furystack/shades-common-components": "^8.1.1",
+    "@furystack/utils": "^7.0.1",
+    "@types/node": "^20.12.11",
     "common": "workspace:^"
   }
 }
