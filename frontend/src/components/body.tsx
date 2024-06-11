@@ -17,7 +17,8 @@ export const Body = Shade<{ style?: Partial<CSSStyleDeclaration> }>({
                   routes={[
                     { url: '/buttons', routingOptions: { end: false }, component: () => <ButtonsDemo /> },
                     { url: '/', routingOptions: { end: false }, component: () => <HelloWorld /> },
-                  ]}></Router>
+                  ]}
+                ></Router>
               )
             case 'offline':
               return <Offline />

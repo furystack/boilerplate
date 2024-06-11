@@ -17,7 +17,8 @@ export const HelloWorld = Shade({
             alignItems: 'center',
             justifyContent: 'center',
             color: theme.text.secondary,
-          }}>
+          }}
+        >
           <h2> Hello, {currentUser?.username || 'unknown'} !</h2>
 
           <div style={{ margin: '2em' }}>

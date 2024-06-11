@@ -21,7 +21,8 @@ export const Login = Shade({
           justifyContent: 'center',
           padding: '0 100px',
           paddingTop: '100px',
-        }}>
+        }}
+      >
         <Paper elevation={3}>
           <Form<LoginPayload>
             className="login-form"
@@ -30,7 +31,8 @@ export const Login = Shade({
             }}
             onSubmit={({ userName, password }) => {
               sessionService.login(userName, password)
-            }}>
+            }}
+          >
             <h2>Login</h2>
             <Input
               labelTitle="User name"
@@ -56,7 +58,8 @@ export const Login = Shade({
                 alignItems: 'center',
                 flexDirection: 'row',
                 padding: '1em 0',
-              }}>
+              }}
+            >
               {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
               <Button type="submit">Login</Button>
             </div>
