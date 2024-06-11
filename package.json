@@ -14,13 +14,15 @@
       "service"
     ]
   },
+  "type": "module",
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "@vitest/coverage-v8": "^1.6.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.4.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsdoc": "^48.2.9",
@@ -30,6 +32,7 @@
     "prettier": "^3.3.2",
     "rimraf": "^5.0.7",
     "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0",
     "vite": "^5.2.13",
     "vitest": "^1.6.0"
   },
@@ -58,17 +61,14 @@
     "start:service": "yarn workspace service start",
     "start:frontend": "yarn workspace frontend start",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
-    "lint": "eslint . --ext .tsx,.ts --cache",
+    "lint": "eslint .",
     "bumpVersions": "yarn version check --interactive",
-    "applyVersionBumps": "yarn version apply --all && echo TODO: Upgrade changelogs"
+    "applyVersionBumps": "yarn version apply --all && echo TODO: Upgrade changelogs",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.3.0",
-  "dependenciesMeta": {
-    "prettier@3.0.2": {
-      "unplugged": true
-    }
-  }
+  "packageManager": "yarn@4.3.0"
 }
