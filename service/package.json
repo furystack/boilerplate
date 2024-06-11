@@ -17,13 +17,13 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@furystack/core": "^14.0.4",
-    "@furystack/filesystem-store": "^6.0.4",
+    "@furystack/core": "^14.0.5",
+    "@furystack/filesystem-store": "^6.0.5",
     "@furystack/inject": "^11.0.3",
     "@furystack/logging": "^7.0.2",
-    "@furystack/repository": "^9.0.4",
-    "@furystack/rest-service": "^9.0.4",
-    "@furystack/security": "^5.0.4",
+    "@furystack/repository": "^9.0.5",
+    "@furystack/rest-service": "^9.0.5",
+    "@furystack/security": "^5.0.5",
     "common": "workspace:^"
   }
 }

@@ -16,12 +16,12 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@furystack/core": "^14.0.4",
+    "@furystack/core": "^14.0.5",
     "@furystack/inject": "^11.0.3",
     "@furystack/logging": "^7.0.2",
-    "@furystack/rest-client-fetch": "^7.0.4",
-    "@furystack/shades": "^10.0.4",
-    "@furystack/shades-common-components": "^8.2.1",
+    "@furystack/rest-client-fetch": "^7.0.5",
+    "@furystack/shades": "^10.0.5",
+    "@furystack/shades-common-components": "^8.2.2",
     "@furystack/utils": "^7.0.2",
     "@types/node": "^20.14.2",
     "common": "workspace:^"
