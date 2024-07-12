@@ -19,7 +19,7 @@ getLogger(shadeInjector).withScope('Startup').verbose({
 
 shadeInjector.getInstance(SessionService)
 
-shadeInjector.getInstance(ThemeProviderService).set(defaultDarkTheme)
+shadeInjector.getInstance(ThemeProviderService).setAssignedTheme(defaultDarkTheme)
 
 const rootElement: HTMLDivElement = document.getElementById('root') as HTMLDivElement
 

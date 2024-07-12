@@ -72,4 +72,5 @@ export const seed = async (i: Injector): Promise<void> => {
   logger.verbose({ message: 'Seeding data completed.' })
 }
 
-seed(injector).then(() => injector.dispose())
+await seed(injector)
+await injector[Symbol.asyncDispose]()

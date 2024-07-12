@@ -2,7 +2,6 @@ import { createComponent, Shade } from '@furystack/shades'
 import type { ButtonProps } from '@furystack/shades-common-components'
 import { getCssVariable } from '@furystack/shades-common-components'
 import { Button, defaultDarkTheme, defaultLightTheme, ThemeProviderService } from '@furystack/shades-common-components'
-import { Trace } from '@furystack/utils'
 
 export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
   shadowDomName: 'theme-switch',
@@ -14,16 +13,8 @@ export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
     )
 
     useDisposable('traceThemeChange', () =>
-      Trace.method({
-        object: themeProvider,
-        method: themeProvider.set,
-        onFinished: () => {
-          setTheme(
-            getCssVariable(themeProvider.theme.background.default) === defaultDarkTheme.background.default
-              ? 'dark'
-              : 'light',
-          )
-        },
+      themeProvider.subscribe('themeChanged', (newTheme) => {
+        setTheme(newTheme.name === 'dark' ? 'dark' : 'light')
       }),
     )
 
@@ -31,9 +22,8 @@ export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
       <Button
         {...props}
         onclick={() => {
-          themeProvider.set(theme === 'dark' ? defaultLightTheme : defaultDarkTheme)
-        }}
-      >
+          themeProvider.setAssignedTheme(theme === 'dark' ? defaultLightTheme : defaultDarkTheme)
+        }}>
         {theme === 'dark' ? '☀️' : '🌜'}
       </Button>
     )
