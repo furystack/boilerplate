@@ -23,7 +23,8 @@ export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
         {...props}
         onclick={() => {
           themeProvider.setAssignedTheme(theme === 'dark' ? defaultLightTheme : defaultDarkTheme)
-        }}>
+        }}
+      >
         {theme === 'dark' ? '☀️' : '🌜'}
       </Button>
     )
