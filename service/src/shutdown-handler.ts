@@ -31,12 +31,12 @@ export const attachShutdownHandler = (i: Injector): void => {
         })
       }
       if (i.cachedSingletons.get(ServerManager)) {
-        await i.getInstance(ServerManager).dispose()
+        await i.getInstance(ServerManager)[Symbol.asyncDispose]()
       }
       //   if (i.cachedSingletons.get(DbLogger)) {
       //     await i.getInstance(DbLogger).dispose()
       //   }
-      await i.dispose()
+      await i[Symbol.asyncDispose]()
     } catch (e) {
       console.error('Error during shutdown', e)
       process.exit(1)

@@ -9,9 +9,9 @@ export type SessionState = 'initializing' | 'offline' | 'unauthenticated' | 'aut
 
 @Injectable({ lifetime: 'singleton' })
 export class SessionService implements IdentityContext {
-  private readonly operation = () => {
+  private readonly operation = (): Disposable => {
     this.isOperationInProgress.setValue(true)
-    return { dispose: () => this.isOperationInProgress.setValue(false) }
+    return { [Symbol.dispose]: () => this.isOperationInProgress.setValue(false) }
   }
 
   public state = new ObservableValue<SessionState>('initializing')
