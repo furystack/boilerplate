@@ -1,5 +1,5 @@
-import { join } from 'path'
 import { promises } from 'fs'
+import { join } from 'path'
 import { createGenerator } from 'ts-json-schema-generator'
 
 export interface SchemaGenerationSetting {
@@ -45,3 +45,11 @@ export const exec = async (): Promise<void> => {
 }
 
 exec()
+  .then(() => {
+    console.log('Schemas created')
+    process.exit(0)
+  })
+  .catch((e) => {
+    console.error('Error creating schemas', e)
+    process.exit(1)
+  })
