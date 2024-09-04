@@ -1,10 +1,10 @@
-import type { PhysicalStore, FindOptions, WithOptionalId } from '@furystack/core'
+import type { FindOptions, PhysicalStore, WithOptionalId } from '@furystack/core'
 import { StoreManager } from '@furystack/core'
-import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import type { Injector } from '@furystack/inject'
+import { getLogger } from '@furystack/logging'
+import { PasswordAuthenticator, PasswordCredential } from '@furystack/security'
 import { User } from 'common'
 import { injector } from './config.js'
-import { getLogger } from '@furystack/logging'
 
 /**
  * gets an existing instance if exists or create and return if not. Throws error on multiple result
@@ -25,14 +25,14 @@ export const getOrCreate = async <T, TKey extends keyof T>(
   if (result.length === 1) {
     return result[0]
   } else if (result.length === 0) {
-    logger.verbose({
+    await logger.verbose({
       message: `Entity of type '${store.model.name}' not exists, adding: '${JSON.stringify(filter)}'`,
     })
     const createResult = await store.add(instance)
     return createResult.created[0]
   } else {
     const message = `Seed filter contains '${result.length}' results for ${JSON.stringify(filter)}`
-    logger.warning({ message })
+    await logger.warning({ message })
     // throw Error(message)
     return result[0]
   }
@@ -69,7 +69,7 @@ export const seed = async (i: Injector): Promise<void> => {
     i,
   )
 
-  logger.verbose({ message: 'Seeding data completed.' })
+  await logger.verbose({ message: 'Seeding data completed.' })
 }
 
 await seed(injector)

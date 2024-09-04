@@ -1,7 +1,7 @@
 import type { IdentityContext } from '@furystack/core'
-import { ObservableValue, usingAsync } from '@furystack/utils'
 import { Injectable, Injected } from '@furystack/inject'
 import { NotyService } from '@furystack/shades-common-components'
+import { ObservableValue, usingAsync } from '@furystack/utils'
 import type { User } from 'common'
 import { BoilerplateApiClient } from './boilerplate-api-client.js'
 
@@ -65,7 +65,7 @@ export class SessionService implements IdentityContext {
 
   public async logout(): Promise<void> {
     return await usingAsync(this.operation(), async () => {
-      this.api.call({ method: 'POST', action: '/logout' })
+      await this.api.call({ method: 'POST', action: '/logout' })
       this.currentUser.setValue(null)
       this.state.setValue('unauthenticated')
       this.notys.emit('onNotyAdded', {
