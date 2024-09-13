@@ -1,5 +1,5 @@
 import type { BoilerplateApi } from 'common'
-import BoilerplateApiSchemas from 'common/schemas/boilerplate-api.json' assert { type: 'json' }
+import BoilerplateApiSchemas from 'common/schemas/boilerplate-api.json' with { type: 'json' }
 
 import {
   DefaultSession,
