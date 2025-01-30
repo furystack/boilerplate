@@ -11,20 +11,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@codecov/vite-plugin": "^1.4.0",
-    "typescript": "^5.7.2",
-    "vite": "^5.4.11",
-    "vitest": "^2.1.5"
+    "@codecov/vite-plugin": "^1.8.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.11",
+    "vitest": "^3.0.4"
   },
   "dependencies": {
-    "@furystack/core": "^15.0.10",
-    "@furystack/inject": "^12.0.8",
-    "@furystack/logging": "^8.0.8",
-    "@furystack/rest-client-fetch": "^8.0.10",
-    "@furystack/shades": "^11.0.11",
-    "@furystack/shades-common-components": "^10.0.11",
-    "@furystack/utils": "^8.0.7",
-    "@types/node": "^22.9.3",
+    "@furystack/core": "^15.0.13",
+    "@furystack/inject": "^12.0.10",
+    "@furystack/logging": "^8.0.10",
+    "@furystack/rest-client-fetch": "^8.0.13",
+    "@furystack/shades": "^11.0.14",
+    "@furystack/shades-common-components": "^10.0.14",
+    "@furystack/utils": "^8.0.9",
+    "@types/node": "^22.12.0",
     "common": "workspace:^"
   }
 }

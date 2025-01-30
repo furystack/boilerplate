@@ -102,8 +102,8 @@ export class SessionService implements IdentityContext {
   }
 
   @Injected(BoilerplateApiClient)
-  private declare api: BoilerplateApiClient
+  declare private api: BoilerplateApiClient
 
   @Injected(NotyService)
-  private declare readonly notys: NotyService
+  declare private readonly notys: NotyService
 }
