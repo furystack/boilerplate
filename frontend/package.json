@@ -13,18 +13,18 @@
   "devDependencies": {
     "@codecov/vite-plugin": "^1.9.1",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5",
+    "vite": "^7.0.0",
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "@furystack/core": "^15.0.20",
-    "@furystack/inject": "^12.0.17",
-    "@furystack/logging": "^8.0.17",
-    "@furystack/rest-client-fetch": "^8.0.20",
-    "@furystack/shades": "^11.0.21",
-    "@furystack/shades-common-components": "^10.0.21",
-    "@furystack/utils": "^8.0.16",
-    "@types/node": "^24.0.3",
+    "@furystack/core": "^15.0.23",
+    "@furystack/inject": "^12.0.19",
+    "@furystack/logging": "^8.0.19",
+    "@furystack/rest-client-fetch": "^8.0.23",
+    "@furystack/shades": "^11.0.24",
+    "@furystack/shades-common-components": "^10.0.24",
+    "@furystack/utils": "^8.1.1",
+    "@types/node": "^24.0.4",
     "common": "workspace:^"
   }
 }

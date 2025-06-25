@@ -27,11 +27,15 @@ useRestService<BoilerplateApi>({
   injector,
   root: 'api',
   port,
+  name: 'BoilerplateApi',
+  version: '1.0.0',
+  description: 'API for the Boilerplate Application containing simple authentication and test endpoints',
   cors: {
     credentials: true,
     origins: ['http://localhost:8080'],
     headers: ['cache', 'content-type'],
   },
+  enableGetSchema: true,
   api: {
     GET: {
       '/currentUser': GetCurrentUser,
