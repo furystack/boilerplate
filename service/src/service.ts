@@ -27,6 +27,9 @@ useRestService<BoilerplateApi>({
   injector,
   root: 'api',
   port,
+  name: 'Boilerplate Service',
+  version: '1.0.0',
+  description: 'API for Furystack Boilerplate Application containing simple authentication and example endpoints',
   cors: {
     credentials: true,
     origins: ['http://localhost:8080'],
