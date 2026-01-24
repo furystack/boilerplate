@@ -1,14 +1,13 @@
-import { join } from 'path'
 import { addStore, InMemoryStore, isAuthenticated } from '@furystack/core'
 import { FileSystemStore } from '@furystack/filesystem-store'
 import { Injector } from '@furystack/inject'
-import { PasswordCredential } from '@furystack/security'
 import { useLogging, VerboseConsoleLogger } from '@furystack/logging'
-import type { DataSetSettings, AuthorizationResult } from '@furystack/repository'
+import type { AuthorizationResult, DataSetSettings } from '@furystack/repository'
 import { getRepository } from '@furystack/repository'
-import { usePasswordPolicy } from '@furystack/security'
-import { User } from 'common'
 import { DefaultSession } from '@furystack/rest-service'
+import { PasswordCredential, usePasswordPolicy } from '@furystack/security'
+import { User } from 'common'
+import { join } from 'path'
 
 export const authorizedOnly = async (options: { injector: Injector }): Promise<AuthorizationResult> => {
   const isAllowed = await isAuthenticated(options.injector)
@@ -25,7 +24,7 @@ export const authorizedDataSet: Partial<DataSetSettings<any, any>> = {
   authorizeGet: authorizedOnly,
   authorizeRemove: authorizedOnly,
   authorizeUpdate: authorizedOnly,
-  authroizeRemoveEntity: authorizedOnly,
+  authorizeRemoveEntity: authorizedOnly,
 }
 
 export const injector = new Injector()

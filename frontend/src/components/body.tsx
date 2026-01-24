@@ -1,6 +1,6 @@
-import { createComponent, Shade, Router } from '@furystack/shades'
+import { createComponent, Router, Shade } from '@furystack/shades'
+import { ButtonsDemo, HelloWorld, Init, Login, Offline } from '../pages/index.js'
 import { SessionService } from '../services/session.js'
-import { ButtonsDemo, Init, HelloWorld, Offline, Login } from '../pages/index.js'
 
 export const Body = Shade<{ style?: Partial<CSSStyleDeclaration> }>({
   shadowDomName: 'shade-app-body',
