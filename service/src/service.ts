@@ -1,6 +1,3 @@
-import type { BoilerplateApi } from 'common'
-import BoilerplateApiSchemas from 'common/schemas/boilerplate-api.json' with { type: 'json' }
-
 import {
   DefaultSession,
   GetCurrentUser,
@@ -13,7 +10,9 @@ import {
   useRestService,
   useStaticFiles,
 } from '@furystack/rest-service'
+import type { BoilerplateApi } from 'common'
 import { User } from 'common'
+import BoilerplateApiSchemas from 'common/schemas/boilerplate-api.json' with { type: 'json' }
 import { injector } from './config.js'
 import { attachShutdownHandler } from './shutdown-handler.js'
 

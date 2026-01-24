@@ -1,7 +1,12 @@
 import { createComponent, Shade } from '@furystack/shades'
 import type { ButtonProps } from '@furystack/shades-common-components'
-import { getCssVariable } from '@furystack/shades-common-components'
-import { Button, defaultDarkTheme, defaultLightTheme, ThemeProviderService } from '@furystack/shades-common-components'
+import {
+  Button,
+  defaultDarkTheme,
+  defaultLightTheme,
+  getCssVariable,
+  ThemeProviderService,
+} from '@furystack/shades-common-components'
 
 export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
   shadowDomName: 'theme-switch',
