@@ -1,5 +1,5 @@
-import type { RestApi } from '@furystack/rest';
-import type { User } from './models/index.js';
+import type { RestApi } from '@furystack/rest'
+import type { User } from './models/index.js'
 
 export type TestQueryEndpoint = { query: { param1: string }; result: { param1Value: string } }
 export type TestUrlParamsEndpoint = { url: { urlParam: string }; result: { urlParamValue: string } }

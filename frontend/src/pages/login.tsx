@@ -1,6 +1,6 @@
-import { Shade, createComponent } from '@furystack/shades';
-import { Button, Form, Input, Paper } from '@furystack/shades-common-components';
-import { SessionService } from '../services/session.js';
+import { Shade, createComponent } from '@furystack/shades'
+import { Button, Form, Input, Paper } from '@furystack/shades-common-components'
+import { SessionService } from '../services/session.js'
 
 type LoginPayload = { userName: string; password: string }
 
