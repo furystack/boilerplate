@@ -18,6 +18,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn install
+      - name: Format check
+        run: yarn format:check
       - name: Build app
         run: yarn build
       - name: Install Playwright browsers
