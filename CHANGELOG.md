@@ -1,7 +1,8 @@
-<!-- version-type: patch -->
-# furystack-boilerplate-app
+# Changelog
 
-## 🔧 Chores
+## [1.0.3] - 2026-02-01
+
+### 🔧 Chores
 
 ### Project Consolidation
 
