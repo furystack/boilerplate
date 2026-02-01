@@ -22,6 +22,9 @@ steps:
   - script: yarn install
     displayName: 'Yarn install'
 
+  - script: yarn format:check
+    displayName: 'Format check'
+
   - script: yarn build
     displayName: 'Build'
 
