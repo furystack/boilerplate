@@ -1,8 +1,24 @@
 import { Shade, createComponent } from '@furystack/shades'
+import { cssVariableTheme } from '@furystack/shades-common-components'
 import { environmentOptions } from '../environment-options.js'
 
 export const Offline = Shade({
   shadowDomName: 'shade-offline',
+  css: {
+    '& a': {
+      color: cssVariableTheme.palette.primary.main,
+      textDecoration: 'none',
+      transition: 'color 0.2s ease',
+    },
+    '& a:hover': {
+      color: cssVariableTheme.palette.primary.light,
+      textDecoration: 'underline',
+    },
+    '& a:focus': {
+      outline: `2px solid ${cssVariableTheme.palette.primary.main}`,
+      outlineOffset: '2px',
+    },
+  },
   render: () => {
     return (
       <div
