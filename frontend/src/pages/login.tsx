@@ -36,40 +36,40 @@ export const Login = Shade({
 
     return (
       <Paper elevation={3}>
-          <Form<LoginPayload>
-            className="login-form"
-            validate={(data): data is LoginPayload => {
-              return (data as LoginPayload).userName?.length > 0 && (data as LoginPayload).password?.length > 0
-            }}
-            onSubmit={({ userName, password }) => {
-              void sessionService.login(userName, password)
-            }}
-          >
-            <h2>Login</h2>
-            <Input
-              labelTitle="User name"
-              name="userName"
-              autofocus
-              required
-              disabled={isOperationInProgress}
-              getHelperText={() => "The user's login name"}
-              type="text"
-            />
-            <Input
-              labelTitle="Password"
-              name="password"
-              required
-              disabled={isOperationInProgress}
-              getHelperText={() => 'The password for the user'}
-              type="password"
-            />
-            <div className="form-actions">
-              {error ? <div className="error-message">{error}</div> : <div />}
-              <Button type="submit">Login</Button>
-            </div>
-            <p className="helper-text">You can login with the default 'testuser' / 'password' credentials</p>
-          </Form>
-        </Paper>
+        <Form<LoginPayload>
+          className="login-form"
+          validate={(data): data is LoginPayload => {
+            return (data as LoginPayload).userName?.length > 0 && (data as LoginPayload).password?.length > 0
+          }}
+          onSubmit={({ userName, password }) => {
+            void sessionService.login(userName, password)
+          }}
+        >
+          <h2>Login</h2>
+          <Input
+            labelTitle="User name"
+            name="userName"
+            autofocus
+            required
+            disabled={isOperationInProgress}
+            getHelperText={() => "The user's login name"}
+            type="text"
+          />
+          <Input
+            labelTitle="Password"
+            name="password"
+            required
+            disabled={isOperationInProgress}
+            getHelperText={() => 'The password for the user'}
+            type="password"
+          />
+          <div className="form-actions">
+            {error ? <div className="error-message">{error}</div> : <div />}
+            <Button type="submit">Login</Button>
+          </div>
+          <p className="helper-text">You can login with the default 'testuser' / 'password' credentials</p>
+        </Form>
+      </Paper>
     )
   },
 })
