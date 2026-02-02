@@ -1,29 +1,41 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { Button, Form, Input, Paper } from '@furystack/shades-common-components'
+import { Button, cssVariableTheme, Form, Input, Paper } from '@furystack/shades-common-components'
 import { SessionService } from '../services/session.js'
 
 type LoginPayload = { userName: string; password: string }
 
 export const Login = Shade({
   shadowDomName: 'shade-login',
+  css: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0 100px',
+    paddingTop: '100px',
+    '& .form-actions': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexDirection: 'row',
+      padding: '1em 0',
+    },
+    '& .error-message': {
+      color: cssVariableTheme.palette.error.main,
+      fontSize: '12px',
+    },
+    '& .helper-text': {
+      fontSize: '10px',
+    },
+  },
   render: ({ injector, useObservable }) => {
     const sessionService = injector.getInstance(SessionService)
     const [isOperationInProgress] = useObservable('isOperationInProgress', sessionService.isOperationInProgress)
     const [error] = useObservable('loginError', sessionService.loginError)
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '0 100px',
-          paddingTop: '100px',
-        }}
-      >
-        <Paper elevation={3}>
+      <Paper elevation={3}>
           <Form<LoginPayload>
             className="login-form"
             validate={(data): data is LoginPayload => {
@@ -51,22 +63,13 @@ export const Login = Shade({
               getHelperText={() => 'The password for the user'}
               type="password"
             />
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexDirection: 'row',
-                padding: '1em 0',
-              }}
-            >
-              {error ? <div style={{ color: 'red', fontSize: '12px' }}>{error}</div> : <div />}
+            <div className="form-actions">
+              {error ? <div className="error-message">{error}</div> : <div />}
               <Button type="submit">Login</Button>
             </div>
-            <p style={{ fontSize: '10px' }}>You can login with the default 'testuser' / 'password' credentials</p>
+            <p className="helper-text">You can login with the default 'testuser' / 'password' credentials</p>
           </Form>
         </Paper>
-      </div>
     )
   },
 })

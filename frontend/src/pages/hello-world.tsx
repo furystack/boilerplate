@@ -1,27 +1,30 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { ThemeProviderService } from '@furystack/shades-common-components'
+import { cssVariableTheme } from '@furystack/shades-common-components'
 import { SessionService } from '../services/session.js'
 
 export const HelloWorld = Shade({
   shadowDomName: 'hello-world',
+  css: {
+    overflow: 'auto',
+    paddingTop: '64px',
+    '& .content': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: cssVariableTheme.text.secondary,
+    },
+    '& .content-body': {
+      margin: '2em',
+    },
+  },
   render: ({ useObservable, injector }) => {
     const [currentUser] = useObservable('userName', injector.getInstance(SessionService).currentUser)
-    const { theme } = injector.getInstance(ThemeProviderService)
     return (
-      <div style={{ overflow: 'auto', paddingTop: '64px' }}>
-        <div
-          className="initLoader"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: theme.text.secondary,
-          }}
-        >
+      <div className="content">
           <h2> Hello, {currentUser?.username || 'unknown'} !</h2>
 
-          <div style={{ margin: '2em' }}>
+          <div className="content-body">
             <h3>Egyesült Államok</h3>
             <p>
               A nagy múltú szórakoztató- és divatmagazin, a Cosmopolitan egyik 1967-es száma lelkes hangvételű, bíztató
@@ -84,7 +87,6 @@ export const HelloWorld = Shade({
             </p>
           </div>
         </div>
-      </div>
     )
   },
 })
