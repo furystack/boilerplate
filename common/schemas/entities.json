@@ -15,7 +15,10 @@
           }
         }
       },
-      "required": ["username", "roles"],
+      "required": [
+        "username",
+        "roles"
+      ],
       "additionalProperties": false
     }
   }
