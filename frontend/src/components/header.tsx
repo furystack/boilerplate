@@ -19,7 +19,7 @@ export const Header = Shade({
         <div style={{ flex: '1' }} />
         <div style={{ display: 'flex', placeContent: 'center', gap: '4px' }}>
           <ThemeSwitch variant="outlined" />
-          <a href={environmentOptions.repository} target="_blank">
+          <a href={environmentOptions.repository} target="_blank" rel="noopener noreferrer">
             <Button variant="outlined" style={{ verticalAlign: 'baseline' }}>
               <GithubLogo style={{ height: '25px' }} />
             </Button>

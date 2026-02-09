@@ -34,7 +34,7 @@ export const Offline = Shade({
 
         <Alert severity="error" variant="outlined">
           There was a trouble connecting to the backend service at{' '}
-          <a href={environmentOptions.serviceUrl} target="_blank">
+          <a href={environmentOptions.serviceUrl} target="_blank" rel="noopener noreferrer">
             {environmentOptions.serviceUrl}
           </a>
           . It seems to be the service is unaccessible at the moment.

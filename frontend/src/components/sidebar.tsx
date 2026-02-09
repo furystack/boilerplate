@@ -14,8 +14,14 @@ export const Sidebar = Shade({
     height: '100%',
     padding: '8px 0',
   },
-  render: ({ useState }) => {
+  render: ({ useState, useDisposable }) => {
     const [selectedKey, setSelectedKey] = useState('selectedKey', window.location.pathname)
+
+    useDisposable('popstateListener', () => {
+      const handler = () => setSelectedKey(window.location.pathname)
+      window.addEventListener('popstate', handler)
+      return { [Symbol.dispose]: () => window.removeEventListener('popstate', handler) }
+    })
 
     return (
       <Menu
