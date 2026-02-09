@@ -1,5 +1,14 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { Button, cssVariableTheme, Form, Input, Paper } from '@furystack/shades-common-components'
+import {
+  Alert,
+  Button,
+  Card,
+  CardContent,
+  cssVariableTheme,
+  Form,
+  Input,
+  Typography,
+} from '@furystack/shades-common-components'
 import { SessionService } from '../services/session.js'
 
 type LoginPayload = { userName: string; password: string }
@@ -9,25 +18,12 @@ export const Login = Shade({
   css: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    position: 'fixed',
+    inset: '0',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '0 100px',
-    paddingTop: '100px',
-    '& .form-actions': {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexDirection: 'row',
-      padding: '1em 0',
-    },
-    '& .error-message': {
-      color: cssVariableTheme.palette.error.main,
-      fontSize: '12px',
-    },
-    '& .helper-text': {
-      fontSize: '10px',
-    },
+    background: cssVariableTheme.background.default,
+    padding: '16px',
   },
   render: ({ injector, useObservable }) => {
     const sessionService = injector.getInstance(SessionService)
@@ -35,41 +31,71 @@ export const Login = Shade({
     const [error] = useObservable('loginError', sessionService.loginError)
 
     return (
-      <Paper elevation={3}>
-        <Form<LoginPayload>
-          className="login-form"
-          validate={(data): data is LoginPayload => {
-            return (data as LoginPayload).userName?.length > 0 && (data as LoginPayload).password?.length > 0
-          }}
-          onSubmit={({ userName, password }) => {
-            void sessionService.login(userName, password)
-          }}
-        >
-          <h2>Login</h2>
-          <Input
-            labelTitle="User name"
-            name="userName"
-            autofocus
-            required
-            disabled={isOperationInProgress}
-            getHelperText={() => "The user's login name"}
-            type="text"
-          />
-          <Input
-            labelTitle="Password"
-            name="password"
-            required
-            disabled={isOperationInProgress}
-            getHelperText={() => 'The password for the user'}
-            type="password"
-          />
-          <div className="form-actions">
-            {error ? <div className="error-message">{error}</div> : <div />}
-            <Button type="submit">Login</Button>
+      <Card elevation={2} style={{ width: '100%', maxWidth: '400px' }}>
+        <CardContent>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0 8px' }}>
+            <div
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: cssVariableTheme.palette.primary.main,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '28px',
+                marginBottom: '16px',
+              }}
+            >
+              🔐
+            </div>
+            <Typography variant="h4" align="center" gutterBottom>
+              Welcome Back
+            </Typography>
+            <Typography variant="body2" color="textSecondary" align="center">
+              Sign in to continue to FuryStack Boilerplate
+            </Typography>
           </div>
-          <p className="helper-text">You can login with the default 'testuser' / 'password' credentials</p>
-        </Form>
-      </Paper>
+
+          <Form<LoginPayload>
+            className="login-form"
+            validate={(data): data is LoginPayload => {
+              return (data as LoginPayload).userName?.length > 0 && (data as LoginPayload).password?.length > 0
+            }}
+            onSubmit={({ userName, password }) => {
+              void sessionService.login(userName, password)
+            }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '8px 0' }}
+          >
+            <Input
+              labelTitle="Username"
+              name="userName"
+              autofocus
+              required
+              disabled={isOperationInProgress}
+              type="text"
+            />
+            <Input labelTitle="Password" name="password" required disabled={isOperationInProgress} type="password" />
+
+            {error ? <Alert severity="error">{error}</Alert> : null}
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              loading={isOperationInProgress}
+              disabled={isOperationInProgress}
+              style={{ marginTop: '8px' }}
+            >
+              Sign In
+            </Button>
+          </Form>
+
+          <Alert severity="info" variant="outlined" style={{ marginTop: '16px' }}>
+            Use the default credentials: <strong>testuser</strong> / <strong>password</strong>
+          </Alert>
+        </CardContent>
+      </Card>
     )
   },
 })

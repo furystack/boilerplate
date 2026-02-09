@@ -1,5 +1,5 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { Loader } from '@furystack/shades-common-components'
+import { cssVariableTheme, Loader, Typography } from '@furystack/shades-common-components'
 
 export const Init = Shade({
   shadowDomName: 'shade-init',
@@ -8,22 +8,19 @@ export const Init = Shade({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    '& .initLoader': {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+    background: cssVariableTheme.background.default,
   },
   render: () => (
-    <div className="initLoader">
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
       <Loader
         style={{
           width: '128px',
           height: '128px',
         }}
       />
-      <h2>Initializing app...</h2>
+      <Typography variant="h5" color="textSecondary">
+        Initializing app...
+      </Typography>
     </div>
   ),
 })
