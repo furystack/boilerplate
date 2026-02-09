@@ -1,5 +1,10 @@
-import { createComponent, NestedRouteLink, Shade } from '@furystack/shades'
-import { cssVariableTheme } from '@furystack/shades-common-components'
+import { createComponent, Shade } from '@furystack/shades'
+import { Menu } from '@furystack/shades-common-components'
+
+const menuItems = [
+  { key: '/', label: '🏠 Home' },
+  { key: '/buttons', label: '🔘 Buttons Demo' },
+]
 
 export const Sidebar = Shade({
   shadowDomName: 'shade-app-sidebar',
@@ -8,33 +13,21 @@ export const Sidebar = Shade({
     flexDirection: 'column',
     height: '100%',
     padding: '8px 0',
-
-    '& a': {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px',
-      padding: '10px 16px',
-      color: cssVariableTheme.text.secondary,
-      textDecoration: 'none',
-      transition: `background-color 0.15s ease, color 0.15s ease`,
-      fontSize: '14px',
-      borderRadius: '0',
-    },
-    '& a:hover': {
-      backgroundColor: cssVariableTheme.action.hoverBackground,
-      color: cssVariableTheme.text.primary,
-    },
   },
-  render: () => {
+  render: ({ useState }) => {
+    const [selectedKey, setSelectedKey] = useState('selectedKey', window.location.pathname)
+
     return (
-      <nav>
-        <NestedRouteLink href="/" style={{ padding: '10px 16px' }}>
-          🏠 Home
-        </NestedRouteLink>
-        <NestedRouteLink href="/buttons" style={{ padding: '10px 16px' }}>
-          🔘 Buttons Demo
-        </NestedRouteLink>
-      </nav>
+      <Menu
+        items={menuItems}
+        mode="vertical"
+        selectedKey={selectedKey}
+        onSelect={(key) => {
+          setSelectedKey(key)
+          history.pushState({}, '', key)
+          dispatchEvent(new PopStateEvent('popstate'))
+        }}
+      />
     )
   },
 })

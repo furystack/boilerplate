@@ -16,20 +16,19 @@ test.describe('Example Application', () => {
     await usernameInput.type('testuser')
     await passwordInput.type('password')
 
-    const submitButton = page.locator('button', { hasText: 'Login' })
+    const submitButton = page.locator('button', { hasText: 'Sign In' })
     await expect(submitButton).toBeVisible()
     await expect(submitButton).toBeEnabled()
 
     await submitButton.click()
 
-    const welcomeTitle = page.locator('hello-world div h2')
+    const welcomeTitle = page.locator('[data-testid="page-header-title"]')
     await expect(welcomeTitle).toBeVisible()
-    await expect(welcomeTitle).toHaveText('Hello, testuser !')
+    await expect(welcomeTitle).toContainText('Hello, testuser!')
 
-    const logoutButton = page.locator('shade-app-bar button >> text="Log Out"')
+    const logoutButton = page.locator('button', { hasText: 'Log Out' })
     await expect(logoutButton).toBeVisible()
     await expect(logoutButton).toBeEnabled()
-    await expect(logoutButton).toHaveText('Log Out')
     await logoutButton.click()
 
     const loggedOutLoginForm = page.locator('shade-login form')

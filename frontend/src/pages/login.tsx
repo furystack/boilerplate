@@ -18,7 +18,8 @@ export const Login = Shade({
   css: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    position: 'fixed',
+    inset: '0',
     alignItems: 'center',
     justifyContent: 'center',
     background: cssVariableTheme.background.default,
