@@ -16,9 +16,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -38,10 +36,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "username",
-                    "password"
-                  ],
+                  "required": ["username", "password"],
                   "additionalProperties": false
                 },
                 "result": {
@@ -54,17 +49,11 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "accessToken",
-                    "refreshToken"
-                  ],
+                  "required": ["accessToken", "refreshToken"],
                   "additionalProperties": false
                 }
               },
-              "required": [
-                "body",
-                "result"
-              ],
+              "required": ["body", "result"],
               "additionalProperties": false
             },
             "/jwt/refresh": {
@@ -77,9 +66,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "refreshToken"
-                  ],
+                  "required": ["refreshToken"],
                   "additionalProperties": false
                 },
                 "result": {
@@ -92,17 +79,11 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "accessToken",
-                    "refreshToken"
-                  ],
+                  "required": ["accessToken", "refreshToken"],
                   "additionalProperties": false
                 }
               },
-              "required": [
-                "body",
-                "result"
-              ],
+              "required": ["body", "result"],
               "additionalProperties": false
             },
             "/jwt/logout": {
@@ -115,25 +96,16 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "refreshToken"
-                  ],
+                  "required": ["refreshToken"],
                   "additionalProperties": false
                 },
                 "result": {}
               },
-              "required": [
-                "body",
-                "result"
-              ],
+              "required": ["body", "result"],
               "additionalProperties": false
             }
           },
-          "required": [
-            "/jwt/login",
-            "/jwt/refresh",
-            "/jwt/logout"
-          ],
+          "required": ["/jwt/login", "/jwt/refresh", "/jwt/logout"],
           "additionalProperties": false
         },
         "PATCH": {
@@ -147,9 +119,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -164,9 +134,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -181,9 +149,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -198,9 +164,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -215,9 +179,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -232,9 +194,7 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         },
@@ -249,16 +209,12 @@
               "body": {},
               "headers": {}
             },
-            "required": [
-              "result"
-            ],
+            "required": ["result"],
             "additionalProperties": false
           }
         }
       },
-      "required": [
-        "POST"
-      ],
+      "required": ["POST"],
       "additionalProperties": false
     }
   }

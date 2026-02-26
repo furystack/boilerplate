@@ -17,10 +17,7 @@
           "description": "List of roles"
         }
       },
-      "required": [
-        "username",
-        "roles"
-      ],
+      "required": ["username", "roles"],
       "additionalProperties": false,
       "description": "Class model that represents an application user"
     }
