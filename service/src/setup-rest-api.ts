@@ -1,4 +1,4 @@
-import { JwtLoginAction, JwtLogoutAction, JwtRefreshAction } from '@furystack/auth-jwt'
+import { createJwtLoginAction, JwtLogoutAction, JwtRefreshAction } from '@furystack/auth-jwt'
 import type { Injector } from '@furystack/inject'
 import {
   Authenticate,
@@ -44,7 +44,7 @@ export const setupRestApi = async (injector: Injector): Promise<void> => {
       POST: {
         '/login': LoginAction,
         '/logout': LogoutAction,
-        '/jwt/login': JwtLoginAction,
+        '/jwt/login': createJwtLoginAction(injector),
         '/jwt/refresh': JwtRefreshAction,
         '/jwt/logout': JwtLogoutAction,
         '/testPostBody': Validate({ schema: BoilerplateApiSchemas, schemaName: 'TestPostBodyEndpoint' })(

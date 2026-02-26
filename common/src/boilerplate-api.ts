@@ -6,6 +6,13 @@ export type TestUrlParamsEndpoint = { url: { urlParam: string }; result: { urlPa
 export type TestPostBodyEndpoint = { body: { value: string }; result: { bodyValue: string } }
 export type TestAuthorizedEndpoint = { result: { message: string; timestamp: string } }
 
+export interface AuthorizedApi extends RestApi {
+  GET: {
+    '/currentUser': { result: User }
+    '/testAuthorized': TestAuthorizedEndpoint
+  }
+}
+
 export interface BoilerplateApi extends RestApi {
   GET: {
     '/isAuthenticated': { result: { isAuthenticated: boolean } }

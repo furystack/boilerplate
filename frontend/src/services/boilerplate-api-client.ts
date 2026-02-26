@@ -1,27 +1,44 @@
-import { createJwtClient } from '@furystack/auth-jwt/client'
+import { createJwtClient, createJwtTokenStore } from '@furystack/auth-jwt/client'
 import { Injectable } from '@furystack/inject'
 import { createClient } from '@furystack/rest-client-fetch'
-import type { BoilerplateApi } from 'common'
+import type { AuthorizedApi, JwtApi } from 'common'
 import { environmentOptions } from '../environment-options.js'
 
-type JwtClient = ReturnType<typeof createJwtClient<BoilerplateApi>>
-type ApiCall = ReturnType<typeof createClient<BoilerplateApi>>
+type AuthorizedApiCall = ReturnType<typeof createClient<AuthorizedApi>>
 
-const jwtClient: JwtClient = createJwtClient<BoilerplateApi>(
-  { endpointUrl: environmentOptions.serviceUrl, refreshThresholdSeconds: 10 },
-  '/jwt/login',
-  '/jwt/refresh',
-  '/jwt/logout',
-)
+const jwtApiClient = createClient<JwtApi>({
+  endpointUrl: environmentOptions.serviceUrl,
+  requestInit: { credentials: 'include' },
+})
+
+const tokenStore = createJwtTokenStore({
+  refreshThresholdSeconds: 10,
+  login: async (credentials) => {
+    const { result } = await jwtApiClient({ method: 'POST', action: '/jwt/login', body: credentials })
+    return result
+  },
+  refresh: async (refreshToken) => {
+    const { result } = await jwtApiClient({ method: 'POST', action: '/jwt/refresh', body: { refreshToken } })
+    return result
+  },
+  logout: async (refreshToken) => {
+    await jwtApiClient({ method: 'POST', action: '/jwt/logout', body: { refreshToken } })
+  },
+})
+
+const authorizedClient = createJwtClient<AuthorizedApi>({
+  endpointUrl: environmentOptions.serviceUrl,
+  tokenStore,
+})
 
 @Injectable({ lifetime: 'singleton' })
 export class BoilerplateApiClient {
-  public call: ApiCall = jwtClient.call as ApiCall
-  public login = jwtClient.login
-  public logout = jwtClient.logout
-  public setTokens = jwtClient.setTokens
+  public call: AuthorizedApiCall = authorizedClient.call as AuthorizedApiCall
+  public login = tokenStore.login
+  public logout = tokenStore.logout
+  public setTokens = tokenStore.setTokens
 
   public get isAuthenticated(): boolean {
-    return jwtClient.isAuthenticated
+    return tokenStore.isAuthenticated
   }
 }

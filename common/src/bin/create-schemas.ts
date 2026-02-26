@@ -25,6 +25,11 @@ export const apiValues: SchemaGenerationSetting[] = [
     outputFile: './schemas/boilerplate-api.json',
     type: '*',
   },
+  {
+    inputFile: './src/jwt-api.ts',
+    outputFile: './schemas/jwt-api.json',
+    type: '*',
+  },
 ]
 
 export const exec = async (): Promise<void> => {

@@ -17,7 +17,7 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@furystack/yarn-plugin-changelog": "^1.0.4",
+    "@furystack/yarn-plugin-changelog": "^1.0.5",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.1",
     "@vitest/coverage-v8": "^4.0.18",
