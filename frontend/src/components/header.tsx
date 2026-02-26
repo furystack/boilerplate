@@ -1,5 +1,5 @@
 import { createComponent, NestedRouteLink, Shade } from '@furystack/shades'
-import { AppBar, Button, DrawerToggleButton } from '@furystack/shades-common-components'
+import { AppBar, Button, DrawerToggleButton, Typography } from '@furystack/shades-common-components'
 import { environmentOptions } from '../environment-options.js'
 import { SessionService } from '../services/session.js'
 import { GithubLogo } from './github-logo/index.js'
@@ -11,11 +11,11 @@ export const Header = Shade({
     return (
       <AppBar>
         <DrawerToggleButton position="left" ariaLabel="Toggle navigation menu" />
-        <h3 style={{ margin: '0 0 0 8px', whiteSpace: 'nowrap' }}>
+        <Typography variant="h6" style={{ margin: '0 0 0 8px', whiteSpace: 'nowrap' }}>
           <NestedRouteLink href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
             🧩 FuryStack Boilerplate
           </NestedRouteLink>
-        </h3>
+        </Typography>
         <div style={{ flex: '1' }} />
         <div style={{ display: 'flex', placeContent: 'center', gap: '4px' }}>
           <ThemeSwitch variant="outlined" />

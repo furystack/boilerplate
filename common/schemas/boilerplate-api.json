@@ -82,6 +82,192 @@
       "required": ["body", "result"],
       "additionalProperties": false
     },
+    "TestAuthorizedEndpoint": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            }
+          },
+          "required": ["message", "timestamp"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["result"],
+      "additionalProperties": false
+    },
+    "AuthorizedApi": {
+      "type": "object",
+      "properties": {
+        "GET": {
+          "type": "object",
+          "properties": {
+            "/currentUser": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "required": ["result"],
+              "additionalProperties": false
+            },
+            "/testAuthorized": {
+              "$ref": "#/definitions/TestAuthorizedEndpoint"
+            }
+          },
+          "required": ["/currentUser", "/testAuthorized"],
+          "additionalProperties": false
+        },
+        "POST": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "PATCH": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "PUT": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "DELETE": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "HEAD": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "CONNECT": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "TRACE": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        },
+        "OPTIONS": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "result": {},
+              "url": {},
+              "query": {},
+              "body": {},
+              "headers": {}
+            },
+            "required": ["result"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["GET"],
+      "additionalProperties": false
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Name of the user"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of roles"
+        }
+      },
+      "required": ["username", "roles"],
+      "additionalProperties": false,
+      "description": "Class model that represents an application user"
+    },
     "BoilerplateApi": {
       "type": "object",
       "properties": {
@@ -120,9 +306,12 @@
             },
             "/testUrlParams/:urlParam": {
               "$ref": "#/definitions/TestUrlParamsEndpoint"
+            },
+            "/testAuthorized": {
+              "$ref": "#/definitions/TestAuthorizedEndpoint"
             }
           },
-          "required": ["/isAuthenticated", "/currentUser", "/testQuery", "/testUrlParams/:urlParam"],
+          "required": ["/isAuthenticated", "/currentUser", "/testQuery", "/testUrlParams/:urlParam", "/testAuthorized"],
           "additionalProperties": false
         },
         "POST": {
@@ -159,11 +348,92 @@
               "required": ["result"],
               "additionalProperties": false
             },
+            "/jwt/login": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["username", "password"],
+                  "additionalProperties": false
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["accessToken", "refreshToken"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["body", "result"],
+              "additionalProperties": false
+            },
+            "/jwt/refresh": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["refreshToken"],
+                  "additionalProperties": false
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["accessToken", "refreshToken"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["body", "result"],
+              "additionalProperties": false
+            },
+            "/jwt/logout": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["refreshToken"],
+                  "additionalProperties": false
+                },
+                "result": {}
+              },
+              "required": ["body", "result"],
+              "additionalProperties": false
+            },
             "/testPostBody": {
               "$ref": "#/definitions/TestPostBodyEndpoint"
             }
           },
-          "required": ["/login", "/logout", "/testPostBody"],
+          "required": ["/login", "/logout", "/jwt/login", "/jwt/refresh", "/jwt/logout", "/testPostBody"],
           "additionalProperties": false
         },
         "PATCH": {
@@ -273,22 +543,6 @@
         }
       },
       "required": ["GET", "POST"],
-      "additionalProperties": false
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "roles": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": ["username", "roles"],
       "additionalProperties": false
     }
   }

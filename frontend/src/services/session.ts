@@ -23,16 +23,17 @@ export class SessionService implements IdentityContext {
 
   private isInitialized = false
 
-  public async init() {
+  public async init(): Promise<void> {
     await usingAsync(this.operation(), async () => {
       if (!this.isInitialized) {
         this.isInitialized = true
         try {
-          const { result } = await this.api.call({ method: 'GET', action: '/isAuthenticated' })
-          this.state.setValue(result.isAuthenticated ? 'authenticated' : 'unauthenticated')
-          if (result.isAuthenticated) {
+          if (this.api.isAuthenticated) {
             const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
             this.currentUser.setValue(usr)
+            this.state.setValue('authenticated')
+          } else {
+            this.state.setValue('unauthenticated')
           }
         } catch (error) {
           this.state.setValue('offline')
@@ -44,7 +45,8 @@ export class SessionService implements IdentityContext {
   public async login(username: string, password: string): Promise<void> {
     await usingAsync(this.operation(), async () => {
       try {
-        const { result: usr } = await this.api.call({ method: 'POST', action: '/login', body: { username, password } })
+        await this.api.login({ username, password })
+        const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
         this.currentUser.setValue(usr)
         this.state.setValue('authenticated')
         this.notys.emit('onNotyAdded', {
@@ -65,7 +67,7 @@ export class SessionService implements IdentityContext {
 
   public async logout(): Promise<void> {
     return await usingAsync(this.operation(), async () => {
-      await this.api.call({ method: 'POST', action: '/logout' })
+      await this.api.logout()
       this.currentUser.setValue(null)
       this.state.setValue('unauthenticated')
       this.notys.emit('onNotyAdded', {
@@ -79,6 +81,7 @@ export class SessionService implements IdentityContext {
   public async isAuthenticated(): Promise<boolean> {
     return this.state.getValue() === 'authenticated'
   }
+
   public async isAuthorized(...roles: string[]): Promise<boolean> {
     const currentUser = await this.getCurrentUser()
     for (const role of roles) {
@@ -88,6 +91,7 @@ export class SessionService implements IdentityContext {
     }
     return true
   }
+
   public async getCurrentUser<TUser extends User>(): Promise<TUser> {
     const currentUser = this.currentUser.getValue()
     if (!currentUser) {

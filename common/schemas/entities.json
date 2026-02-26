@@ -6,17 +6,20 @@
       "type": "object",
       "properties": {
         "username": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the user"
         },
         "roles": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "List of roles"
         }
       },
       "required": ["username", "roles"],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Class model that represents an application user"
     }
   }
 }
