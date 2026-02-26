@@ -1,4 +1,1 @@
-export class User {
-  public username!: string
-  roles: string[] = []
-}
+export { User } from '@furystack/core'

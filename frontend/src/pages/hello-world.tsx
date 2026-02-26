@@ -1,11 +1,27 @@
 import { Shade, createComponent } from '@furystack/shades'
-import { PageContainer, PageHeader, Typography } from '@furystack/shades-common-components'
+import { Button, PageContainer, PageHeader, Typography } from '@furystack/shades-common-components'
+import { BoilerplateApiClient } from '../services/boilerplate-api-client.js'
 import { SessionService } from '../services/session.js'
 
 export const HelloWorld = Shade({
   shadowDomName: 'hello-world',
-  render: ({ useObservable, injector }) => {
+  render: ({ useObservable, useState, injector }) => {
     const [currentUser] = useObservable('userName', injector.getInstance(SessionService).currentUser)
+    const [authorizedResult, setAuthorizedResult] = useState<string>('authorizedResult', '')
+    const [authorizedError, setAuthorizedError] = useState<string>('authorizedError', '')
+
+    const handleTestAuthorized = async () => {
+      setAuthorizedResult('')
+      setAuthorizedError('')
+      try {
+        const apiClient = injector.getInstance(BoilerplateApiClient)
+        const { result } = await apiClient.call({ method: 'GET', action: '/testAuthorized' })
+        setAuthorizedResult(`${result.message} (${result.timestamp})`)
+      } catch (error) {
+        setAuthorizedError(error instanceof Error ? error.message : 'Request failed')
+      }
+    }
+
     return (
       <PageContainer maxWidth="800px" centered>
         <PageHeader
@@ -13,6 +29,27 @@ export const HelloWorld = Shade({
           title={`Hello, ${currentUser?.username || 'unknown'}!`}
           description="Welcome to the FuryStack Boilerplate application."
         />
+
+        <div style={{ marginBottom: '24px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <Typography variant="h5" gutterBottom>
+            Authorized Endpoint Test
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            Call a protected endpoint that requires a valid access token. Useful for testing token refresh after
+            expiration.
+          </Typography>
+          <div style={{ marginTop: '8px' }}>
+            <Button variant="contained" color="primary" onclick={handleTestAuthorized}>
+              Call /testAuthorized
+            </Button>
+          </div>
+          {authorizedResult && (
+            <Typography variant="body1" color="textSecondary">
+              {authorizedResult}
+            </Typography>
+          )}
+          {authorizedError && <Typography variant="body1">{authorizedError}</Typography>}
+        </div>
 
         <Typography variant="h5" gutterBottom>
           Egyesült Államok

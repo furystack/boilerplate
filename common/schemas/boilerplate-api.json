@@ -11,7 +11,9 @@
               "type": "string"
             }
           },
-          "required": ["param1"],
+          "required": [
+            "param1"
+          ],
           "additionalProperties": false
         },
         "result": {
@@ -21,11 +23,16 @@
               "type": "string"
             }
           },
-          "required": ["param1Value"],
+          "required": [
+            "param1Value"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["query", "result"],
+      "required": [
+        "query",
+        "result"
+      ],
       "additionalProperties": false
     },
     "TestUrlParamsEndpoint": {
@@ -38,7 +45,9 @@
               "type": "string"
             }
           },
-          "required": ["urlParam"],
+          "required": [
+            "urlParam"
+          ],
           "additionalProperties": false
         },
         "result": {
@@ -48,11 +57,16 @@
               "type": "string"
             }
           },
-          "required": ["urlParamValue"],
+          "required": [
+            "urlParamValue"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["url", "result"],
+      "required": [
+        "url",
+        "result"
+      ],
       "additionalProperties": false
     },
     "TestPostBodyEndpoint": {
@@ -65,7 +79,9 @@
               "type": "string"
             }
           },
-          "required": ["value"],
+          "required": [
+            "value"
+          ],
           "additionalProperties": false
         },
         "result": {
@@ -75,11 +91,41 @@
               "type": "string"
             }
           },
-          "required": ["bodyValue"],
+          "required": [
+            "bodyValue"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["body", "result"],
+      "required": [
+        "body",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "TestAuthorizedEndpoint": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "message",
+            "timestamp"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "result"
+      ],
       "additionalProperties": false
     },
     "BoilerplateApi": {
@@ -98,11 +144,15 @@
                       "type": "boolean"
                     }
                   },
-                  "required": ["isAuthenticated"],
+                  "required": [
+                    "isAuthenticated"
+                  ],
                   "additionalProperties": false
                 }
               },
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false
             },
             "/currentUser": {
@@ -112,7 +162,9 @@
                   "$ref": "#/definitions/User"
                 }
               },
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false
             },
             "/testQuery": {
@@ -120,9 +172,18 @@
             },
             "/testUrlParams/:urlParam": {
               "$ref": "#/definitions/TestUrlParamsEndpoint"
+            },
+            "/testAuthorized": {
+              "$ref": "#/definitions/TestAuthorizedEndpoint"
             }
           },
-          "required": ["/isAuthenticated", "/currentUser", "/testQuery", "/testUrlParams/:urlParam"],
+          "required": [
+            "/isAuthenticated",
+            "/currentUser",
+            "/testQuery",
+            "/testUrlParams/:urlParam",
+            "/testAuthorized"
+          ],
           "additionalProperties": false
         },
         "POST": {
@@ -144,11 +205,17 @@
                       "type": "string"
                     }
                   },
-                  "required": ["username", "password"],
+                  "required": [
+                    "username",
+                    "password"
+                  ],
                   "additionalProperties": false
                 }
               },
-              "required": ["result", "body"],
+              "required": [
+                "result",
+                "body"
+              ],
               "additionalProperties": false
             },
             "/logout": {
@@ -156,14 +223,126 @@
               "properties": {
                 "result": {}
               },
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            "/jwt/login": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "username",
+                    "password"
+                  ],
+                  "additionalProperties": false
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "accessToken",
+                    "refreshToken"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "body",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            "/jwt/refresh": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "refreshToken"
+                  ],
+                  "additionalProperties": false
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "accessToken",
+                    "refreshToken"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "body",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            "/jwt/logout": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "refreshToken"
+                  ],
+                  "additionalProperties": false
+                },
+                "result": {}
+              },
+              "required": [
+                "body",
+                "result"
+              ],
               "additionalProperties": false
             },
             "/testPostBody": {
               "$ref": "#/definitions/TestPostBodyEndpoint"
             }
           },
-          "required": ["/login", "/logout", "/testPostBody"],
+          "required": [
+            "/login",
+            "/logout",
+            "/jwt/login",
+            "/jwt/refresh",
+            "/jwt/logout",
+            "/testPostBody"
+          ],
           "additionalProperties": false
         },
         "PATCH": {
@@ -177,7 +356,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -192,7 +373,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -207,7 +390,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -222,7 +407,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -237,7 +424,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -252,7 +441,9 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         },
@@ -267,29 +458,40 @@
               "body": {},
               "headers": {}
             },
-            "required": ["result"],
+            "required": [
+              "result"
+            ],
             "additionalProperties": false
           }
         }
       },
-      "required": ["GET", "POST"],
+      "required": [
+        "GET",
+        "POST"
+      ],
       "additionalProperties": false
     },
     "User": {
       "type": "object",
       "properties": {
         "username": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the user"
         },
         "roles": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "List of roles"
         }
       },
-      "required": ["username", "roles"],
-      "additionalProperties": false
+      "required": [
+        "username",
+        "roles"
+      ],
+      "additionalProperties": false,
+      "description": "Class model that represents an application user"
     }
   }
 }
