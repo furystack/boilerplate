@@ -605,6 +605,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@furystack/eslint-plugin@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@furystack/eslint-plugin@npm:2.0.0"
+  dependencies:
+    "@typescript-eslint/utils": "npm:^8.56.1"
+  peerDependencies:
+    eslint: ">=9.0.0"
+  checksum: 10c0/bc9c9f35d023080af71c2bf9358a0e4f089017da63bd6aebad2d04468dbd9e11ebc6f9a5bb4b0f511e11f264ab98b554c065d131917c2b881bf5c5fdb8371ff0
+  languageName: node
+  linkType: hard
+
 "@furystack/filesystem-store@npm:^7.1.2":
   version: 7.1.2
   resolution: "@furystack/filesystem-store@npm:7.1.2"
@@ -1566,7 +1577,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.56.1":
+"@typescript-eslint/utils@npm:8.56.1, @typescript-eslint/utils@npm:^8.56.1":
   version: 8.56.1
   resolution: "@typescript-eslint/utils@npm:8.56.1"
   dependencies:
@@ -3943,6 +3954,7 @@ __metadata:
   resolution: "furystack-boilerplate-app@workspace:."
   dependencies:
     "@eslint/js": "npm:^10.0.1"
+    "@furystack/eslint-plugin": "npm:^2.0.0"
     "@furystack/yarn-plugin-changelog": "npm:^1.0.6"
     "@playwright/test": "npm:^1.58.2"
     "@types/node": "npm:^25.3.5"
