@@ -2,7 +2,7 @@ import { createComponent, Shade } from '@furystack/shades'
 import { Button, PageContainer, PageHeader } from '@furystack/shades-common-components'
 
 export const ButtonsDemo = Shade({
-  shadowDomName: 'buttons-demo',
+  customElementName: 'buttons-demo',
   render: ({ useState }) => {
     const [disabled, setDisabled] = useState('disabled', false)
     const txt = 'Button Text'

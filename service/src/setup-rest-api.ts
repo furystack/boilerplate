@@ -29,7 +29,9 @@ export const setupRestApi = async (injector: Injector): Promise<void> => {
     cors: getCorsOptions(),
     api: {
       GET: {
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, no user-provided parameters to validate
         '/currentUser': GetCurrentUser,
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, no user-provided parameters to validate
         '/isAuthenticated': IsAuthenticated,
         '/testQuery': Validate({ schema: BoilerplateApiSchemas, schemaName: 'TestQueryEndpoint' })(async (options) =>
           JsonResult({ param1Value: options.getQuery().param1 }),
@@ -37,15 +39,21 @@ export const setupRestApi = async (injector: Injector): Promise<void> => {
         '/testUrlParams/:urlParam': Validate({ schema: BoilerplateApiSchemas, schemaName: 'TestUrlParamsEndpoint' })(
           async (options) => JsonResult({ urlParamValue: options.getUrlParams().urlParam }),
         ),
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- No request parameters to validate; authorization is handled by Authenticate()
         '/testAuthorized': Authenticate()(async () =>
           JsonResult({ message: 'Hello from authorized endpoint!', timestamp: new Date().toISOString() }),
         ),
       },
       POST: {
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action that handles its own input validation internally
         '/login': LoginAction,
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, no user-provided parameters to validate
         '/logout': LogoutAction,
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action that handles its own input validation internally
         '/jwt/login': createJwtLoginAction(injector),
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, token is read from headers/cookies by the framework
         '/jwt/refresh': JwtRefreshAction,
+        // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, no user-provided parameters to validate
         '/jwt/logout': JwtLogoutAction,
         '/testPostBody': Validate({ schema: BoilerplateApiSchemas, schemaName: 'TestPostBodyEndpoint' })(
           async (options) => {

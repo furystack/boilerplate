@@ -8,7 +8,7 @@ import { BoilerplateApiClient } from './boilerplate-api-client.js'
 export type SessionState = 'initializing' | 'offline' | 'unauthenticated' | 'authenticated'
 
 @Injectable({ lifetime: 'singleton' })
-export class SessionService implements IdentityContext {
+export class SessionService implements IdentityContext, Disposable {
   private readonly operation = (): Disposable => {
     this.isOperationInProgress.setValue(true)
     return { [Symbol.dispose]: () => this.isOperationInProgress.setValue(false) }
@@ -110,4 +110,11 @@ export class SessionService implements IdentityContext {
 
   @Injected(NotyService)
   declare private readonly notys: NotyService
+
+  public [Symbol.dispose](): void {
+    this.state[Symbol.dispose]()
+    this.currentUser[Symbol.dispose]()
+    this.isOperationInProgress[Symbol.dispose]()
+    this.loginError[Symbol.dispose]()
+  }
 }

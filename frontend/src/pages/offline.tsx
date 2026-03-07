@@ -3,7 +3,7 @@ import { Alert, Button, cssVariableTheme, Typography } from '@furystack/shades-c
 import { environmentOptions } from '../environment-options.js'
 
 export const Offline = Shade({
-  shadowDomName: 'shade-offline',
+  customElementName: 'shade-offline',
   css: {
     display: 'flex',
     height: '100%',

@@ -17,18 +17,19 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@furystack/yarn-plugin-changelog": "^1.0.5",
+    "@furystack/eslint-plugin": "^2.0.0",
+    "@furystack/yarn-plugin-changelog": "^1.0.6",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.1",
+    "@types/node": "^25.3.5",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^10.0.2",
+    "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsdoc": "^62.7.1",
-    "eslint-plugin-playwright": "^2.7.1",
+    "eslint-plugin-playwright": "^2.9.0",
     "eslint-plugin-prettier": "^5.5.5",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.3.2",
     "prettier": "^3.8.1",
     "rimraf": "^6.1.3",
     "typescript": "^5.9.3",
@@ -36,20 +37,13 @@
     "vite": "^7.3.1",
     "vitest": "^4.0.18"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --ext .tsx,.ts --cache --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.{js,jsx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "scripts": {
@@ -60,6 +54,7 @@
     "test": "vitest",
     "start:service": "yarn workspace service start",
     "start:frontend": "yarn workspace frontend start",
+    "prepare": "husky",
     "clean": "rimraf service/dist frontend/dist **/tsconfig.tsbuildinfo tsconfig.tsbuildinfo common/dist",
     "lint": "eslint .",
     "bumpVersions": "yarn version check --interactive",
@@ -70,5 +65,5 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.13.0"
 }

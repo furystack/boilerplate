@@ -6,7 +6,7 @@ import { GithubLogo } from './github-logo/index.js'
 import { ThemeSwitch } from './theme-switch/index.js'
 
 export const Header = Shade({
-  shadowDomName: 'shade-app-header',
+  customElementName: 'shade-app-header',
   render: ({ injector }) => {
     return (
       <AppBar>

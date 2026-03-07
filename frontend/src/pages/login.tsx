@@ -14,7 +14,7 @@ import { SessionService } from '../services/session.js'
 type LoginPayload = { userName: string; password: string }
 
 export const Login = Shade({
-  shadowDomName: 'shade-login',
+  customElementName: 'shade-login',
   css: {
     display: 'flex',
     flexDirection: 'column',
