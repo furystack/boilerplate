@@ -16,7 +16,7 @@ const appRoutes = {
 } as const
 
 export const Layout = Shade({
-  shadowDomName: 'shade-app-layout',
+  customElementName: 'shade-app-layout',
   render: ({ injector, useObservable }) => {
     const session = injector.getInstance(SessionService)
     const [sessionState] = useObservable('sessionState', session.state)

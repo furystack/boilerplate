@@ -7,7 +7,7 @@ const menuItems = [
 ]
 
 export const Sidebar = Shade({
-  shadowDomName: 'shade-app-sidebar',
+  customElementName: 'shade-app-sidebar',
   css: {
     display: 'flex',
     flexDirection: 'column',

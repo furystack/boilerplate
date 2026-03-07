@@ -4,7 +4,7 @@ import { BoilerplateApiClient } from '../services/boilerplate-api-client.js'
 import { SessionService } from '../services/session.js'
 
 export const HelloWorld = Shade({
-  shadowDomName: 'hello-world',
+  customElementName: 'hello-world',
   render: ({ useObservable, useState, injector }) => {
     const [currentUser] = useObservable('userName', injector.getInstance(SessionService).currentUser)
     const [authorizedResult, setAuthorizedResult] = useState<string>('authorizedResult', '')

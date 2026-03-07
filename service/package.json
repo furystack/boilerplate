@@ -17,14 +17,14 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "@furystack/auth-jwt": "^2.1.1",
-    "@furystack/core": "^15.2.4",
-    "@furystack/filesystem-store": "^7.1.1",
+    "@furystack/auth-jwt": "^2.1.2",
+    "@furystack/core": "^15.2.5",
+    "@furystack/filesystem-store": "^7.1.2",
     "@furystack/inject": "^12.0.32",
     "@furystack/logging": "^8.1.1",
-    "@furystack/repository": "^10.1.5",
-    "@furystack/rest-service": "^12.2.1",
-    "@furystack/security": "^7.0.3",
+    "@furystack/repository": "^10.1.6",
+    "@furystack/rest-service": "^12.3.0",
+    "@furystack/security": "^7.0.4",
     "common": "workspace:^"
   }
 }

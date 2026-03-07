@@ -9,7 +9,7 @@ import {
 } from '@furystack/shades-common-components'
 
 export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
-  shadowDomName: 'theme-switch',
+  customElementName: 'theme-switch',
   render: ({ props, injector, useState, useDisposable }) => {
     const themeProvider = injector.getInstance(ThemeProviderService)
     const [theme, setTheme] = useState<'light' | 'dark'>(
