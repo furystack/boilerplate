@@ -1,0 +1,5 @@
+releases:
+  common: major
+  frontend: major
+  furystack-boilerplate-app: major
+  service: major
