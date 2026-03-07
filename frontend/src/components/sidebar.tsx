@@ -1,4 +1,4 @@
-import { createComponent, Shade } from '@furystack/shades'
+import { createComponent, LocationService, Shade } from '@furystack/shades'
 import { Menu } from '@furystack/shades-common-components'
 
 const menuItems = [
@@ -14,24 +14,17 @@ export const Sidebar = Shade({
     height: '100%',
     padding: '8px 0',
   },
-  render: ({ useState, useDisposable }) => {
-    const [selectedKey, setSelectedKey] = useState('selectedKey', window.location.pathname)
-
-    useDisposable('popstateListener', () => {
-      const handler = () => setSelectedKey(window.location.pathname)
-      window.addEventListener('popstate', handler)
-      return { [Symbol.dispose]: () => window.removeEventListener('popstate', handler) }
-    })
+  render: ({ injector, useObservable }) => {
+    const locationService = injector.getInstance(LocationService)
+    const [currentPath] = useObservable('currentPath', locationService.onLocationPathChanged)
 
     return (
       <Menu
         items={menuItems}
         mode="vertical"
-        selectedKey={selectedKey}
+        selectedKey={currentPath}
         onSelect={(key) => {
-          setSelectedKey(key)
-          history.pushState({}, '', key)
-          dispatchEvent(new PopStateEvent('popstate'))
+          locationService.navigate(key)
         }}
       />
     )
