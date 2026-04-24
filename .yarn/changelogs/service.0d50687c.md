@@ -1,0 +1,59 @@
+<!-- version-type: patch -->
+# service
+
+<!--
+FORMATTING GUIDE:
+
+### Detailed Entry (appears first when merging)
+
+Use h3 (###) and below for detailed entries with paragraphs, code examples, and lists.
+
+### Simple List Items
+
+- Simple changes can be added as list items
+- They are collected together at the bottom of each section
+
+TIP: When multiple changelog drafts are merged, heading-based entries
+appear before simple list items within each section.
+-->
+
+## ✨ Features
+<!-- PLACEHOLDER: Describe your shiny new features (feat:) -->
+
+## 🐛 Bug Fixes
+<!-- PLACEHOLDER: Describe the nasty little bugs that has been eradicated (fix:) -->
+
+## 📚 Documentation
+<!-- PLACEHOLDER: Describe documentation changes (docs:) -->
+
+## ⚡ Performance
+<!-- PLACEHOLDER: Describe performance improvements (perf:) -->
+
+## ♻️ Refactoring
+
+### Migrated `/login` action to the factory-based password login
+
+`@furystack/rest-service` v13 removed the legacy static `LoginAction`. The `/login` route in `setup-rest-api.ts` now uses the factory `createPasswordLoginAction(createCookieLoginStrategy(injector))`, which captures the auth services once at setup time instead of resolving them from the request-scoped injector on every call.
+
+```ts
+// before
+'/login': LoginAction,
+
+// after
+'/login': createPasswordLoginAction(createCookieLoginStrategy(injector)),
+```
+
+## 🧪 Tests
+<!-- PLACEHOLDER: Describe test changes (test:) -->
+
+## 📦 Build
+<!-- PLACEHOLDER: Describe build system changes (build:) -->
+
+## 👷 CI
+<!-- PLACEHOLDER: Describe CI configuration changes (ci:) -->
+
+## ⬆️ Dependencies
+<!-- PLACEHOLDER: Describe dependency updates (deps:) -->
+
+## 🔧 Chores
+<!-- PLACEHOLDER: Describe other changes (chore:) -->
