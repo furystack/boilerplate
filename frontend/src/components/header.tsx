@@ -12,7 +12,7 @@ export const Header = Shade({
       <AppBar>
         <DrawerToggleButton position="left" ariaLabel="Toggle navigation menu" />
         <Typography variant="h6" style={{ margin: '0 0 0 8px', whiteSpace: 'nowrap' }}>
-          <NestedRouteLink href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <NestedRouteLink path="/" style={{ color: 'inherit', textDecoration: 'none' }}>
             🧩 FuryStack Boilerplate
           </NestedRouteLink>
         </Typography>

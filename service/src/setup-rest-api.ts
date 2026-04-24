@@ -2,14 +2,15 @@ import { createJwtLoginAction, JwtLogoutAction, JwtRefreshAction } from '@furyst
 import type { Injector } from '@furystack/inject'
 import {
   Authenticate,
+  createCookieLoginStrategy,
+  createPasswordLoginAction,
   GetCurrentUser,
   IsAuthenticated,
   JsonResult,
-  LoginAction,
   LogoutAction,
-  Validate,
   useRestService,
   useStaticFiles,
+  Validate,
 } from '@furystack/rest-service'
 import type { BoilerplateApi } from 'common'
 import BoilerplateApiSchemas from 'common/schemas/boilerplate-api.json' with { type: 'json' }
@@ -46,7 +47,7 @@ export const setupRestApi = async (injector: Injector): Promise<void> => {
       },
       POST: {
         // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action that handles its own input validation internally
-        '/login': LoginAction,
+        '/login': createPasswordLoginAction(createCookieLoginStrategy(injector)),
         // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action, no user-provided parameters to validate
         '/logout': LogoutAction,
         // eslint-disable-next-line furystack/rest-action-validate-wrapper -- Built-in framework action that handles its own input validation internally
