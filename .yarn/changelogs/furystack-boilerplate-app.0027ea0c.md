@@ -1,48 +1,47 @@
 <!-- version-type: patch -->
 # furystack-boilerplate-app
 
-<!--
-FORMATTING GUIDE:
-
-### Detailed Entry (appears first when merging)
-
-Use h3 (###) and below for detailed entries with paragraphs, code examples, and lists.
-
-### Simple List Items
-
-- Simple changes can be added as list items
-- They are collected together at the bottom of each section
-
-TIP: When multiple changelog drafts are merged, heading-based entries
-appear before simple list items within each section.
--->
-
-## ✨ Features
-<!-- PLACEHOLDER: Describe your shiny new features (feat:) -->
-
-## 🐛 Bug Fixes
-<!-- PLACEHOLDER: Describe the nasty little bugs that has been eradicated (fix:) -->
-
-## 📚 Documentation
-<!-- PLACEHOLDER: Describe documentation changes (docs:) -->
-
-## ⚡ Performance
-<!-- PLACEHOLDER: Describe performance improvements (perf:) -->
-
 ## ♻️ Refactoring
-<!-- PLACEHOLDER: Describe code refactoring (refactor:) -->
 
-## 🧪 Tests
-<!-- PLACEHOLDER: Describe test changes (test:) -->
+### Tightened the workspace `tsconfig.json`
+
+Dropped the redundant `incremental`, `composite`, `moduleResolution` and `allowSyntheticDefaultImports` lines (already covered by `module: "NodeNext"` plus `esModuleInterop`), and switched to `files: []` + `references: [./common, ./service, ./frontend]` so a top-level `tsc -b` builds every workspace through TypeScript's project-references model.
+
+### Switched the Vitest frontend project from `jsdom` to `happy-dom`
+
+`jsdom@29` ships an ESM-only `html-encoding-sniffer@6`, which `require()` cannot load on Node 20.x. Swapping the frontend project's `environment` to `happy-dom` fixes the test pool startup, removes the heavyweight jsdom dependency tree, and keeps the DOM surface needed by the new frontend specs intact.
+
+```diff
+ {
+   test: {
+     name: 'Frontend',
+-    environment: 'jsdom',
++    environment: 'happy-dom',
+     include: ['frontend/src/**/*.spec.(ts|tsx)'],
+   },
+ }
+```
 
 ## 📦 Build
-<!-- PLACEHOLDER: Describe build system changes (build:) -->
 
-## 👷 CI
-<!-- PLACEHOLDER: Describe CI configuration changes (ci:) -->
+### Allowed default project resolution for top-level config files in ESLint
+
+`eslint.config.js` now passes `parserOptions.projectService.allowDefaultProject` listing `vite.config.ts`, `vitest.config.mts`, `playwright.config.ts`, `frontend/vite.config.ts` and `e2e/*.spec.ts`. These files were previously reported as `Parsing error: … was not found by the project service` because none of the `tsconfig.json` `include` globs covered them; lint is now clean for the whole repository.
 
 ## ⬆️ Dependencies
-<!-- PLACEHOLDER: Describe dependency updates (deps:) -->
 
-## 🔧 Chores
-<!-- PLACEHOLDER: Describe other changes (chore:) -->
+- Added `happy-dom` (replaces `jsdom` for the Vitest frontend project — see Refactoring above).
+- Bumped `@furystack/eslint-plugin` from `^2.1.3` to `^3.0.0` (functional-DI v7 release of the lint rules).
+- Bumped `@furystack/yarn-plugin-changelog` from `^1.0.8` to `^1.0.10`.
+- Bumped `@playwright/test` from `^1.58.2` to `^1.59.1`.
+- Bumped `@types/node` from `^25.5.0` to `^25.6.0`.
+- Bumped `@vitest/coverage-v8` from `^4.1.1` to `^4.1.5`.
+- Bumped `eslint` from `^10.1.0` to `^10.2.1`.
+- Bumped `eslint-plugin-jsdoc` from `^62.8.0` to `^62.9.0`.
+- Bumped `eslint-plugin-playwright` from `^2.10.1` to `^2.10.2`.
+- Bumped `prettier` from `^3.8.1` to `^3.8.3`.
+- Bumped `typescript` from `^6.0.2` to `^6.0.3`.
+- Bumped `typescript-eslint` from `^8.57.2` to `^8.59.0`.
+- Bumped `vite` from `^8.0.2` to `^8.0.10`.
+- Bumped `vitest` from `^4.1.1` to `^4.1.5`.
+- Bumped Yarn from `4.13.0` to `4.14.1`.
