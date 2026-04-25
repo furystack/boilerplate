@@ -64,12 +64,19 @@ export const AuthorizedUserDataSet: DataSetToken<User, 'username'> = defineDataS
   settings: authorizedDataSet,
 })
 
-const requireJwtSecret = (): string => {
-  const secret = process.env.JWT_SECRET
-  if (secret && secret.length >= 32) {
+/**
+ * Resolves the JWT signing secret from the environment.
+ *
+ * - Returns `process.env.JWT_SECRET` when it is at least 32 bytes long.
+ * - Throws when `NODE_ENV === 'production'` and the env var is missing or too short.
+ * - Falls back to a fixed development secret in any other case.
+ */
+export const requireJwtSecret = (env: NodeJS.ProcessEnv = process.env): string => {
+  const secret = env.JWT_SECRET
+  if (secret && Buffer.byteLength(secret, 'utf8') >= 32) {
     return secret
   }
-  if (process.env.NODE_ENV === 'production') {
+  if (env.NODE_ENV === 'production') {
     throw new Error('JWT_SECRET must be set to a 32+ byte value in production.')
   }
   return 'change-me-to-a-secure-32-byte-secret!'

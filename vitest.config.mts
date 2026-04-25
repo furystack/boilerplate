@@ -22,7 +22,7 @@ export default defineConfig({
       {
         test: {
           name: 'Frontend',
-          environment: 'jsdom',
+          environment: 'happy-dom',
           include: ['frontend/src/**/*.spec.(ts|tsx)'],
         },
       },

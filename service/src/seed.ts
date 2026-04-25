@@ -6,14 +6,13 @@ import type { DataSet } from '@furystack/repository'
 import { getDataSetFor } from '@furystack/repository'
 import { PasswordAuthenticator, PasswordCredentialDataSet } from '@furystack/security'
 import { usingAsync } from '@furystack/utils'
-import { injector } from './root-injector.js'
-import { AuthorizedUserDataSet, setupStore } from './setup-store.js'
+import { AuthorizedUserDataSet } from './setup-store.js'
 
 /**
  * Returns the existing entity matching `filter` or creates `instance`
  * when none is found. Logs a warning when the filter is ambiguous.
  */
-const getOrCreate = async <T, TKey extends keyof T>(
+export const getOrCreate = async <T, TKey extends keyof T>(
   filter: FindOptions<T, Array<keyof T>>,
   instance: WithOptionalId<T, TKey>,
   dataSet: DataSet<T, TKey>,
@@ -59,7 +58,3 @@ export const seed = async (i: Injector): Promise<void> => {
     await logger.verbose({ message: 'Seeding data completed.' })
   })
 }
-
-setupStore(injector)
-await seed(injector)
-await injector[Symbol.asyncDispose]()

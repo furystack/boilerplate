@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "start": "yarn node ./dist/service.js",
-    "seed": "yarn node ./dist/seed.js",
+    "seed": "yarn node ./dist/bin/seed.js",
     "clean": "rimraf dist && rimraf tsconfig.tsbuildinfo",
     "build": "tsc -b"
   },
