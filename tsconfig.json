@@ -59,9 +59,5 @@
     "skipLibCheck": true
   },
   "files": [],
-  "references": [
-    { "path": "./common" },
-    { "path": "./service" },
-    { "path": "./frontend" }
-  ]
+  "references": [{ "path": "./common" }, { "path": "./service" }, { "path": "./frontend" }]
 }
