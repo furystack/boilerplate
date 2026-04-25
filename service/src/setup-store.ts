@@ -1,46 +1,102 @@
-import { RefreshToken, useJwtAuthentication } from '@furystack/auth-jwt'
-import { addStore, InMemoryStore } from '@furystack/core'
-import { FileSystemStore } from '@furystack/filesystem-store'
+import { RefreshToken, RefreshTokenStore, useJwtAuthentication } from '@furystack/auth-jwt'
+import { defineStore, InMemoryStore } from '@furystack/core'
+import { defineFileSystemStore } from '@furystack/filesystem-store'
 import type { Injector } from '@furystack/inject'
-import { getRepository } from '@furystack/repository'
-import { DefaultSession, useHttpAuthentication } from '@furystack/rest-service'
-import { PasswordCredential, PasswordResetToken, usePasswordPolicy } from '@furystack/security'
+import { defineDataSet, type DataSetToken } from '@furystack/repository'
+import { DefaultSession, SessionStore, useHttpAuthentication, UserStore } from '@furystack/rest-service'
+import {
+  PasswordCredential,
+  PasswordCredentialStore,
+  PasswordResetToken,
+  PasswordResetTokenStore,
+  usePasswordPolicy,
+} from '@furystack/security'
 import { User } from 'common'
 import { join } from 'path'
 import { authorizedDataSet } from './authorization/authorized-only.js'
 
-export const setupStore = (injector: Injector): void => {
-  addStore(
-    injector,
-    new FileSystemStore({
-      model: User,
-      primaryKey: 'username',
-      tickMs: 30_000,
-      fileName: join(process.cwd(), 'users.json'),
-    }),
-  )
-    .addStore(new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' }))
-    .addStore(
-      new FileSystemStore({
-        model: PasswordCredential,
-        primaryKey: 'userName',
-        fileName: join(process.cwd(), '..', '..', 'pwc.json'),
-      }),
-    )
-    .addStore(new InMemoryStore({ model: PasswordResetToken, primaryKey: 'token' }))
-    .addStore(new InMemoryStore({ model: RefreshToken, primaryKey: 'token' }))
+const usersFile = join(process.cwd(), 'users.json')
+const passwordCredentialsFile = join(process.cwd(), '..', '..', 'pwc.json')
 
-  getRepository(injector)
-    .createDataSet(User, 'username', { ...authorizedDataSet })
-    .createDataSet(DefaultSession, 'sessionId')
-    .createDataSet(PasswordCredential, 'userName')
-    .createDataSet(PasswordResetToken, 'token')
-    .createDataSet(RefreshToken, 'token')
+const UsersFileStore = defineFileSystemStore({
+  name: 'app/UsersFileStore',
+  model: User,
+  primaryKey: 'username',
+  fileName: usersFile,
+  tickMs: 30_000,
+})
+
+const PasswordCredentialsFileStore = defineFileSystemStore({
+  name: 'app/PasswordCredentialsFileStore',
+  model: PasswordCredential,
+  primaryKey: 'userName',
+  fileName: passwordCredentialsFile,
+})
+
+const SessionsMemoryStore = defineStore({
+  name: 'app/SessionsMemoryStore',
+  model: DefaultSession,
+  primaryKey: 'sessionId',
+  factory: () => new InMemoryStore({ model: DefaultSession, primaryKey: 'sessionId' }),
+})
+
+const PasswordResetTokensMemoryStore = defineStore({
+  name: 'app/PasswordResetTokensMemoryStore',
+  model: PasswordResetToken,
+  primaryKey: 'token',
+  factory: () => new InMemoryStore({ model: PasswordResetToken, primaryKey: 'token' }),
+})
+
+const RefreshTokensMemoryStore = defineStore({
+  name: 'app/RefreshTokensMemoryStore',
+  model: RefreshToken,
+  primaryKey: 'token',
+  factory: () => new InMemoryStore({ model: RefreshToken, primaryKey: 'token' }),
+})
+
+/**
+ * Authorization-aware {@link User} dataset, exported so the REST API
+ * registers the same instance through {@link useHttpAuthentication}.
+ */
+export const AuthorizedUserDataSet: DataSetToken<User, 'username'> = defineDataSet({
+  name: 'app/AuthorizedUserDataSet',
+  store: UserStore,
+  settings: authorizedDataSet,
+})
+
+/**
+ * Resolves the JWT signing secret from the environment.
+ *
+ * - Returns `process.env.JWT_SECRET` when it is at least 32 bytes long.
+ * - Throws when `NODE_ENV === 'production'` and the env var is missing or too short.
+ * - Falls back to a fixed development secret in any other case.
+ */
+export const requireJwtSecret = (env: NodeJS.ProcessEnv = process.env): string => {
+  const secret = env.JWT_SECRET
+  if (secret && Buffer.byteLength(secret, 'utf8') >= 32) {
+    return secret
+  }
+  if (env.NODE_ENV === 'production') {
+    throw new Error('JWT_SECRET must be set to a 32+ byte value in production.')
+  }
+  return 'change-me-to-a-secure-32-byte-secret!'
+}
+
+/**
+ * Wires every framework store token to a concrete backing implementation
+ * and installs HTTP / JWT authentication on the supplied injector.
+ */
+export const setupStore = (injector: Injector): void => {
+  injector.bind(UserStore, ({ inject }) => inject(UsersFileStore))
+  injector.bind(SessionStore, ({ inject }) => inject(SessionsMemoryStore))
+  injector.bind(PasswordCredentialStore, ({ inject }) => inject(PasswordCredentialsFileStore))
+  injector.bind(PasswordResetTokenStore, ({ inject }) => inject(PasswordResetTokensMemoryStore))
+  injector.bind(RefreshTokenStore, ({ inject }) => inject(RefreshTokensMemoryStore))
 
   usePasswordPolicy(injector)
-  useHttpAuthentication(injector)
+  useHttpAuthentication(injector, { userDataSet: AuthorizedUserDataSet })
   useJwtAuthentication(injector, {
-    secret: process.env.JWT_SECRET || 'change-me-to-a-secure-32-byte-secret!',
+    secret: requireJwtSecret(),
     accessTokenExpirationSeconds: 60,
   })
 }

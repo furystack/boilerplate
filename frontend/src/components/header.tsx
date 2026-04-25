@@ -24,7 +24,7 @@ export const Header = Shade({
               <GithubLogo style={{ height: '25px' }} />
             </Button>
           </a>
-          <Button variant="outlined" onclick={() => injector.getInstance(SessionService).logout()}>
+          <Button variant="outlined" onclick={() => injector.get(SessionService).logout()}>
             Log Out
           </Button>
         </div>

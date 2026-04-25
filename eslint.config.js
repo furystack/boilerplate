@@ -43,7 +43,15 @@ export default tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: [
+            'vite.config.ts',
+            'vitest.config.mts',
+            'playwright.config.ts',
+            'frontend/vite.config.ts',
+            'e2e/*.spec.ts',
+          ],
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },

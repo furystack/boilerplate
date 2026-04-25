@@ -11,7 +11,7 @@ import {
 export const ThemeSwitch = Shade<Omit<ButtonProps, 'onclick'>>({
   customElementName: 'theme-switch',
   render: ({ props, injector, useState, useDisposable }) => {
-    const themeProvider = injector.getInstance(ThemeProviderService)
+    const themeProvider = injector.get(ThemeProviderService)
     const [theme, setTheme] = useState<'light' | 'dark'>(
       'theme',
       getCssVariable(themeProvider.theme.background.default) === defaultDarkTheme.background.default ? 'dark' : 'light',

@@ -15,7 +15,7 @@ export const Sidebar = Shade({
     padding: '8px 0',
   },
   render: ({ injector, useObservable }) => {
-    const locationService = injector.getInstance(LocationService)
+    const locationService = injector.get(LocationService)
     const [currentPath] = useObservable('currentPath', locationService.onLocationPathChanged)
 
     return (

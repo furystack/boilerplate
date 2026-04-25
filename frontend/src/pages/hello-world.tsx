@@ -6,7 +6,7 @@ import { SessionService } from '../services/session.js'
 export const HelloWorld = Shade({
   customElementName: 'hello-world',
   render: ({ useObservable, useState, injector }) => {
-    const [currentUser] = useObservable('userName', injector.getInstance(SessionService).currentUser)
+    const [currentUser] = useObservable('userName', injector.get(SessionService).currentUser)
     const [authorizedResult, setAuthorizedResult] = useState<string>('authorizedResult', '')
     const [authorizedError, setAuthorizedError] = useState<string>('authorizedError', '')
 
@@ -14,7 +14,7 @@ export const HelloWorld = Shade({
       setAuthorizedResult('')
       setAuthorizedError('')
       try {
-        const apiClient = injector.getInstance(BoilerplateApiClient)
+        const apiClient = injector.get(BoilerplateApiClient)
         const { result } = await apiClient.call({ method: 'GET', action: '/testAuthorized' })
         setAuthorizedResult(`${result.message} (${result.timestamp})`)
       } catch (error) {

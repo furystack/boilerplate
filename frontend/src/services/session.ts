@@ -1,5 +1,5 @@
 import type { IdentityContext } from '@furystack/core'
-import { Injectable, Injected } from '@furystack/inject'
+import { defineService, type Token } from '@furystack/inject'
 import { NotyService } from '@furystack/shades-common-components'
 import { ObservableValue, usingAsync } from '@furystack/utils'
 import type { User } from 'common'
@@ -7,114 +7,135 @@ import { BoilerplateApiClient } from './boilerplate-api-client.js'
 
 export type SessionState = 'initializing' | 'offline' | 'unauthenticated' | 'authenticated'
 
-@Injectable({ lifetime: 'singleton' })
-export class SessionService implements IdentityContext, Disposable {
-  private readonly operation = (): Disposable => {
-    this.isOperationInProgress.setValue(true)
-    return { [Symbol.dispose]: () => this.isOperationInProgress.setValue(false) }
-  }
+export interface SessionService extends IdentityContext {
+  readonly state: ObservableValue<SessionState>
+  readonly currentUser: ObservableValue<Omit<User, 'password'> | null>
+  readonly isOperationInProgress: ObservableValue<boolean>
+  readonly loginError: ObservableValue<string>
+  init(): Promise<void>
+  login(username: string, password: string): Promise<void>
+  logout(): Promise<void>
+}
 
-  public state = new ObservableValue<SessionState>('initializing')
-  public currentUser = new ObservableValue<Omit<User, 'password'> | null>(null)
+export const SessionService: Token<SessionService, 'singleton'> = defineService({
+  name: 'app/SessionService',
+  lifetime: 'singleton',
+  factory: ({ inject, onDispose }) => {
+    const api = inject(BoilerplateApiClient)
+    const notys = inject(NotyService)
 
-  public isOperationInProgress = new ObservableValue(true)
+    const state = new ObservableValue<SessionState>('initializing')
+    const currentUser = new ObservableValue<Omit<User, 'password'> | null>(null)
+    const isOperationInProgress = new ObservableValue(true)
+    const loginError = new ObservableValue('')
 
-  public loginError = new ObservableValue('')
+    const operation = (): Disposable => {
+      isOperationInProgress.setValue(true)
+      return { [Symbol.dispose]: () => isOperationInProgress.setValue(false) }
+    }
 
-  private isInitialized = false
-
-  public async init(): Promise<void> {
-    await usingAsync(this.operation(), async () => {
-      if (!this.isInitialized) {
-        this.isInitialized = true
+    let isInitialized = false
+    const init = async (): Promise<void> => {
+      await usingAsync(operation(), async () => {
+        if (isInitialized) return
+        isInitialized = true
         try {
-          if (this.api.isAuthenticated) {
-            const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
-            this.currentUser.setValue(usr)
-            this.state.setValue('authenticated')
+          if (api.isAuthenticated) {
+            const { result: usr } = await api.call({ method: 'GET', action: '/currentUser' })
+            currentUser.setValue(usr)
+            state.setValue('authenticated')
           } else {
-            this.state.setValue('unauthenticated')
+            state.setValue('unauthenticated')
           }
-        } catch (error) {
-          this.state.setValue('offline')
+        } catch {
+          state.setValue('offline')
         }
-      }
-    })
-  }
+      })
+    }
 
-  public async login(username: string, password: string): Promise<void> {
-    await usingAsync(this.operation(), async () => {
-      try {
-        await this.api.login({ username, password })
-        const { result: usr } = await this.api.call({ method: 'GET', action: '/currentUser' })
-        this.currentUser.setValue(usr)
-        this.state.setValue('authenticated')
-        this.notys.emit('onNotyAdded', {
-          body: 'Welcome back ;)',
-          title: 'You have been logged in',
-          type: 'success',
+    const login = async (username: string, password: string): Promise<void> => {
+      await usingAsync(operation(), async () => {
+        try {
+          await api.login({ username, password })
+          const { result: usr } = await api.call({ method: 'GET', action: '/currentUser' })
+          currentUser.setValue(usr)
+          state.setValue('authenticated')
+          notys.emit('onNotyAdded', {
+            body: 'Welcome back ;)',
+            title: 'You have been logged in',
+            type: 'success',
+          })
+        } catch (error) {
+          loginError.setValue(error instanceof Error ? error.message : '')
+          notys.emit('onNotyAdded', {
+            body: 'Please check your credentials',
+            title: 'Login failed',
+            type: 'warning',
+          })
+        }
+      })
+    }
+
+    const logout = async (): Promise<void> => {
+      await usingAsync(operation(), async () => {
+        await api.logout()
+        currentUser.setValue(null)
+        state.setValue('unauthenticated')
+        notys.emit('onNotyAdded', {
+          body: 'Come back soon...',
+          title: 'You have been logged out',
+          type: 'info',
         })
-      } catch (error) {
-        this.loginError.setValue(error instanceof Error ? error.message : '')
-        this.notys.emit('onNotyAdded', {
-          body: 'Please check your credentials',
-          title: 'Login failed',
+      })
+    }
+
+    const isAuthenticated = async (): Promise<boolean> => state.getValue() === 'authenticated'
+
+    const getCurrentUserOrThrow = <TUser extends User>(): TUser => {
+      const user = currentUser.getValue()
+      if (!user) {
+        notys.emit('onNotyAdded', {
+          body: ':(((',
+          title: 'No User available',
           type: 'warning',
         })
+        throw new Error('No user available')
       }
-    })
-  }
-
-  public async logout(): Promise<void> {
-    return await usingAsync(this.operation(), async () => {
-      await this.api.logout()
-      this.currentUser.setValue(null)
-      this.state.setValue('unauthenticated')
-      this.notys.emit('onNotyAdded', {
-        body: 'Come back soon...',
-        title: 'You have been logged out',
-        type: 'info',
-      })
-    })
-  }
-
-  public async isAuthenticated(): Promise<boolean> {
-    return this.state.getValue() === 'authenticated'
-  }
-
-  public async isAuthorized(...roles: string[]): Promise<boolean> {
-    const currentUser = await this.getCurrentUser()
-    for (const role of roles) {
-      if (!currentUser || !currentUser.roles.some((c) => c === role)) {
-        return false
-      }
+      return user as unknown as TUser
     }
-    return true
-  }
 
-  public async getCurrentUser<TUser extends User>(): Promise<TUser> {
-    const currentUser = this.currentUser.getValue()
-    if (!currentUser) {
-      this.notys.emit('onNotyAdded', {
-        body: ':(((',
-        title: 'No User available',
-        type: 'warning',
-      })
-      throw Error('No user available')
+    const isAuthorized = async (...roles: string[]): Promise<boolean> => {
+      const user = currentUser.getValue()
+      if (!user) return false
+      return roles.every((role) => user.roles.includes(role))
     }
-    return currentUser as unknown as TUser
-  }
 
-  @Injected(BoilerplateApiClient)
-  declare private api: BoilerplateApiClient
+    const getCurrentUser = async <TUser extends User>(): Promise<TUser> => getCurrentUserOrThrow<TUser>()
 
-  @Injected(NotyService)
-  declare private readonly notys: NotyService
+    onDispose(() => {
+      // eslint-disable-next-line furystack/prefer-using-wrapper -- Disposal is deferred to the injector's onDispose hook.
+      state[Symbol.dispose]()
+      // eslint-disable-next-line furystack/prefer-using-wrapper -- Disposal is deferred to the injector's onDispose hook.
+      currentUser[Symbol.dispose]()
+      // eslint-disable-next-line furystack/prefer-using-wrapper -- Disposal is deferred to the injector's onDispose hook.
+      isOperationInProgress[Symbol.dispose]()
+      // eslint-disable-next-line furystack/prefer-using-wrapper -- Disposal is deferred to the injector's onDispose hook.
+      loginError[Symbol.dispose]()
+    })
 
-  public [Symbol.dispose](): void {
-    this.state[Symbol.dispose]()
-    this.currentUser[Symbol.dispose]()
-    this.isOperationInProgress[Symbol.dispose]()
-    this.loginError[Symbol.dispose]()
-  }
-}
+    void init()
+
+    return {
+      state,
+      currentUser,
+      isOperationInProgress,
+      loginError,
+      init,
+      login,
+      logout,
+      isAuthenticated,
+      isAuthorized,
+      getCurrentUser,
+    }
+  },
+})

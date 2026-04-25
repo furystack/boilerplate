@@ -18,7 +18,7 @@ const appRoutes = {
 export const Layout = Shade({
   customElementName: 'shade-app-layout',
   render: ({ injector, useObservable }) => {
-    const session = injector.getInstance(SessionService)
+    const session = injector.get(SessionService)
     const [sessionState] = useObservable('sessionState', session.state)
 
     return (
