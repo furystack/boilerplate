@@ -48,6 +48,7 @@ git diff origin/master...HEAD --name-only
 | `reviewer-typescript` | Conditional | Skip ONLY if NO `.ts`/`.tsx` files changed  |
 | `reviewer-eslint`     | Conditional | Skip ONLY if NO `.ts`/`.tsx` files changed  |
 | `reviewer-tests`      | Conditional | Skip ONLY if NO `.ts`/`.tsx` files changed  |
+| `reviewer-complexity` | Conditional | Skip ONLY if NO `.ts`/`.tsx` files changed  |
 
 **When in doubt, run the check.** Fast failures are better than missed issues.
 
@@ -62,6 +63,7 @@ In one tool call batch, launch all applicable reviewers:
 - `reviewer-typescript` (if `.ts`/`.tsx` files changed)
 - `reviewer-eslint` (if `.ts`/`.tsx` files changed)
 - `reviewer-tests` (if `.ts`/`.tsx` files changed)
+- `reviewer-complexity` (if `.ts`/`.tsx` files changed)
 
 ## Analysis Required
 
@@ -86,10 +88,16 @@ Check for:
 
 **FuryStack App-Specific:**
 
-- Public API changes (exported functions, classes, types)
-- Dependency injection patterns (`@Injectable`, `@Injected`)
-- Observable patterns (`ObservableValue`, subscriptions)
-- Disposable resources (`Symbol.dispose`, `Symbol.asyncDispose`)
+- Public API surface changes (exported services, components, REST endpoint shapes)
+- Dependency injection patterns (`defineService`, `defineStore`, `defineDataSet`, `injector.get`/`bind`/`invalidate`)
+- Observable patterns (`ObservableValue`, `useObservable`, subscriptions)
+- Disposable resources (`Symbol.dispose`, `Symbol.asyncDispose`, factory `onDispose`)
+- DataSet over StoreToken in app code (`getDataSetFor`, `no-direct-store-token` rule)
+- REST validation: custom actions wrapped in `Validate(...)`, errors as `RequestError`
+
+**Complexity Audit:**
+
+- Delegate to `reviewer-complexity` subagent to flag overgrown components, services, and REST actions introduced or worsened by the branch (heuristics from `.cursor/rules/COMPLEXITY.mdc`)
 
 **Shades Styling Patterns:**
 
@@ -131,6 +139,7 @@ Check for:
 - If `reviewer-eslint` passes → Do NOT mention it in the output
 - If `reviewer-prettier` passes → Do NOT mention it in the output
 - If `reviewer-tests` passes → Do NOT mention it in the output
+- If `reviewer-complexity` passes → Do NOT mention it in the output
 
 Only report subagent findings when they detect actual problems.
 
