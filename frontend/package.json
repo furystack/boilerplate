@@ -13,19 +13,19 @@
   "devDependencies": {
     "@codecov/vite-plugin": "^2.0.1",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10",
-    "vitest": "^4.1.5"
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
   },
   "dependencies": {
-    "@furystack/auth-jwt": "^4.0.0",
-    "@furystack/core": "^17.0.0",
-    "@furystack/inject": "^13.0.0",
-    "@furystack/logging": "^9.0.0",
-    "@furystack/rest-client-fetch": "^9.0.0",
-    "@furystack/shades": "^15.0.0",
-    "@furystack/shades-common-components": "^17.0.0",
-    "@furystack/utils": "^9.0.0",
-    "@types/node": "^25.6.0",
+    "@furystack/auth-jwt": "^4.0.2",
+    "@furystack/core": "^17.1.1",
+    "@furystack/inject": "^13.0.2",
+    "@furystack/logging": "^9.0.2",
+    "@furystack/rest-client-fetch": "^9.0.2",
+    "@furystack/shades": "^15.0.2",
+    "@furystack/shades-common-components": "^17.0.2",
+    "@furystack/utils": "^9.0.2",
+    "@types/node": "^26.3.0",
     "common": "workspace:^"
   }
 }
