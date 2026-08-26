@@ -25,11 +25,11 @@
     "create-schemas": "node ./dist/bin/create-schemas.js"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
+    "@types/node": "^26.3.0",
     "ts-json-schema-generator": "^2.9.0",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.11"
   },
   "dependencies": {
-    "@furystack/rest": "^10.0.0"
+    "@furystack/rest": "^10.0.3"
   }
 }
